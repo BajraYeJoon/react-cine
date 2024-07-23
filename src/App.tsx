@@ -1,13 +1,12 @@
-import './App.css'
-import { ModeToggle } from './components/global/mode-toggle'
-
+import { RouterProvider } from "react-router";
+import "./App.css";
+import { router } from "./routes/route";
 function App() {
-
   return (
-    <main>
-      <ModeToggle />
-    </main>
-  )
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
-export default App
+export default App;
