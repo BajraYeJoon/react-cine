@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Series", href: "/series" },
   { label: "Animations", href: "/animations" },
   { label: "Genres", href: "/genres" },
-  { label: "Join Now", href: "/join" },
 ];
 
 const isLoggedIn = false;
@@ -36,10 +35,6 @@ const Navbar = () => {
         <div className="nav-links hidden gap-8 lg:flex flex-1">
           <ul className="flex flex-col text-left font-medium md:mt-0 md:flex-row md:space-x-4">
             {navLinks.map((link, index) => {
-              if (isLoggedIn && link.href === "/join") {
-                return null;
-              }
-
               return (
                 <li key={index} className="nav-item cursor-pointer">
                   <NavLink
