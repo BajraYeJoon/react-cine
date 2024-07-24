@@ -57,8 +57,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    
   }
   html {
     font-family: 'Zain', sans-serif;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+   
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
   }
 }
