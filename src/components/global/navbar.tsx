@@ -25,8 +25,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar ">
-      <div className="navbar-container flex items-center gap-14 justify-between pb-2 pt-4 max-2xl:mx-8 md:pt-6">
+    <nav className="navbar sticky top-0 start-0 z-50 w-full bg-card pb-6 ">
+      <div className="navbar-container flex items-center gap-14 justify-between mx-52 max-2xl:mx-8 md:pt-6">
         <div className="logo-container flex items-center gap-16">
           <Link to="/" className="flex items-center">
             <span className="self-center text-3xl font-semibold">Cinemax</span>

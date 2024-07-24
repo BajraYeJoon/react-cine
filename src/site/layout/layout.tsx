@@ -1,10 +1,15 @@
-import { Navbar } from "@/site";
+import { Navbar, Sidebar } from "@/components";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <main className="mx-52 mb-28 flex flex-col gap-40 max-2xl:mx-6 max-2xl:gap-28">
+    <>
       <Navbar />
-    </main>
+      <main className="mx-52 mb-28 flex flex-col  max-2xl:mx-6 ">
+        <Sidebar />
+        <Outlet />
+      </main>
+    </>
   );
 };
 

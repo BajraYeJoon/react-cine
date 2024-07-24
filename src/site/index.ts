@@ -1,4 +1,4 @@
 import Layout from "./layout/layout";
-import Navbar from "./home/navbar";
+import Homepage from "./home/homepage";
 
-export { Layout, Navbar };
+export { Layout, Homepage };
