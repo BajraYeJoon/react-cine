@@ -5,7 +5,9 @@ const Homepage = () => {
   return (
     <>
       <Sidebar />
-      <Outlet />
+      <section className="sm:ml-64 p-4">
+        <Outlet />
+      </section>
     </>
   );
 };

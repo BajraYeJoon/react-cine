@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Homepage, Layout } from "@/site";
 import { Landing } from "@/components/homeComponents";
+import { ComingSoon } from "@/components/coming-soon";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,18 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <Landing />,
+          },
+          {
+            path: "/coming-soon",
+            element: <ComingSoon />,
+          },
+          {
+            path: "/recently-viewed",
+            element: <div>Recently viewed</div>,
+          },
+          {
+            path: "/settings",
+            element: <div>Settings</div>,
           },
         ],
       },
