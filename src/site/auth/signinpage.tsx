@@ -26,7 +26,7 @@ const formSchema = z.object({
   }),
 });
 
-const SignUppage = () => {
+const SignInpage = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,16 +47,16 @@ const SignUppage = () => {
       <h1 className="uppercase text-xl tracking-wide font-bold">cinemax</h1>
       <div className="flex flex-col gap-6">
         <h3 className="text-5xl font-bold text-balance text-center max-w-md">
-          Ready to watch? Enter your email to create or restart your membership.
+          Hey there! Welcome back. Sign in to continue.
         </h3>
         <div className="flex flex-col gap-4 ">
           <Button className="gap-4 items-center">
             <FaFacebookF />
-            Sign Up With Facebook
+            Login With Facebook
           </Button>
           <Button variant={"outline"} className="gap-4 items-center">
             <FaGoogle />
-            Sign Up With Google
+            Login With Google
           </Button>
         </div>
         <div className="relative ">
@@ -71,22 +71,6 @@ const SignUppage = () => {
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <Input placeholder="username" {...field} />
-                  </FormControl>
-                  <FormDescription>
-                    This is your public display name.
-                  </FormDescription>{" "}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="email"
@@ -116,14 +100,14 @@ const SignUppage = () => {
               )}
             />
             <Button type="submit" className="w-full">
-              Create Account
+              Login
             </Button>
           </form>
         </Form>
         <p className="text-center text-muted-foreground text-sm">
-          Already a member?{" "}
-          <Link to="/sign-in" className="text-muted-foreground underline">
-            Login
+          Don't have an account?{" "}
+          <Link to="/join" className="text-muted-foreground underline">
+            Sign Up
           </Link>
         </p>
       </div>
@@ -131,4 +115,4 @@ const SignUppage = () => {
   );
 };
 
-export default SignUppage;
+export default SignInpage;
