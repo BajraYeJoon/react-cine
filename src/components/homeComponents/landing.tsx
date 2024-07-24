@@ -3,6 +3,7 @@ import { TbMovie } from "react-icons/tb";
 import ProductionCategory from "./ProductionCategory";
 import { Button } from "../ui/button";
 import ResumeWatch from "./ResumeWatch";
+import BannerMovie from "./BannerMovie";
 
 const items = [
   {
@@ -19,8 +20,8 @@ const items = [
 export const Landing = () => {
   return (
     <>
-      <div className="grid grid-cols-3 grid-rows-3 gap-8 ">
-        <div className="col-span-2 row-span-2 bg-foreground/25 rounded-2xl"></div>
+      <div className="grid grid-cols-3 grid-rows-3 gap-2 ">
+        <BannerMovie />
         <div className="row-span-3 px-6 space-y-5 ">
           <h1 className="text-2xl font-semibold">Top Movies</h1>
           <div className="flex flex-col gap-4">

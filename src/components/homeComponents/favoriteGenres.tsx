@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const favoriteGenres = [
   "Action",
@@ -17,7 +18,7 @@ const FavoriteGenres = () => {
       <div className="flex flex-wrap gap-3">
         {favoriteGenres.map((genre, index) => (
           <Button variant={"secondary"} key={index}>
-            {genre}
+            <Link to={`/genre/${genre}`}>{genre}</Link>
           </Button>
         ))}
       </div>
