@@ -3,5 +3,6 @@ import Homepage from "./home/homepage";
 import AuthLayout from "./auth/layout.tsx";
 import SignUppage from "./auth/signuppage.tsx";
 import SignInpage from "./auth/signinpage.tsx";
+import Settings from "./settings/settings.tsx";
 
-export { Layout, Homepage, AuthLayout, SignUppage, SignInpage };
+export { Layout, Homepage, AuthLayout, SignUppage, SignInpage, Settings };

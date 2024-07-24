@@ -1,5 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Homepage, Layout, AuthLayout, SignUppage, SignInpage } from "@/site";
+import {
+  Homepage,
+  Layout,
+  AuthLayout,
+  SignUppage,
+  SignInpage,
+  Settings,
+} from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
 
@@ -26,7 +33,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "settings",
-            element: <div>Settings</div>,
+            element: <Settings />,
           },
         ],
       },

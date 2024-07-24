@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { ThemeProvider } from './context/theme-provider.tsx'
+import { Toaster } from "@/components/ui/toaster";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ThemeProvider defaultTheme='dark' storageKey='react-cine-theme'>
-
-    <App />
+    <ThemeProvider defaultTheme="dark" storageKey="react-cine-theme">
+      <App />
+      <Toaster />
     </ThemeProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
