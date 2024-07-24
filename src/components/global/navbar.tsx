@@ -6,6 +6,16 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { GrNotification } from "react-icons/gr";
 import { ModeToggle } from "@/components/global/mode-toggle";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import {
+  Command,
+  CommandEmpty,
+  CommandInput,
+  CommandItem,
+  CommandGroup,
+  CommandList,
+  CommandSeparator,
+} from "../ui/command";
 
 const navLinks = [
   { label: "Movies", href: "/movies" },
@@ -57,7 +67,31 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="search-bar flex items-center gap-6">
-          <SearchIcon className="h-6 w-6" />
+          <Dialog>
+            <DialogTrigger asChild>
+              <SearchIcon className="h-6 w-6" />
+            </DialogTrigger>
+            <DialogContent>
+              <Command>
+                <CommandInput placeholder="Type a command or search..." />
+                <CommandList>
+                  <CommandEmpty>No results found.</CommandEmpty>
+                  <CommandGroup heading="Suggestions">
+                    <CommandItem>Calendar</CommandItem>
+                    <CommandItem>Search Emoji</CommandItem>
+                    <CommandItem>Calculator</CommandItem>
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup heading="Settings">
+                    <CommandItem>Profile</CommandItem>
+                    <CommandItem>Billing</CommandItem>
+                    <CommandItem>Settings</CommandItem>
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </DialogContent>
+          </Dialog>
+
           <Button>Subscribe</Button>
 
           <GrNotification className="h-6 w-6" />
