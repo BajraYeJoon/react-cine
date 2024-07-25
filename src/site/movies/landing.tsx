@@ -42,10 +42,11 @@ const Movies = () => {
   return (
     <>
       <div
-        className="flex gap-3 overflow-x-scro
+        className="border h-72 gap-3 
       "
       >
-        <TopRatedMovies showRank />
+        <h1 className="text-2xl font-semibold">Top Movies</h1>
+        <TopRatedMovies showRank swiper />
       </div>
       <div className="relative flex flex-wrap justify-center  my-0 mx-auto overflow-hidden rounded-lg  gap-7">
         {movies.map((movie) => (

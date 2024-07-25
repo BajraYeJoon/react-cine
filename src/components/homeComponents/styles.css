@@ -32,3 +32,6 @@
     width: 20px;
     border-radius: 50%;
   }
+  .swiper-scrollbar-drag {
+    background-color: hsl(271 51% 48% / 0.7); 
+  }
