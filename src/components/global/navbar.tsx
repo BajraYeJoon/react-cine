@@ -92,7 +92,9 @@ const Navbar = () => {
             </DialogContent>
           </Dialog>
 
-          <Button>Subscribe</Button>
+          <Link to={`/subscribe`}>
+            <Button>Subscribe</Button>
+          </Link>
 
           <GrNotification className="h-6 w-6" />
 

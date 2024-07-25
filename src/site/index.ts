@@ -4,5 +4,14 @@ import AuthLayout from "./auth/layout.tsx";
 import SignUppage from "./auth/signuppage.tsx";
 import SignInpage from "./auth/signinpage.tsx";
 import Settings from "./settings/settings.tsx";
+import Movies from "./movies/landing.tsx";
 
-export { Layout, Homepage, AuthLayout, SignUppage, SignInpage, Settings };
+export {
+  Layout,
+  Homepage,
+  AuthLayout,
+  SignUppage,
+  SignInpage,
+  Settings,
+  Movies,
+};

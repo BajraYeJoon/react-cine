@@ -4,10 +4,54 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background-color: gray;
+    }
+  
+    .netflix {
+      height: 434.44px;
+    }
+  </style>
     <title>Vite + React + TS</title>
+  
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="netflix">
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg width="100%"
+          height="100%" viewBox="0 0 435 434" version="1.1" xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+          style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+          <g>
+            <use xlink:href="#_Image1" x="0" y="0" width="435px" height="434px" />
+            <path
+              d="M434.5,37.004c0,-20.699 -16.805,-37.504 -37.504,-37.504l-359.992,0c-20.699,0 -37.504,16.805 -37.504,37.504l0,359.992c0,20.699 16.805,37.504 37.504,37.504l359.992,0c20.699,0 37.504,-16.805 37.504,-37.504l0,-359.992Z" />
+            <path id="right" d="M297.846,69.63l-59,0l0.113,290c19.574,0.542 39.203,2.204 58.887,5l0,-295Z"
+              style="fill:#b1060f;" />
+            <path id="left" d="M195.846,69.63l-59,0l0,295c19.561,-2.714 39.16,-4.408 58.799,-5l0.201,-290Z"
+              style="fill:#b1060f;" />
+            <path id="center" d="M195.846,69.63l-59,0l102,290c19.69,0.965 39.356,2.657 59,5l-102,-295Z"
+              style="fill:#e50914;" />
+          </g>
+        </svg>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      var timeline = new TimelineMax({ onComplete: function () { this.restart() } })
+      timeline.add(TweenLite.to('#left', .4, { scaleY: 0, delay: 1 }))
+      timeline.add(TweenLite.to('#left', .01, { transformOrigin: 'bottom', y: '100%', opacity: 0 }))
+      timeline.add(TweenLite.to('#center', .4, { attr: { d: 'M297.846,364.016l-59,-5.113l0,0.727c19.69,0.965 39.356,2.657 59,5l0,-0.614Z' } }))
+      timeline.add(TweenLite.to('#center', 0.01, { opacity: 0, attr: { d: 'M195.846,69.63l-59,0l0.256,0.6c14.559,-0.109 39.379,0.153 58.942,-0.027l-0.198,-0.573Z' } }))
+      timeline.add(TweenLite.to('#right', .4, { scaleY: 0 }))
+      timeline.add(TweenLite.to('#right', .01, { transformOrigin: 'bottom', y: '100%', opacity: 0 }))
+      timeline.add(TweenLite.to('#left', .01, { opacity: 1, delay: 1, y: 0 }))
+      timeline.add(TweenLite.to('#left', .4, { scaleY: 1 }))
+      timeline.add(TweenLite.to('#center', .01, { opacity: 1 }))
+      timeline.add(TweenLite.to('#center', .4, { attr: { d: 'M195.846,69.63l-59,0l102,290c19.69,0.965 39.356,2.657 59,5l-102,-295Z' } }))
+      timeline.add(TweenLite.to('#right', .01, { opacity: 1, y: 0 }))
+      timeline.add(TweenLite.to('#right', .4, { scaleY: 1 }))
+    </script>
   </body>
 </html>

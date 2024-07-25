@@ -1,4 +1,5 @@
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { motion } from "framer-motion";
 
 const comingsooninfo = [
   {
@@ -24,8 +25,12 @@ const comingsooninfo = [
 ];
 
 const ComingSoon = () => {
+  const variants = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0, transition: { type: "spring" } },
+  };
   return (
-    <section className="px-4">
+    <motion.section className="px-4">
       <h1 className="text-4xl tracking-wide font-medium">Coming Soon</h1>
       <div className="flex  flex-wrap gap-4 mt-4">
         {/* {comingsooninfo.map((item) => (
@@ -43,17 +48,50 @@ const ComingSoon = () => {
           </Dialog>
         ))} */}
 
-        <div className="grid grid-cols-4 grid-rows-5 gap-4 w-full *:bg-foreground/25 *:rounded-2xl">
-          <div className="col-span-2 row-span-2 h-72">1</div>
-          <div className="col-start-1 ">2</div>
-          <div className="col-start-2">3</div>
-          <div className="col-span-3 row-span-2">4</div>
-          <div className="col-span-2 row-span-3 col-start-3 row-start-1">5</div>
-          <div className="col-start-4 row-start-4">6</div>
-          <div className="col-start-4 row-start-5">7</div>
-        </div>
+        <motion.div
+          initial="hidden"
+          animate="show"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+          }}
+          className="grid grid-cols-4 grid-rows-5 gap-4 w-full *:bg-foreground/25 *:rounded-2xl"
+        >
+          <motion.div
+            variants={variants}
+            className="col-span-2 row-span-2 h-72"
+          >
+            1
+          </motion.div>
+          <motion.div variants={variants} className="col-start-1 ">
+            2
+          </motion.div>
+          <motion.div variants={variants} className="col-start-2">
+            3
+          </motion.div>
+          <motion.div variants={variants} className="col-span-3 row-span-2">
+            4
+          </motion.div>
+          <motion.div
+            variants={variants}
+            className="col-span-2 row-span-3 col-start-3 row-start-1"
+          >
+            5
+          </motion.div>
+          <motion.div variants={variants} className="col-start-4 row-start-4">
+            6
+          </motion.div>
+          <motion.div variants={variants} className="col-start-4 row-start-5">
+            7
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

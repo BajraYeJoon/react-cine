@@ -6,9 +6,11 @@ import {
   SignUppage,
   SignInpage,
   Settings,
+  Movies,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
+import { Subscribe } from "@/components/Subscribe";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +49,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "movies",
-        element: <div>movies</div>,
+        element: <Movies />,
       },
       {
         path: "series",
@@ -65,6 +67,10 @@ export const router = createBrowserRouter([
             element: <SignInpage />,
           },
         ],
+      },
+      {
+        path: "subscribe",
+        element: <Subscribe />,
       },
     ],
   },
