@@ -6,6 +6,8 @@ import SignInpage from "./auth/signinpage.tsx";
 import Settings from "./settings/settings.tsx";
 import Movies from "./movies/landing.tsx";
 import SubscribeLayout from "./layout/subscribeLayout.tsx";
+import Serieslanding from "./series/landing.tsx";
+import Animationlanding from "./animation/landing.tsx";
 
 export {
   Layout,
@@ -16,4 +18,6 @@ export {
   Settings,
   Movies,
   SubscribeLayout,
+  Serieslanding,
+  Animationlanding,
 };

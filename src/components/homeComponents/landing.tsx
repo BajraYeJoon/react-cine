@@ -2,7 +2,7 @@ import ProductionCategory from "./ProductionCategory";
 import { Button } from "../ui/button";
 import ResumeWatch from "./ResumeWatch";
 import BannerMovie from "./BannerMovie";
-import TopRatedMovies from "./topRatedMovies";
+import TopRatedMovies from "./topRated";
 
 export const Landing = () => {
   return (

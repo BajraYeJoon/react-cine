@@ -7,7 +7,9 @@ import {
   SignInpage,
   Settings,
   Movies,
+  Serieslanding,
   SubscribeLayout,
+  Animationlanding,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
@@ -43,7 +45,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "animations",
-        element: <div>ANimationatin</div>,
+        element: <Animationlanding />,
       },
       {
         path: "genres",
@@ -55,7 +57,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "series",
-        element: <div>series</div>,
+        element: <Serieslanding />,
       },
       {
         element: <AuthLayout />,

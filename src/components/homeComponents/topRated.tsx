@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Scrollbar } from "swiper/modules";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
@@ -29,7 +29,7 @@ const items = [
   { id: 7, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
 ];
 
-const TopRatedMovies = ({ showRank, swiper }: TopRatedMoviesProps) => {
+const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
   const renderMovieItem = (item) => (
     <div
       key={item.id}
@@ -77,11 +77,11 @@ const TopRatedMovies = ({ showRank, swiper }: TopRatedMoviesProps) => {
             hide: false,
             draggable: false,
           }}
-          pagination={{
-            clickable: true,
-          }}
+          // pagination={{
+          //   clickable: true,
+          // }}
           // navigation={true}
-          modules={[Scrollbar, Pagination]}
+          modules={[Scrollbar]}
           className="mySwiper h-48 "
         >
           {items.map((item) => (
@@ -97,4 +97,4 @@ const TopRatedMovies = ({ showRank, swiper }: TopRatedMoviesProps) => {
   );
 };
 
-export default TopRatedMovies;
+export default TopRatedPage;
