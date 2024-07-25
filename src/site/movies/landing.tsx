@@ -118,7 +118,7 @@ const Movies = () => {
       </div>
       <h2 className="mb-4 text-3xl font-medium">Best of Action</h2>
       <motion.div
-        className="relative flex flex-wrap center [&>*:nth-child(odd)]  my-0 mx-auto   gap-7"
+        className="relative flex flex-wrap justify-between [&>*:nth-child(odd)]  my-0 mx-auto gap-7"
         initial="hidden"
         animate="show"
         viewport={{ once: true }}
