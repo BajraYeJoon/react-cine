@@ -11,6 +11,7 @@ import {
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
 import { Subscribe } from "@/components/Subscribe";
+import Billing from "@/components/billing/billing";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,12 @@ export const router = createBrowserRouter([
       {
         path: "subscribe",
         element: <Subscribe />,
+        children: [
+          {
+            path: "billing",
+            element: <Billing />,
+          },
+        ],
       },
     ],
   },

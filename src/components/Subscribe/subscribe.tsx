@@ -1,5 +1,18 @@
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
+
+const features = [
+  { id: 1, content: "8k resolutions Trailer" },
+  { id: 2, content: "Dolby Atmos/ Dolby HD Vision" },
+  { id: 3, content: "HDR10 Support" },
+];
+
+const additionalFeatures = [
+  { id: 1, content: "Everything from basic" },
+  { id: 2, content: "24/7 Support" },
+  { id: 3, content: "10 users" },
+];
 
 function Subscribe() {
   const container = {
@@ -19,7 +32,7 @@ function Subscribe() {
 
   const words = "Ready to enhance your experience";
   return (
-    <div className="relative mt-12 flex flex-col items-center gap-4 h-[100vh] justify-start">
+    <div className="relative mt-12 flex flex-col items-center gap-4 justify-start">
       <motion.h1
         variants={container}
         initial="hidden"
@@ -39,38 +52,38 @@ function Subscribe() {
       <div className="flex  items-center gap-4 w-full">
         <img src="/sh.png" className="h-[500px] w-[600px] object-contain  " />
         <motion.div
-          className="m-10 w-80 rounded-lg border-2 border-foreground py-8 px-6 shadow-lg shadow-foreground"
+          className="m-10 w-80 rounded-lg border-2 border-foreground py-8 px-6 shadow-lg shadow-foreground "
           variants={container}
         >
-          <p className="text-lg font-bold">Enhanced Pro</p>
+          <p className="text-2xl font-medium">Enhanced Pro</p>
           <p className="text-sm font-semibold text-gray-500">
             For your ulimate experience
           </p>
           <p className="mt-3 text-4xl font-bold">$65</p>
 
-          <Button>Try Now</Button>
+          <Link to="/subscribe/billing">
+            <Button>Try Now</Button>
+          </Link>
           <ul className="mt-4 space-y-2 font-semibold">
-            <li className="flex items-center space-x-4">
-              <span>8k resolutions Trailer</span>
-            </li>
-            <li className="flex items-center space-x-4">
-              <span>Dolby Atmos/ Dolby HD Vision</span>
-            </li>
-            <li className="flex items-center space-x-4">
-              <span>HDR10 Support</span>
-            </li>
+            {features.map((feature) => (
+              <li
+                key={feature.id}
+                className="flex items-center font-medium space-x-4"
+              >
+                <span>{feature.content}</span>
+              </li>
+            ))}
           </ul>
           <hr className="my-4" />
           <ul className="space-y-2 font-semibold">
-            <li className="flex items-center space-x-2 text-rose-600">
-              <span>Everything from basic</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span>24/7 Support</span>
-            </li>
-            <li className="flex items-center space-x-2">
-              <span>10 users</span>
-            </li>
+            {additionalFeatures.map((feature) => (
+              <li
+                key={feature.id}
+                className={`flex items-center sapace-x-2 first:text-primary/80 `}
+              >
+                <span>{feature.content}</span>
+              </li>
+            ))}
           </ul>
         </motion.div>
       </div>
