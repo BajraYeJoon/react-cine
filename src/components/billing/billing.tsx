@@ -91,10 +91,10 @@ const Billing = () => {
       success_url: "https://esewa.com.np",
       tax_amount: values.tax_amount,
       total_amount:
-        values.amount +
-        values.tax_amount +
-        values.product_delivery_charge +
-        values.product_service_charge,
+        parseFloat(values.amount) +
+        parseFloat(values.tax_amount) +
+        parseFloat(values.product_delivery_charge) +
+        parseFloat(values.product_service_charge),
       transaction_uuid: transaction_uuid,
     };
 
