@@ -5,6 +5,7 @@ import SignUppage from "./auth/signuppage.tsx";
 import SignInpage from "./auth/signinpage.tsx";
 import Settings from "./settings/settings.tsx";
 import Movies from "./movies/landing.tsx";
+import SubscribeLayout from "./layout/subscribeLayout.tsx";
 
 export {
   Layout,
@@ -14,4 +15,5 @@ export {
   SignInpage,
   Settings,
   Movies,
+  SubscribeLayout,
 };

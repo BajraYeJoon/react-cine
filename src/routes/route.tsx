@@ -7,11 +7,12 @@ import {
   SignInpage,
   Settings,
   Movies,
+  SubscribeLayout,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
-import { Subscribe } from "@/components/Subscribe";
 import Billing from "@/components/billing/billing";
+import { Subscribe } from "@/components/Subscribe";
 
 export const router = createBrowserRouter([
   {
@@ -71,8 +72,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "subscribe",
-        element: <Subscribe />,
+        element: <SubscribeLayout />,
         children: [
+          {
+            index: true,
+            element: <Subscribe />,
+          },
           {
             path: "billing",
             element: <Billing />,

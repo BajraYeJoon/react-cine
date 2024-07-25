@@ -1,3 +1,4 @@
+import TopRatedMovies from "@/components/homeComponents/topRatedMovies";
 import { Share, MessageCircle } from "lucide-react";
 import { Fragment } from "react";
 
@@ -40,6 +41,12 @@ const movies = [
 const Movies = () => {
   return (
     <>
+      <div
+        className="flex gap-3 overflow-x-scro
+      "
+      >
+        <TopRatedMovies showRank />
+      </div>
       <div className="relative flex flex-wrap justify-center  my-0 mx-auto overflow-hidden rounded-lg  gap-7">
         {movies.map((movie) => (
           <Fragment key={movie.id}>

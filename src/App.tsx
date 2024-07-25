@@ -24,7 +24,7 @@ function App() {
         color="230, 151, 230"
         outerAlpha={0.4}
         innerScale={0.4}
-        trailingSpeed={14}
+        trailingSpeed={10}
         outerScale={5}
         clickables={[
           "a",

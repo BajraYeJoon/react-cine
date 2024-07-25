@@ -8,16 +8,16 @@ const Layout = () => {
 
   return (
     <>
-      {onboard ? (
+      {/* {onboard ? (
         <Onboarding setonboard={setOnBoard} />
-      ) : (
-        <>
-          <Navbar />
-          <main className="mx-52 mb-28 flex flex-col  max-2xl:mx-6 ">
-            <Outlet />
-          </main>
-        </>
-      )}
+      ) : ( */}
+      <>
+        <Navbar />
+        <main className="mx-52 mb-28 flex flex-col  max-2xl:mx-6 ">
+          <Outlet />
+        </main>
+      </>
+      {/* )} */}
     </>
   );
 };
