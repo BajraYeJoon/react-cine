@@ -38,3 +38,17 @@ export const fetchGenresFromAPI = async (): Promise<string[]> => {
   const data = await fetchFromAPI("/genre/movie/list?language=en");
   return data.genres || [];
 };
+
+export const fetchTopRatedTVShowsFromAPI = async (): Promise<[]> => {
+  const data = await fetchFromAPI("/tv/top_rated?language=en-US&page=1");
+  return data.results || [];
+};
+
+export const fetchMoviesWithGenreType = async (
+  genreId: string
+): Promise<any> => {
+  const data = await fetchFromAPI(
+    `/discover/movie?with_genres=${genreId}&with_keywords=210024|287501&page=1`
+  );
+  return data.results || [];
+};

@@ -1,7 +1,8 @@
 import { useMovieContext } from "@/context/movie-context";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
 import { useEffect } from "react";
+
+import { Link } from "react-router-dom";
 
 // const favoriteGenres = [
 //   "Action",

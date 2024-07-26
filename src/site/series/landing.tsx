@@ -1,4 +1,4 @@
-import TopRatedMovies from "@/components/homeComponents/topRated";
+import TopRatedPage from "@/components/homeComponents/topRated";
 import { motion } from "framer-motion";
 
 const Serieslanding = () => {
@@ -6,11 +6,12 @@ const Serieslanding = () => {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
+
   return (
     <section>
       <div className=" h-72 gap-3">
         <h1 className="text-3xl font-medium">Top Movies</h1>
-        <TopRatedMovies showRank swiper />
+        <TopRatedPage showRank swiper tvShow />
       </div>
 
       <h2 className="mb-4 text-3xl font-medium">Best of Series</h2>

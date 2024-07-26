@@ -9,11 +9,15 @@ import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { Scrollbar } from "swiper/modules";
 import { useState, useEffect } from "react";
-import { fetchTopRatedMoviesFromAPI } from "@/api/fetchapi";
+import {
+  fetchTopRatedMoviesFromAPI,
+  fetchTopRatedTVShowsFromAPI,
+} from "@/api/fetchapi";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
   swiper?: boolean;
+  tvShow?: any;
 }
 
 // const items = [
@@ -32,63 +36,66 @@ interface TopRatedMoviesProps {
 //   { id: 7, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
 // ];
 
-const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
+const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
   const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     const fetchTopRated = async () => {
-      const topRatedData = await fetchTopRatedMoviesFromAPI();
+      const topRatedData = tvShow
+        ? await fetchTopRatedTVShowsFromAPI()
+        : await fetchTopRatedMoviesFromAPI();
       setTopRated(topRatedData);
     };
     fetchTopRated();
-  }, []);
+  }, [tvShow]);
 
+  const renderMovieItem = (item, index) => {
+    const title = tvShow ? item.name : item.title;
 
-  const renderMovieItem = (item, index) => (
-    <div
-      key={item.id}
-      className={cn(
-        "grid grid-cols-2 gap-8 w-full",
-        showRank && "w-fit flex gap-4"
-      )}
-    >
-      {showRank && (
-        <span className="text-[6rem] text-center my-auto w-fit">
-          {index + 1}
-        </span>
-      )}
+    return (
       <div
+        key={item.id}
         className={cn(
-          "h-28  w-32 items-center rounded-3xl overflow-hidden bg-foreground/25",
-          showRank && "col-span-1 h-32 w-24 "
+          "grid grid-cols-2 gap-8 w-full",
+          showRank && "w-fit flex gap-4"
         )}
       >
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          alt="movie poster"
-          className="object-cover object-top h-full w-full"
-        />
+        {showRank && (
+          <span className="text-[6rem] text-center my-auto w-fit">
+            {index + 1}
+          </span>
+        )}
+        <div
+          className={cn(
+            "h-28  w-32 items-center rounded-3xl overflow-hidden bg-foreground/25",
+            showRank && "col-span-1 h-32 w-24 "
+          )}
+        >
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            alt="movie poster"
+            className="object-cover object-top h-full w-full"
+          />
+        </div>
+        <div className="flex flex-col justify-center min-w-48">
+          <span className="uppercase text-sm text-foreground/50">
+            {item.original_language}
+          </span>
+          <h4 className="text-xl capitalize text-nowrap">
+            {title.length > 10 ? title.slice(0, 20) + "..." : title}
+          </h4>
+          <span className="opacity-30 inline-flex items-center gap-2">
+            <TbMovie />
+            {item.popularity}
+          </span>
+          <span className="flex items-center text-center w-fit gap-2 text-lg">
+            <StarIcon size={16} fill="yellow" />
+            {item.vote_count}
+          </span>
+        </div>
       </div>
-      <div className="flex flex-col justify-center min-w-48">
-        <span className="uppercase text-sm text-foreground/50">
-          {item.original_language}
-        </span>
-        <h4 className="text-xl capitalize text-nowrap">
-          {item.title.length > 10
-            ? item.title.slice(0, 20) + "..."
-            : item.title}
-        </h4>
-        <span className="opacity-30 inline-flex items-center gap-2">
-          <TbMovie />
-          {item.popularity}
-        </span>
-        <span className="flex items-center text-center w-fit gap-2 text-lg">
-          <StarIcon size={16} fill="yellow" />
-          {item.vote_count}
-        </span>
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <>
