@@ -1,23 +1,6 @@
 import axios from "axios";
 
-export const API_KEY =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMTBiYjIwYjYwYmFhNjI5MjlkYzc5ZTY0MjYwZGEwOCIsIm5iZiI6MTcyMTk1NTc1Mi45MDA5MzIsInN1YiI6IjY2YTI2NmYwZGVmMjYyMGNlM2UwZmM5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._bXqgrfdUyAovphAOigWtILlZBXL883Ua2xjvMQr1A0";
-
-// const fetch = require('node-fetch');
-
-// const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-// const options = {
-//   method: 'GET',
-//   headers: {
-//     accept: 'application/json',
-//     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMTBiYjIwYjYwYmFhNjI5MjlkYzc5ZTY0MjYwZGEwOCIsIm5iZiI6MTcyMTk1NTc1Mi45MDA5MzIsInN1YiI6IjY2YTI2NmYwZGVmMjYyMGNlM2UwZmM5MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._bXqgrfdUyAovphAOigWtILlZBXL883Ua2xjvMQr1A0'
-//   }
-// };
-
-// fetch(url, options)
-//   .then(res => res.json())
-//   .then(json => console.log(json))
-//   .catch(err => console.error('error:' + err));
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const fetchTopRatedMoviesFromAPI = async (): Promise<any> => {
   const url =

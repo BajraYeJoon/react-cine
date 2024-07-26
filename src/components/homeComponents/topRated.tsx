@@ -8,40 +8,44 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { Scrollbar } from "swiper/modules";
-import { useMovieContext } from "@/context/movie-context";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { fetchTopRatedMoviesFromAPI } from "@/api/fetchapi";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
   swiper?: boolean;
 }
 
-const items = [
-  {
-    id: 1,
-    category: "pg 1",
-    name: "name 1 adfasdfasdfasdfasdfasdfasdfasdfasdf",
-    genre: "genre 1",
-    rating: 8.2,
-  },
-  { id: 2, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
-  { id: 3, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
-  { id: 4, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
-  { id: 5, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
-  { id: 6, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
-  { id: 7, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
-];
+// const items = [
+//   {
+//     id: 1,
+//     category: "pg 1",
+//     name: "name 1 adfasdfasdfasdfasdfasdfasdfasdfasdf",
+//     genre: "genre 1",
+//     rating: 8.2,
+//   },
+//   { id: 2, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
+//   { id: 3, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
+//   { id: 4, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
+//   { id: 5, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
+//   { id: 6, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
+//   { id: 7, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
+// ];
 
 const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
-  const { topRated, fetchTopRated } = useMovieContext();
+  const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
+    const fetchTopRated = async () => {
+      const topRatedData = await fetchTopRatedMoviesFromAPI();
+      setTopRated(topRatedData);
+    };
     fetchTopRated();
   }, []);
 
   console.log(topRated);
 
-  const renderMovieItem = (item) => (
+  const renderMovieItem = (item, index) => (
     <div
       key={item.id}
       className={cn(
@@ -50,7 +54,9 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
       )}
     >
       {showRank && (
-        <span className="text-[6rem] text-center my-auto w-fit">{item.id}</span>
+        <span className="text-[6rem] text-center my-auto w-fit">
+          {index + 1}
+        </span>
       )}
       <div
         className={cn(
@@ -63,10 +69,9 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
           {item.original_language}
         </span>
         <h4 className="text-xl capitalize text-nowrap">
-          {/* {item.title.length > 10
+          {item.title.length > 10
             ? item.title.slice(0, 20) + "..."
-            : item.title} */}
-          {item.title}
+            : item.title}
         </h4>
         <span className="opacity-30 inline-flex items-center gap-2">
           <TbMovie />
@@ -98,15 +103,15 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
           modules={[Scrollbar]}
           className="mySwiper h-48 "
         >
-          {topRated.map((item) => (
+          {topRated.slice(0, 10).map((item, index) => (
             <SwiperSlide key={item.id} className="text-left">
-              {renderMovieItem(item)}
+              {renderMovieItem(item, index)}
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
         // items.map(renderMovieItem).slice(0, 4)
-        topRated.map(renderMovieItem)
+        topRated.map(renderMovieItem).slice(0, 4)
       )}
     </>
   );

@@ -12,8 +12,6 @@ interface MovieContextType {
   fetchGenres: () => Promise<void>;
   nowPlaying: any;
   fetchNowPlaying: () => Promise<void>;
-  topRated: any;
-  fetchTopRated: () => Promise<void>;
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -21,12 +19,6 @@ const MovieContext = createContext<MovieContextType | undefined>(undefined);
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [genres, setGenres] = useState<string[]>([]);
   const [nowPlaying, setNowPlaying] = useState({});
-  const [topRated, setTopRated] = useState({});
-
-  const fetchTopRated = async () => {
-    const topRated = await fetchTopRatedMoviesFromAPI();
-    setTopRated(topRated);
-  };
 
   const fetchGenres = async () => {
     const genres = await fetchGenresFromAPI();
@@ -45,8 +37,6 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
         fetchGenres,
         nowPlaying,
         fetchNowPlaying,
-        topRated,
-        fetchTopRated,
       }}
     >
       {children}
