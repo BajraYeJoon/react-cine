@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = "https://api.themoviedb.org/3";
 
-export const fetchTopRatedMoviesFromAPI = async (): Promise<any> => {
-  const url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+const fetchFromAPI = async (endpoint: string): Promise<any> => {
+  const url = `${BASE_URL}${endpoint}`;
   try {
     const response = await axios.get(url, {
       headers: {
@@ -12,42 +12,29 @@ export const fetchTopRatedMoviesFromAPI = async (): Promise<any> => {
         Authorization: `Bearer ${API_KEY}`,
       },
     });
-    return response.data.results;
+    return response.data;
   } catch (error) {
-    console.error("Failed to fetch top rated movies:", error);
+    console.error(`Failed to fetch data from ${url}:`, error);
     return [];
   }
+};
+
+export const fetchTopRatedMoviesFromAPI = async (): Promise<any> => {
+  const data = await fetchFromAPI("/movie/top_rated?language=en-US&page=1");
+  return data.results || [];
+};
+
+export const fetchUpcomingMoviesFromAPI = async (): Promise<any> => {
+  const data = await fetchFromAPI("/movie/upcoming?language=en-US&page=1");
+  return data.results || [];
 };
 
 export const fetchNowPlayingFromAPI = async (): Promise<any> => {
-  const url =
-    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    });
-    return response.data.results;
-  } catch (error) {
-    console.error("Failed to fetch now playing movies:", error);
-    return [];
-  }
+  const data = await fetchFromAPI("/movie/now_playing?language=en-US&page=1");
+  return data.results || [];
 };
 
 export const fetchGenresFromAPI = async (): Promise<string[]> => {
-  const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
-  try {
-    const response = await axios.get(url, {
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-    });
-    return response.data.genres;
-  } catch (error) {
-    console.error("Failed to fetch genres:", error);
-    return [];
-  }
+  const data = await fetchFromAPI("/genre/movie/list?language=en");
+  return data.genres || [];
 };

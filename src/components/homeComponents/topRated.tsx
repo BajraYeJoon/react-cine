@@ -43,7 +43,6 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
     fetchTopRated();
   }, []);
 
-  console.log(topRated);
 
   const renderMovieItem = (item, index) => (
     <div
@@ -60,10 +59,16 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
       )}
       <div
         className={cn(
-          "h-28  w-32 items-center rounded-3xl bg-foreground/25",
+          "h-28  w-32 items-center rounded-3xl overflow-hidden bg-foreground/25",
           showRank && "col-span-1 h-32 w-24 "
         )}
-      ></div>
+      >
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+          alt="movie poster"
+          className="object-cover object-top h-full w-full"
+        />
+      </div>
       <div className="flex flex-col justify-center min-w-48">
         <span className="uppercase text-sm text-foreground/50">
           {item.original_language}

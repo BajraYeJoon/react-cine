@@ -1,10 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useContext, createContext, useState, ReactNode } from "react";
-import {
-  fetchGenresFromAPI,
-  fetchNowPlayingFromAPI,
-  fetchTopRatedMoviesFromAPI,
-} from "@/api/fetchapi";
+import { fetchGenresFromAPI, fetchNowPlayingFromAPI } from "@/api/fetchapi";
 
 // Define a type for the context value
 interface MovieContextType {
@@ -18,7 +14,7 @@ const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [genres, setGenres] = useState<string[]>([]);
-  const [nowPlaying, setNowPlaying] = useState({});
+  const [nowPlaying, setNowPlaying] = useState([]);
 
   const fetchGenres = async () => {
     const genres = await fetchGenresFromAPI();
