@@ -1,25 +1,33 @@
-import React from "react";
+import { useMovieContext } from "@/context/movie-context";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
 
-const favoriteGenres = [
-  "Action",
-  "Adventure",
-  "Comedy",
-  "Crime",
-  "Drama",
-  "Fantasy",
-];
+// const favoriteGenres = [
+//   "Action",
+//   "Adventure",
+//   "Comedy",
+//   "Crime",
+//   "Drama",
+//   "Fantasy",
+// ];
+
 const FavoriteGenres = () => {
+  const { genres, fetchGenres } = useMovieContext();
+
+  useEffect(() => {
+    fetchGenres();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className="mt-4 space-y-4">
       <h1 className="text-2xl font-normal tracking-normal">Favorites Genres</h1>
 
       <div className="flex flex-wrap gap-3">
-        {favoriteGenres.map((genre, index) => (
-          <Button variant={"secondary"} key={index}>
-            <Link to={`/genre/${genre}`}>{genre}</Link>
+        {genres.map(({ id, name }: any) => (
+          <Button variant={"secondary"} key={id}>
+            <Link to={`/genre/${name}`}>{name}</Link>
           </Button>
         ))}
       </div>

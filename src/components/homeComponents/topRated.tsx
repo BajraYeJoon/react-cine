@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { cn } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
 import { TbMovie } from "react-icons/tb";
@@ -7,6 +8,8 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import { Scrollbar } from "swiper/modules";
+import { useMovieContext } from "@/context/movie-context";
+import { useEffect } from "react";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
@@ -30,6 +33,14 @@ const items = [
 ];
 
 const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
+  const { topRated, fetchTopRated } = useMovieContext();
+
+  useEffect(() => {
+    fetchTopRated();
+  }, []);
+
+  console.log(topRated);
+
   const renderMovieItem = (item) => (
     <div
       key={item.id}
@@ -49,18 +60,21 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
       ></div>
       <div className="flex flex-col justify-center min-w-48">
         <span className="uppercase text-sm text-foreground/50">
-          {item.category}
+          {item.original_language}
         </span>
         <h4 className="text-xl capitalize text-nowrap">
-          {item.name.length > 10 ? item.name.slice(0, 20) + "..." : item.name}
+          {/* {item.title.length > 10
+            ? item.title.slice(0, 20) + "..."
+            : item.title} */}
+          {item.title}
         </h4>
         <span className="opacity-30 inline-flex items-center gap-2">
           <TbMovie />
-          {item.genre}
+          {item.popularity}
         </span>
         <span className="flex items-center text-center w-fit gap-2 text-lg">
           <StarIcon size={16} fill="yellow" />
-          {item.rating}
+          {item.vote_count}
         </span>
       </div>
     </div>
@@ -84,14 +98,15 @@ const TopRatedPage = ({ showRank, swiper }: TopRatedMoviesProps) => {
           modules={[Scrollbar]}
           className="mySwiper h-48 "
         >
-          {items.map((item) => (
+          {topRated.map((item) => (
             <SwiperSlide key={item.id} className="text-left">
               {renderMovieItem(item)}
             </SwiperSlide>
           ))}
         </Swiper>
       ) : (
-        items.map(renderMovieItem).slice(0, 4)
+        // items.map(renderMovieItem).slice(0, 4)
+        topRated.map(renderMovieItem)
       )}
     </>
   );

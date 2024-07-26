@@ -9,25 +9,25 @@ import "./styles.css";
 const productionImg = [
   {
     id: 1,
-    text: "1",
+    img: "/marvel.png",
   },
 
   {
     id: 2,
-    text: "2",
+    img: "/netflix.png",
   },
   {
     id: 3,
-    text: "3",
+    img: "/disney.png",
   },
   {
     id: 4,
-    text: "4",
+    img: "/nat.png",
   },
-  {
-    id: 5,
-    text: "5",
-  },
+  // {
+  //   id: 5,
+  //   text: "5",
+  // },
 ];
 
 export default function ProductionCategory() {
@@ -51,7 +51,13 @@ export default function ProductionCategory() {
         {productionImg.map((item) => (
           <SwiperSlide key={item.id}>
             {/* <img src={item.img} alt={item.name} /> */}
-            <div className="h-24  w-full border-2 rounded-2xl">{item.text}</div>
+            <div className="h-24 flex items-center justify-center w-full border-2 rounded-2xl">
+              <img
+                src={item.img}
+                alt="production"
+                className="h-16 w-auto object-center bg-cover"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
