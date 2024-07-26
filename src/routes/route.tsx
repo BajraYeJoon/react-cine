@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   Homepage,
   Layout,
@@ -10,7 +10,7 @@ import {
   Serieslanding,
   SubscribeLayout,
   Animationlanding,
-  Genres,
+  Genrelanding,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
@@ -49,8 +49,8 @@ export const router = createBrowserRouter([
         element: <Animationlanding />,
       },
       {
-        path: "/genre/:genre",
-        element: <Genres />,
+        path: "/genre/:genre/:id",
+        element: <Genrelanding />,
       },
 
       {

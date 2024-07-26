@@ -8,7 +8,7 @@ import Movies from "./movies/landing.tsx";
 import SubscribeLayout from "./layout/subscribeLayout.tsx";
 import Serieslanding from "./series/landing.tsx";
 import Animationlanding from "./animation/landing.tsx";
-import Genres from "./genres/landing.tsx";
+import Genrelanding from "./genres/landing.tsx";
 
 export {
   Layout,
@@ -21,5 +21,5 @@ export {
   SubscribeLayout,
   Serieslanding,
   Animationlanding,
-  Genres,
+  Genrelanding,
 };

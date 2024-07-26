@@ -1,22 +1,36 @@
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const landing = () => {
+const Genrelanding = () => {
+  const [filteredGenreList, setFilteredGenreList] = useState<any[]>([]);
+  const { genreName, id } = useParams<{ genreName: string; id: string }>();
+
   useEffect(() => {
-    const handleGetMoviesFromGenre = async (id: string) => {
-      const res = await fetchMoviesWithGenreType(id);
-      console.log(res);
+    const fetchFilteredGenreList = async (id: string) => {
+      const data = await fetchMoviesWithGenreType(id);
+      setFilteredGenreList(data);
     };
 
-    handleGetMoviesFromGenre();
-  }, [id]);
+    fetchFilteredGenreList(id ?? "");
+  }, [genreName, id]);
+
+  console.log(filteredGenreList);
 
   return (
     <div>
-      <Link to={"/genres/action"}>Actiasdfasdfasdfon</Link>
+      {/* {filteredGenre && (
+        <div>
+          <h1>{filteredGenre.name}</h1>
+          <div>
+            {result.map((movie: any) => (
+              <div key={movie.id}>{movie.name}</div>
+            ))}
+          </div>
+        </div>
+      )} */}
     </div>
   );
 };
 
-export default landing;
+export default Genrelanding;

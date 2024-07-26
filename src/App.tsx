@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <AnimatedCursor
+      {/* <AnimatedCursor
         innerSize={8}
         outerSize={8}
         color="230, 151, 230"
@@ -45,7 +45,7 @@ function App() {
           "button",
           ".link",
         ]}
-      />
+      /> */}
     </>
     // <IPadCursorProvider config={config}>
 

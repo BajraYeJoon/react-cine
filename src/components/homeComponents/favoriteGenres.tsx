@@ -28,7 +28,7 @@ const FavoriteGenres = () => {
       <div className="flex flex-wrap gap-3">
         {genres.map(({ id, name }: any) => (
           <Button variant={"secondary"} key={id}>
-            <Link to={`/genre/${name}`}>{name}</Link>
+            <Link to={`/genre/${name}/${id}`}>{name}</Link>
           </Button>
         ))}
       </div>
