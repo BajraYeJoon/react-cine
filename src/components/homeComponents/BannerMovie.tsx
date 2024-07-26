@@ -19,8 +19,6 @@ const BannerMovie = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(nowPlaying);
-
   const variants = {
     hidden: { opacity: 0, y: 10 },
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
