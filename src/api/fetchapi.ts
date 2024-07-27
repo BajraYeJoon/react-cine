@@ -44,11 +44,20 @@ export const fetchTopRatedTVShowsFromAPI = async (): Promise<[]> => {
   return data.results || [];
 };
 
-export const fetchMoviesWithGenreType = async (
+export const fetchMoviesWithAnimeType = async (
   genreId: string
 ): Promise<any> => {
   const data = await fetchFromAPI(
     `/discover/movie?with_genres=${genreId}&with_keywords=210024|287501&page=1`
+  );
+  return data.results || [];
+};
+
+export const fetchMoviesWithGenreType = async (
+  genreId: string
+): Promise<any> => {
+  const data = await fetchFromAPI(
+    `/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&page=1`
   );
   return data.results || [];
 };

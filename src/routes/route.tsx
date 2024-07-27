@@ -45,10 +45,7 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      {
-        path: "animations",
-        element: <Animationlanding />,
-      },
+
       {
         path: "genre",
         element: <GenreLayout />,
@@ -58,6 +55,10 @@ export const router = createBrowserRouter([
             index: true,
             path: ":genre/:id",
             element: <Genrelanding />,
+          },
+          {
+            path: "anime/:genre/:id",
+            element: <Animationlanding />,
           },
         ],
       },

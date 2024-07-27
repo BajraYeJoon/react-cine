@@ -1,10 +1,6 @@
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import axios from "axios";
-// import OpenAI from "openai";
-
-
 
 const Genrelanding = () => {
   // const [prompt, setPrompt] = useState("A scene representing genre Comedy");
@@ -102,11 +98,11 @@ const Genrelanding = () => {
       </div> */}
 
       <div className="h-[900px] grid gap-4">
-        {filteredGenreList.map(({ title, id, backdrop_path, className }) => {
+        {filteredGenreList.map(({ title, id, poster_path, className }) => {
           return (
             <div
               key={id}
-              className={`${className} relative rounded-xl overflow-hidden transition-transform duration-500 shadow-lg shadow-foreground/15 ease-in-out group bg-foreground/25`}
+              className={`${className} relative rounded-xl overflow-hidden transition-transform duration-500 [background:linear-gradient(theme(colors.slate.900),theme(colors.slate.900))_padding-box,linear-gradient(45deg,theme(colors.slate.800),theme(colors.slate.600/.8),theme(colors.slate.800))_border-box] before:absolute before:inset-0 before:bg-[url('./noise.png')] before:bg-[length:352px_382px] border border-transparent ease-in-out group bg-foreground/25`}
             >
               <div
                 className=" 
@@ -115,7 +111,7 @@ const Genrelanding = () => {
                 <h1 className="absolute bottom-0 p-4 text-base">asdfad</h1>
               </div>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 className="object-top h-full w-full object-cover"
               />
               <h1>{title}</h1>

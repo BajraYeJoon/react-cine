@@ -20,7 +20,7 @@ import {
 const navLinks = [
   { label: "Movies", href: "/movies" },
   { label: "Series", href: "/series" },
-  { label: "Animations", href: "/animations" },
+  { label: "Animations", href: "/genre/anime/Animation/16" },
   { label: "Genres", href: "/genre" },
 ];
 
