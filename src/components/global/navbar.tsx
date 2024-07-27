@@ -21,7 +21,7 @@ const navLinks = [
   { label: "Movies", href: "/movies" },
   { label: "Series", href: "/series" },
   { label: "Animations", href: "/animations" },
-  { label: "Genres", href: "/genres" },
+  { label: "Genres", href: "/genre" },
 ];
 
 const isLoggedIn = false;

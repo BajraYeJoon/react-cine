@@ -11,6 +11,7 @@ import {
   SubscribeLayout,
   Animationlanding,
   Genrelanding,
+  GenreLayout,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
@@ -49,8 +50,16 @@ export const router = createBrowserRouter([
         element: <Animationlanding />,
       },
       {
-        path: "/genre/:genre/:id",
-        element: <Genrelanding />,
+        path: "genre",
+        element: <GenreLayout />,
+        children: [
+          {
+            // path: ":genre/:id",
+            index: true,
+            path: ":genre/:id",
+            element: <Genrelanding />,
+          },
+        ],
       },
 
       {

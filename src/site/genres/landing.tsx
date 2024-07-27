@@ -15,20 +15,21 @@ const Genrelanding = () => {
     fetchFilteredGenreList(id ?? "");
   }, [genreName, id]);
 
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
   console.log(filteredGenreList);
 
   return (
     <div>
-      {/* {filteredGenre && (
-        <div>
-          <h1>{filteredGenre.name}</h1>
-          <div>
-            {result.map((movie: any) => (
-              <div key={movie.id}>{movie.name}</div>
-            ))}
+      {filteredGenreList.map(({ title, id }) => {
+        return (
+          <div key={id}>
+            <h1>{title}</h1>
           </div>
-        </div>
-      )} */}
+        );
+      })}
     </div>
   );
 };
