@@ -1,10 +1,16 @@
+import { Link, useParams } from "react-router-dom";
+import { useMovieContext } from "@/context/movie-context";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
-import { Link } from "react-router-dom";
-import { useMovieContext } from "@/context/movie-context";
 
 const GenreButtons = ({ anime }: { anime?: boolean }) => {
   const { genres } = useMovieContext();
+  const { genrePath } = useParams<{ genrePath: string }>();
+
+  const genreName =
+    genrePath || (genrePath ? genrePath.split("/")[1] : undefined);
+
+  console.log("Current genreName from URL:", genreName);
 
   return (
     <motion.h1
@@ -17,16 +23,22 @@ const GenreButtons = ({ anime }: { anime?: boolean }) => {
       }}
       className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
     >
-      {genres.map(({ id, name }: any) => (
-        <Button variant={"secondary"} key={id}>
-          {}
-          <Link
-            to={anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `}
+      {genres.map(({ id, name }: any) => {
+        return (
+          <Button
+            variant={genreName === name ? "default" : "secondary"}
+            key={id}
           >
-            {name}
-          </Link>
-        </Button>
-      ))}
+            <Link
+              to={
+                anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `
+              }
+            >
+              {name}
+            </Link>
+          </Button>
+        );
+      })}
     </motion.h1>
   );
 };
