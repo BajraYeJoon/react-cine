@@ -10,11 +10,11 @@ interface MovieContextType {
   fetchNowPlaying: () => Promise<void>;
 }
 
+
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [genres, setGenres] = useState<string[]>([]);
-
   const [nowPlaying, setNowPlaying] = useState([]);
 
   const fetchGenres = async () => {
