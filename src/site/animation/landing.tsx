@@ -22,28 +22,47 @@ const Animationlanding = () => {
   console.log(animeList);
 
   return (
-    <section className="flex flex-col justify-center items-center mt-12">
-      {animeList.map((anime) => (
-        <div key={anime.id}>{anime.title}</div>
-      ))}
-      <div className="card">
-        <div className="top-section">
-          <div className="border"></div>
-        </div>
-        <div className="bottom-section">
-          <span className="title">UNIVERSE OF UI</span>
-          <div className="row row1">
-            <div className="item">
-              <span className="big-text">100%</span>
-              <span className="regular-text">Free for use</span>
+    <section className="grid grid-cols-5 gap-12 justify-center items-center mt-12">
+      {animeList.map(
+        ({
+          id,
+          poster_path,
+          title,
+          release_date,
+          vote_average,
+          original_title,
+        }) => (
+          <div
+            className="card bg-primary/20 [background:linear-gradient(theme(colors.slate.900),theme(colors.slate.900))_padding-box,linear-gradient(45deg,theme(colors.slate.800),theme(colors.slate.600/.8),theme(colors.slate.800))_border-box]"
+            key={id}
+          >
+            <div
+              className="top-section overflow-hidden  object-contain  bg-cover bg-center bg-no-repeat "
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
+              }}
+            >
+              <div className="border bg-background/90 "></div>
             </div>
-            <div className="item">
-              <span className="big-text">38,631</span>
-              <span className="regular-text">Contributers</span>
+            <div className="bottom-section space-y-4 text-center rounded-b-[20px] bg-primary/15 mt-4 p-4">
+              <span className="title block text-2xl font-medium  text-foreground text-center">
+                {title.length > 5 ? title.slice(0, 20) + "..." : title}
+              </span>
+              <span className="text-sm text-foreground/70">
+                {Array.from(original_title).length > 10
+                  ? Array.from(original_title).slice(0, 20) + "..."
+                  : original_title}
+              </span>
+              <div className="row row1">
+                <div className="item">
+                  <span className="big-text">{vote_average}</span>
+                  <span className="regular-text">{release_date}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        )
+      )}
     </section>
   );
 };

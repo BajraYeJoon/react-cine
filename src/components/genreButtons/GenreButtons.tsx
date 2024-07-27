@@ -20,7 +20,9 @@ const GenreButtons = ({ anime }: { anime?: boolean }) => {
       {genres.map(({ id, name }: any) => (
         <Button variant={"secondary"} key={id}>
           {}
-          <Link to={anime ? `/genre/${name}/${id}` : `/genre/anime/${id} `}>
+          <Link
+            to={anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `}
+          >
             {name}
           </Link>
         </Button>
