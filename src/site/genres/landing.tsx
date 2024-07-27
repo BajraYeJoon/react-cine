@@ -4,16 +4,7 @@ import { useParams } from "react-router-dom";
 // import axios from "axios";
 // import OpenAI from "openai";
 
-// const openai = new OpenAI({
-//   apiKey: "sk-proj-v7aTnBMlBMUviGSr1NFIT3BlbkFJFiO1I6xLkMRMUW3k7stL",
-//   defaultHeaders: {
-//     OPENAI_API_KEY: "sk-proj-v7aTnBMlBMUviGSr1NFIT3BlbkFJFiO1I6xLkMRMUW3k7stL",
-//   },
-//   dangerouslyAllowBrowser: true,
-// });
 
-// const OPENAI_API_KEY =
-//   "sk-proj-v7aTnBMlBMUviGSr1NFIT3BlbkFJFiO1I6xLkMRMUW3k7stL";
 
 const Genrelanding = () => {
   // const [prompt, setPrompt] = useState("A scene representing genre Comedy");
