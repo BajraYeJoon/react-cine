@@ -11,6 +11,7 @@ import {
 } from "@/api/fetchapi";
 import { MovieInfo } from "./movieInfo";
 import { Gallery } from "./gallery";
+import { useWatchlist } from "@/context/watchlist-context";
 
 export interface WatchProvider {
   provider_id: number;
@@ -52,6 +53,8 @@ const DetailPage = () => {
   const [video, setVideo] = useState<Video | null>(null);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
 
+  const { handleAddToWatchlist } = useWatchlist();
+
   const fetchData = async (movieId: number) => {
     try {
       const [details, credits, images, videos, watchProviders] =
@@ -73,6 +76,8 @@ const DetailPage = () => {
     }
   };
 
+
+
   useEffect(() => {
     const movieId = Number(id);
     if (movieId) {
@@ -89,7 +94,12 @@ const DetailPage = () => {
       <BackdropImage backdropPath={movieDetails.backdrop_path} />
       <div className="absolute -mt-44 z-50 w-full px-12">
         <div className="grid grid-cols-5 grid-rows-6 gap-8">
-          <PosterAndWishlist posterPath={movieDetails.poster_path} />
+          <PosterAndWishlist
+            posterPath={movieDetails.poster_path}
+            movieDetails={movieDetails}
+            addWatchList={handleAddToWatchlist}
+          />
+
           <MovieInfo
             movieDetails={movieDetails}
             watchProviders={watchProviders}
@@ -113,10 +123,20 @@ const BackdropImage = ({ backdropPath }: { backdropPath: string }) => (
   </div>
 );
 
-const PosterAndWishlist = ({ posterPath }: { posterPath: string }) => (
+const PosterAndWishlist = ({
+  posterPath,
+  movieDetails,
+  addWatchList,
+}: {
+  posterPath: string;
+  movieDetails: MovieDetails;
+  addWatchList: (movie: MovieDetails) => void;
+}) => (
   <div className="row-span-6 flex gap-4 flex-col items-center justify-start *:w-full *:rounded-none">
     <img src={`https://image.tmdb.org/t/p/original/${posterPath}`} alt="" />
-    <Button variant={"outline"}>Add to Wishlist</Button>
+    <Button variant={"outline"} onClick={() => addWatchList(movieDetails)}>
+      Add to Wishlist
+    </Button>
   </div>
 );
 

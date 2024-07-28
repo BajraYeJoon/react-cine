@@ -1,4 +1,4 @@
-import { Clock, LogOutIcon, SettingsIcon, Timer } from "lucide-react";
+import { Bookmark, Clock, LogOutIcon, SettingsIcon, Timer } from "lucide-react";
 import { SiDiscover } from "react-icons/si";
 
 export const menuItems = [
@@ -24,6 +24,11 @@ export const menuItems = [
         href: "/recently-viewed",
         text: "Recently Viewed",
         icon: Clock,
+      },
+      {
+        href: "/watchlist",
+        text: "Watchlist",
+        icon: Bookmark,
       },
       {
         href: "/settings",

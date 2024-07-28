@@ -12,6 +12,7 @@ import {
   Animationlanding,
   Genrelanding,
   GenreLayout,
+  Watchlistlanding,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
           {
             path: "settings",
             element: <Settings />,
+          },
+          {
+            path: "watchlist",
+            element: <Watchlistlanding />,
           },
         ],
       },

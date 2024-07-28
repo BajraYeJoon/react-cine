@@ -10,6 +10,7 @@ import Serieslanding from "./series/landing.tsx";
 import Animationlanding from "./animation/landing.tsx";
 import Genrelanding from "./genres/landing.tsx";
 import GenreLayout from "./layout/genreLayout.tsx";
+import Watchlistlanding from "./watchlist/landing.tsx";
 
 export {
   Layout,
@@ -24,4 +25,5 @@ export {
   Animationlanding,
   Genrelanding,
   GenreLayout,
+  Watchlistlanding,
 };
