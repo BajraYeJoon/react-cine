@@ -61,3 +61,18 @@ export const fetchMoviesWithGenreType = async (
   );
   return data.results || [];
 };
+
+export const fetchMovieDetails = async (id: number): Promise<any> => {
+  const data = await fetchFromAPI(`/movie/${id}?language=en-US`);
+  return data || [];
+};
+
+export const fetchMovieCredits = async (id: number): Promise<any> => {
+  const data = await fetchFromAPI(`/movie/${id}/credits?language=en-US`);
+  return data.cast || [];
+};
+
+export const fetchMoviesImages = async (id: number): Promise<any> => {
+  const data = await fetchFromAPI(`/movie/${id}/images`);
+  return data.backdrops || [];
+};

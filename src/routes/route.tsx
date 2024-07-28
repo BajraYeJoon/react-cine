@@ -17,6 +17,7 @@ import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
 import Billing from "@/components/billing/billing";
 import { Subscribe } from "@/components/Subscribe";
+import DetailPage from "@/components/details/DetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
             element: <Animationlanding />,
           },
         ],
+      },
+      {
+        path: "details/:id",
+        element: <DetailPage />,
       },
 
       {

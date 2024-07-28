@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { useMovieContext } from "@/context/movie-context";
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Scrollbar, Navigation } from "swiper/modules";
+import { Autoplay, Pagination, Scrollbar } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import { Link } from "react-router-dom";
 // import "./styles.css";
 
 const BannerMovie = () => {
@@ -89,10 +90,12 @@ const BannerMovie = () => {
                 </motion.div>
 
                 <motion.div variants={variants} className="inline-flex gap-2">
-                  <Button className="flex items-center justify-center gap-3 px-7 py-6">
-                    <Play fill="white" size={16} />
-                    Watch Trailer
-                  </Button>
+                  <Link to={`/details/${movie.id}`}>
+                    <Button className="flex items-center justify-center gap-3 px-7 py-6">
+                      <Play fill="white" size={16} />
+                      Watch Trailer
+                    </Button>
+                  </Link>
 
                   <Button variant={"ghost"} className="gap-3 px-7 py-6">
                     <BookmarkIcon size={16} />
