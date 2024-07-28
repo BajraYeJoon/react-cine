@@ -9,6 +9,7 @@ import {
 } from "../ui/dialog";
 import { motion } from "framer-motion";
 import { fetchUpcomingMoviesFromAPI } from "@/api/fetchapi";
+import { ArrowUpWideNarrow, Calendar, Stars } from "lucide-react";
 
 // const gridItems = [
 //   {
@@ -60,6 +61,9 @@ interface UpcomingMovieProps {
   title: string;
   release_date: string;
   backdrop_path: string;
+  overview: string;
+  vote_count: number;
+  popularity: number;
 }
 
 const getClassName = (index: number) => {
@@ -123,6 +127,9 @@ const ComingSoon = () => {
               className,
               title,
               release_date,
+              vote_count,
+              popularity,
+              overview,
               backdrop_path,
             }: UpcomingMovieProps) => (
               <motion.div key={id} variants={variants} className={className}>
@@ -143,9 +150,41 @@ const ComingSoon = () => {
                     </div>
                   </DialogTrigger>
                   <DialogContent>
-                    <DialogHeader>
-                      <DialogTitle>{title}</DialogTitle>
-                      <DialogDescription>{release_date}</DialogDescription>
+                    <DialogHeader className="p-4 space-y-4">
+                      <DialogTitle className="text-4xl tracking-wide ">
+                        {title}
+                      </DialogTitle>
+
+                      <DialogDescription className="space-y-4 relative">
+                        <img
+                          src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
+                          alt={title}
+                          className="absolute -top-20 shadow-inner -z-20 opacity-35 rounded-2xl right-0 h-32 w-44   object-center object-cover "
+                        />
+
+                        <DialogTitle className="text-xl text-primary">
+                          Overview
+                        </DialogTitle>
+                        <DialogTitle className="text-xl">
+                          {overview}
+                        </DialogTitle>
+                        <span className="inline-flex gap-12">
+                          <span className="inline-flex gap-3 text-xl ">
+                            <Stars size={20} className="text-yellow-300" />:
+                            {vote_count}
+                          </span>
+                          <span className="text-xl inline-flex gap-3">
+                            <ArrowUpWideNarrow
+                              size={20}
+                              className="text-green-400"
+                            />
+                            {((Number(popularity) / 10000) * 100).toFixed(2)}%
+                          </span>
+                          <span className="inline-flex gap-3 text-xl">
+                            <Calendar size={20} />:{release_date}
+                          </span>
+                        </span>
+                      </DialogDescription>
                     </DialogHeader>
                   </DialogContent>
                 </Dialog>
