@@ -76,3 +76,13 @@ export const fetchMoviesImages = async (id: number): Promise<any> => {
   const data = await fetchFromAPI(`/movie/${id}/images`);
   return data.backdrops || [];
 };
+
+export const fetchTrailerForMovie = async (id: number): Promise<any> => {
+  const data = await fetchFromAPI(`/movie/${id}/videos`);
+  return data.results[0] || [];
+};
+
+export const fetchWatchProviders = async (id: number): Promise<any> => {
+  const data = await fetchFromAPI(`/movie/${id}/watch/providers`);
+  return data.results.US || [];
+};
