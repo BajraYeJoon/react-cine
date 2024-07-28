@@ -24,18 +24,20 @@ export const WatchListProvider = ({
   const [watchlist, setWatchlist] = useState<MovieDetails[]>([]);
   const { toast } = useToast();
 
+  const fetchWatchlist = async () => {
+    try {
+      const movies = await getAllMovies();
+      setWatchlist(movies);
+    } catch (error) {
+      console.error("Error fetching watchlist:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchWatchlist = async () => {
-      try {
-        const movies = await getAllMovies();
-        setWatchlist(movies);
-      } catch (error) {
-        console.error("Error fetching watchlist:", error);
-      }
-    };
+ 
 
     fetchWatchlist();
-  }, [watchlist]);
+  }, []);
 
   const addToWatchlist = async (movie: MovieDetails) => {
     await addMovie(movie).then(() => {

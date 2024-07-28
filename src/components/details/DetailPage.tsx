@@ -53,7 +53,7 @@ const DetailPage = () => {
   const [video, setVideo] = useState<Video | null>(null);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
 
-  const { handleAddToWatchlist } = useWatchlist();
+  const { watchlist, handleAddToWatchlist } = useWatchlist();
 
   const fetchData = async (movieId: number) => {
     try {
@@ -76,7 +76,9 @@ const DetailPage = () => {
     }
   };
 
+  console.log(watchlist);
 
+  // const addedListId = watchlist.map((movie) => movie.id);
 
   useEffect(() => {
     const movieId = Number(id);
@@ -98,6 +100,7 @@ const DetailPage = () => {
             posterPath={movieDetails.poster_path}
             movieDetails={movieDetails}
             addWatchList={handleAddToWatchlist}
+            addedintoWatchlist={watchlist}
           />
 
           <MovieInfo
@@ -127,13 +130,16 @@ const PosterAndWishlist = ({
   posterPath,
   movieDetails,
   addWatchList,
+  addedintoWatchlist,
 }: {
   posterPath: string;
   movieDetails: MovieDetails;
   addWatchList: (movie: MovieDetails) => void;
+  addedintoWatchlist: MovieDetails[];
 }) => (
   <div className="row-span-6 flex gap-4 flex-col items-center justify-start *:w-full *:rounded-none">
     <img src={`https://image.tmdb.org/t/p/original/${posterPath}`} alt="" />
+
     <Button variant={"outline"} onClick={() => addWatchList(movieDetails)}>
       Add to Wishlist
     </Button>
