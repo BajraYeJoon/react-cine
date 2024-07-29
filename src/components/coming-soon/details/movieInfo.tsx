@@ -1,6 +1,6 @@
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
 import { Calendar, Clock, Vote } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { MovieDetails, WatchProvider } from "./DetailPage";
 
 export const MovieInfo = ({
@@ -13,13 +13,13 @@ export const MovieInfo = ({
   <div className="col-span-3 row-span-4 flex flex-col items-start justify-start gap-5">
     <div className="flex items-center gap-3">
       <h1 className="text-4xl">{movieDetails.original_title}</h1>
-      <p className="text-lg uppercase px-4 py-1 border border-foreground/45 rounded-3xl bg-background/55">
+      <p className="rounded-3xl border border-foreground/45 bg-background/55 px-4 py-1 text-lg uppercase">
         {movieDetails.origin_country} - {movieDetails.original_language}
       </p>
     </div>
     <h2 className="text-2xl text-foreground/55">{movieDetails.tagline}</h2>
     <Separator />
-    <div className="flex text-lg gap-8 items-center">
+    <div className="flex items-center gap-8 text-lg">
       <p className="inline-flex gap-2">
         <Calendar />
         {movieDetails.release_date}

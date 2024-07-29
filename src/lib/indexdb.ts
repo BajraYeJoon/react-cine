@@ -1,4 +1,4 @@
-import { MovieDetails } from "@/components/details/DetailPage";
+import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 // indexedDB.ts
 const DB_NAME = "WatchlistDB";
 const STORE_NAME = "watchlist";
@@ -22,8 +22,6 @@ export const openDB = (): Promise<IDBDatabase> => {
     };
   });
 };
-
-
 
 export const getAllMovies = async (): Promise<MovieDetails[]> => {
   const db = await openDB();

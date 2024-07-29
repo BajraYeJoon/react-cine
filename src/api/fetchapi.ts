@@ -97,3 +97,10 @@ export const fetchBestofTVShows = async (): Promise<any> => {
   const data = await fetchFromAPI("/tv/top_rated?language=en-US&page=1");
   return data.results || [];
 };
+
+export const fetchResultsBySearch = async (query: string): Promise<any> => {
+  const data = await fetchFromAPI(
+    `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`,
+  );
+  return data.results || [];
+};

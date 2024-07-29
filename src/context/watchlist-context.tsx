@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { MovieDetails } from "@/components/details/DetailPage";
+import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 import { useToast } from "@/components/ui/use-toast";
 import { addMovie, getAllMovies, removeMovie } from "@/lib/indexdb";
 import { createContext, useContext, useState, useEffect } from "react";

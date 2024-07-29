@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from "../../ui/dialog";
 import ReactPlayer from "react-player/lazy";
 import { DialogOverlay } from "@radix-ui/react-dialog";
 import { Image, Video } from "./DetailPage";
@@ -21,9 +21,9 @@ export const Gallery = ({
   images: Image[];
   video: Video | null;
 }) => (
-  <div className="row-span-4 space-y-4 col-start-5 overflow-hidden row-start-1">
+  <div className="col-start-5 row-span-4 row-start-1 space-y-4 overflow-hidden">
     <h3 className="text-2xl">Gallery</h3>
-    <div className="h-32 bg-foreground/25 relative group">
+    <div className="group relative h-32 bg-foreground/25">
       {images.length > 0 && (
         <img
           src={`https://image.tmdb.org/t/p/original/${images[0].file_path}`}
@@ -35,7 +35,7 @@ export const Gallery = ({
         <DialogTrigger>
           <PlayCircleIcon
             size={40}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground/75 group-hover:cursor-pointer"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground/75 group-hover:cursor-pointer"
           />
         </DialogTrigger>
         <DialogContent>
@@ -67,7 +67,7 @@ export const Gallery = ({
       {images.map((slide) => (
         <SwiperSlide
           key={slide.file_path}
-          className="h-full bg-foreground/25 w-full mb-2"
+          className="mb-2 h-full w-full bg-foreground/25"
         >
           <img
             src={`https://image.tmdb.org/t/p/original/${slide.file_path}`}

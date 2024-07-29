@@ -18,7 +18,7 @@ import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
 import Billing from "@/components/billing/billing";
 import { Subscribe } from "@/components/Subscribe";
-import DetailPage from "@/components/details/DetailPage";
+import DetailPage from "@/components/coming-soon/details/DetailPage";
 
 export const router = createBrowserRouter([
   {

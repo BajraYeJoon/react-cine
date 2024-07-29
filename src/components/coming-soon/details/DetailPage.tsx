@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 import {
   fetchMovieCredits,
@@ -125,7 +125,7 @@ const BackdropImage = ({ backdropPath }: { backdropPath: string }) => (
       alt=""
       className="h-[650px] w-full object-cover object-top"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-background/90 z-20 to-transparent"></div>
+    <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/90 to-transparent"></div>
   </div>
 );
 
@@ -143,7 +143,7 @@ export const PosterAndWishlist = ({
   isinWatchlist?: boolean;
   removeWatchlist?: (id: number) => void;
 }) => (
-  <div className="row-span-6 flex gap-4 flex-col items-center justify-start *:w-full *:rounded-none">
+  <div className="row-span-6 flex flex-col items-center justify-start gap-4 *:w-full *:rounded-none">
     <img src={`https://image.tmdb.org/t/p/original/${posterPath}`} alt="" />
 
     {!isinWatchlist ? (
@@ -165,13 +165,13 @@ export const PosterAndWishlist = ({
 );
 
 const CastList = ({ movieCredits }: { movieCredits: MovieCredits[] }) => (
-  <div className="col-span-4 row-span-2 col-start-2 items-center justify-start flex gap-8 row-start-5">
+  <div className="col-span-4 col-start-2 row-span-2 row-start-5 flex items-center justify-start gap-8">
     {movieCredits.map((cast) => (
       <div key={cast.id}>
         <img
           src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
           alt=""
-          className="w-auto h-44 rounded-lg bg-foreground/25"
+          className="h-44 w-auto rounded-lg bg-foreground/25"
         />
       </div>
     ))}

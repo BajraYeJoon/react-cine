@@ -13,6 +13,7 @@ import {
   fetchTopRatedMoviesFromAPI,
   fetchTopRatedTVShowsFromAPI,
 } from "@/api/fetchapi";
+import { Link } from "react-router-dom";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
@@ -56,39 +57,41 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
       <div
         key={item.id}
         className={cn(
-          "grid grid-cols-2 gap-8 w-full",
-          showRank && "w-fit flex gap-4"
+          "grid w-full grid-cols-2 gap-8",
+          showRank && "flex w-fit gap-4",
         )}
       >
         {showRank && (
-          <span className="text-[6rem] text-center my-auto w-fit">
+          <span className="my-auto w-fit text-center text-[6rem]">
             {index + 1}
           </span>
         )}
         <div
           className={cn(
-            "h-28  w-32 items-center rounded-3xl overflow-hidden bg-foreground/25",
-            showRank && "col-span-1 h-32 w-24 "
+            "h-28 w-32 items-center overflow-hidden rounded-3xl bg-foreground/25",
+            showRank && "col-span-1 h-32 w-24",
           )}
         >
           <img
             src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
             alt="movie poster"
-            className="object-cover object-top h-full w-full"
+            className="h-full w-full object-cover object-top"
           />
         </div>
-        <div className="flex flex-col justify-center min-w-48">
-          <span className="uppercase text-sm text-foreground/50">
+        <div className="group flex min-w-48 flex-col justify-center">
+          <span className="text-sm uppercase text-foreground/50">
             {item.original_language}
           </span>
-          <h4 className="text-xl capitalize text-nowrap">
+          <Link to={`/details/${item.id}`}>
+          <h4 className="text-nowrap text-xl capitalize group-hover:underline">
             {title.length > 10 ? title.slice(0, 20) + "..." : title}
           </h4>
-          <span className="opacity-30 inline-flex items-center gap-2">
+          </Link>
+          <span className="inline-flex items-center gap-2 opacity-30">
             <TbMovie />
             {item.popularity}
           </span>
-          <span className="flex items-center text-center w-fit gap-2 text-lg">
+          <span className="flex w-fit items-center gap-2 text-center text-lg">
             <StarIcon size={16} fill="yellow" />
             {item.vote_count}
           </span>

@@ -11,11 +11,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="react-cine-theme">
       <MovieProvider>
-        <WatchListProvider>
-          <App />
-          <Toaster />
-        </WatchListProvider>
+        <MovieProvider>
+          <WatchListProvider>
+            <App />
+
+            <Toaster />
+          </WatchListProvider>
+        </MovieProvider>
       </MovieProvider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

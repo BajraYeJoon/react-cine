@@ -1,4 +1,3 @@
-import { SearchIcon } from "lucide-react";
 import { useState } from "react";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
@@ -6,16 +5,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { GrNotification } from "react-icons/gr";
 import { ModeToggle } from "@/components/global/mode-toggle";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import {
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandItem,
-  CommandGroup,
-  CommandList,
-  CommandSeparator,
-} from "../ui/command";
+import SearchComponent from "../search/search";
 
 const navLinks = [
   { label: "Movies", href: "/movies" },
@@ -34,15 +24,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar sticky top-0 start-0 z-50 w-full bg-card pb-6 ">
-      <div className="navbar-container flex items-center gap-14 justify-between mx-52 max-2xl:mx-8 md:pt-6">
+    <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card pb-6">
+      <div className="navbar-container mx-52 flex items-center justify-between gap-14 max-2xl:mx-8 md:pt-6">
         <div className="logo-container flex items-center gap-16">
           <Link to="/" className="flex items-center">
             <span className="self-center text-3xl font-semibold">Cinemax</span>
           </Link>
         </div>
 
-        <div className="nav-links hidden gap-8 lg:flex flex-1">
+        <div className="nav-links hidden flex-1 gap-8 lg:flex">
           <ul className="flex flex-col text-left font-medium md:mt-0 md:flex-row md:space-x-4">
             {navLinks.map((link, index) => {
               return (
@@ -68,30 +58,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="search-bar flex items-center gap-6">
-          <Dialog>
-            <DialogTrigger asChild>
-              <SearchIcon className="h-6 w-6" />
-            </DialogTrigger>
-            <DialogContent>
-              <Command>
-                <CommandInput placeholder="Type a command or search..." />
-                <CommandList>
-                  <CommandEmpty>No results found.</CommandEmpty>
-                  <CommandGroup heading="Suggestions">
-                    <CommandItem>Calendar</CommandItem>
-                    <CommandItem>Search Emoji</CommandItem>
-                    <CommandItem>Calculator</CommandItem>
-                  </CommandGroup>
-                  <CommandSeparator />
-                  <CommandGroup heading="Settings">
-                    <CommandItem>Profile</CommandItem>
-                    <CommandItem>Billing</CommandItem>
-                    <CommandItem>Settings</CommandItem>
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </DialogContent>
-          </Dialog>
+          <SearchComponent />
 
           <Link to={`/subscribe`}>
             <Button>Subscribe</Button>
@@ -123,7 +90,7 @@ const Navbar = () => {
       <div
         className={cn(
           "mobile-nav fixed z-40 flex w-full origin-top flex-col gap-12 overflow-hidden bg-foreground duration-700 lg:hidden",
-          !toggleMenu ? "h-0" : "h-full"
+          !toggleMenu ? "h-0" : "h-full",
         )}
       >
         <div className="mobile-nav-menu flex flex-col gap-8 px-4 py-4 font-bold tracking-wider">

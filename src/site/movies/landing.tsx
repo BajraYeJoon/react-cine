@@ -1,7 +1,7 @@
 import TopRatedMovies from "@/components/homeComponents/topRated";
 import { StarIcon } from "lucide-react";
 import { motion } from "framer-motion";
-import { MovieDetails } from "@/components/details/DetailPage";
+import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
