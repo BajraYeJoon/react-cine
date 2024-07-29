@@ -6,8 +6,8 @@ const Genrelanding = () => {
   // const [prompt, setPrompt] = useState("A scene representing genre Comedy");
   // const [generatedImages, setGeneratedImages] = useState<{ url: string }[]>([]);
 
-  const [filteredGenreList, setFilteredGenreList] = useState<any[]>([]);
-  const { genreName, id } = useParams<{ genreName: string; id: string }>();
+  const [filteredGenreList, setFilteredGenreList] = useState([]);
+  const { category, id } = useParams<{ category: string; id: string }>();
   const [loading, setLoading] = useState(false);
 
   // async function generateImages() {
@@ -37,11 +37,11 @@ const Genrelanding = () => {
   //       size: "256x256",
   //     });
   //     setGeneratedImages(response.data);
-  //     console.log(response.data);
+  //
   //   } catch (error) {
   //     console.error("Error generating images:", error);
   //   } finally {
-  //     console.log("generated images");
+  //
   //   }
   // }
 
@@ -76,7 +76,7 @@ const Genrelanding = () => {
         (item: any, index: number) => ({
           ...item,
           className: getClassName(index),
-        })
+        }),
       );
 
       setLoading(false);
@@ -84,33 +84,30 @@ const Genrelanding = () => {
     };
 
     fetchFilteredGenreList(id ?? "");
-  }, [genreName, id]);
+  }, [category, id]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className="flex flex-wrap gap-4 mt-4">
+    <div className="mt-4 flex flex-wrap gap-4">
       {/* <div className="grid grid-cols-8 grid-rows-6 gap-4  *:rounded-xl *:overflow-hidden *:bg-foreground/25">
       </div> */}
 
-      <div className="h-[900px] grid gap-4">
+      <div className="grid h-[900px] gap-4">
         {filteredGenreList.map(({ title, id, poster_path, className }) => {
           return (
             <div
               key={id}
-              className={`${className} relative rounded-xl overflow-hidden transition-transform duration-500 [background:linear-gradient(theme(colors.slate.900),theme(colors.slate.900))_padding-box,linear-gradient(45deg,theme(colors.slate.800),theme(colors.slate.600/.8),theme(colors.slate.800))_border-box] before:absolute before:inset-0 before:bg-[url('./noise.png')] before:bg-[length:352px_382px] border border-transparent ease-in-out group bg-foreground/25`}
+              className={`${className} group relative overflow-hidden rounded-xl border border-transparent bg-foreground/25 transition-transform duration-500 ease-in-out [background:linear-gradient(theme(colors.slate.900),theme(colors.slate.900))_padding-box,linear-gradient(45deg,theme(colors.slate.800),theme(colors.slate.600/.8),theme(colors.slate.800))_border-box] before:absolute before:inset-0 before:bg-[url('./noise.png')] before:bg-[length:352px_382px]`}
             >
-              <div
-                className=" 
-              absolute bottom-0 left-0 opacity-0 group-hover:inset-0 group-hover:bg-gradient-to-t group-hover:from-background/90 group-hover:z-40 group-hover:to-transparent group-hover:opacity-100 transition-opacity duration-500 "
-              >
+              <div className="absolute bottom-0 left-0 opacity-0 transition-opacity duration-500 group-hover:inset-0 group-hover:z-40 group-hover:bg-gradient-to-t group-hover:from-background/90 group-hover:to-transparent group-hover:opacity-100">
                 <h1 className="absolute bottom-0 p-4 text-base">asdfad</h1>
               </div>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-                className="object-top h-full w-full object-cover"
+                className="h-full w-full object-cover object-top"
               />
               <h1>{title}</h1>
             </div>

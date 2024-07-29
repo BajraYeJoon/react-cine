@@ -59,15 +59,17 @@ export const router = createBrowserRouter([
           {
             // path: ":genre/:id",
             index: true,
-            path: ":genre/:id",
+            path: ":category/:id",
             element: <Genrelanding />,
           },
-          // {
-          //   path: "anime/:genre/:id",
-          //   element: <Animationlanding />,
-          // },
+
+          {
+            path: "anime/:genre/:id",
+            element: <Animationlanding />,
+          },
         ],
       },
+
       {
         path: "details/:id",
         element: <DetailPage />,

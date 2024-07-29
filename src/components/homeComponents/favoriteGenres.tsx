@@ -1,6 +1,5 @@
 import { useMovieContext } from "@/context/movie-context";
 import { Button } from "../ui/button";
-import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -14,12 +13,7 @@ import { Link } from "react-router-dom";
 // ];
 
 const FavoriteGenres = () => {
-  const { genres, fetchGenres } = useMovieContext();
-
-  useEffect(() => {
-    fetchGenres();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const { genres } = useMovieContext();
 
   return (
     <section className="mt-4 space-y-4">

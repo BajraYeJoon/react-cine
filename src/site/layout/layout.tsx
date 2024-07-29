@@ -1,10 +1,10 @@
 import { Navbar } from "@/components";
-import { useState } from "react";
+// import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import Onboarding from "@/components/onboarding";
+// import Onboarding from "@/components/onboarding";
 
 const Layout = () => {
-  const [onboard, setOnBoard] = useState(true);
+  // const [onboard, setOnBoard] = useState(true);
 
   return (
     <>

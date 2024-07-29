@@ -31,6 +31,7 @@ export interface MovieDetails {
   vote_average: number;
   status: string;
   overview: string;
+  title: string;
 }
 
 export interface MovieCredits {
@@ -54,12 +55,8 @@ const DetailPage = () => {
   const [video, setVideo] = useState<Video | null>(null);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
 
-  const {
-    watchlist,
-    isinWatchlist,
-    handleAddToWatchlist,
-    handleRemoveFromWatchlist,
-  } = useWatchlist();
+  const { isinWatchlist, handleAddToWatchlist, handleRemoveFromWatchlist } =
+    useWatchlist();
 
   const fetchData = async (movieId: number) => {
     try {
@@ -82,8 +79,6 @@ const DetailPage = () => {
     }
   };
 
-  console.log(watchlist);
-
   // const addedListId = watchlist.map((movie) => movie.id);
 
   useEffect(() => {
@@ -100,7 +95,7 @@ const DetailPage = () => {
   return (
     <section className="relative">
       <BackdropImage backdropPath={movieDetails.backdrop_path} />
-      <div className="absolute -mt-44 z-50 w-full px-12">
+      <div className="absolute z-50 -mt-44 w-full px-12">
         <div className="grid grid-cols-5 grid-rows-6 gap-8">
           <PosterAndWishlist
             posterPath={movieDetails.poster_path}

@@ -53,6 +53,12 @@ export const fetchMoviesWithAnimeType = async (
   return data.results || [];
 };
 
+/**
+ * Fetches movies with a specific genre type from the API.
+ *
+ * @param {string} genreId - The ID of the genre.
+ * @return {Promise<any>} - A promise that resolves to an array of movie objects.
+ */
 export const fetchMoviesWithGenreType = async (
   genreId: string
 ): Promise<any> => {

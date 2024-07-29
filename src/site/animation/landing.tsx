@@ -19,10 +19,8 @@ const Animationlanding = () => {
     fetchAnimeList(id ?? "16");
   }, [id]);
 
-  console.log(animeList);
-
   return (
-    <section className="grid grid-cols-5 gap-12 justify-center items-center mt-12">
+    <section className="mt-12 grid grid-cols-5 items-center justify-center gap-12">
       {animeList.map(
         ({
           id,
@@ -37,15 +35,15 @@ const Animationlanding = () => {
             key={id}
           >
             <div
-              className="top-section overflow-hidden  object-contain  bg-cover bg-center bg-no-repeat "
+              className="top-section overflow-hidden bg-cover bg-center bg-no-repeat object-contain"
               style={{
                 backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
               }}
             >
-              <div className="border bg-background/90 "></div>
+              <div className="border bg-background/90"></div>
             </div>
-            <div className="bottom-section space-y-4 text-center rounded-b-[20px] bg-primary/15 mt-4 p-4">
-              <span className="title block text-2xl font-medium  text-foreground text-center">
+            <div className="bottom-section mt-4 space-y-4 rounded-b-[20px] bg-primary/15 p-4 text-center">
+              <span className="title block text-center text-2xl font-medium text-foreground">
                 {title.length > 5 ? title.slice(0, 20) + "..." : title}
               </span>
               <span className="text-sm text-foreground/70">
@@ -61,7 +59,7 @@ const Animationlanding = () => {
               </div>
             </div>
           </div>
-        )
+        ),
       )}
     </section>
   );

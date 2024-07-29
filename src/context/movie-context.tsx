@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useContext, createContext, useState, ReactNode } from "react";
+import {
+  useContext,
+  createContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { fetchGenresFromAPI, fetchNowPlayingFromAPI } from "@/api/fetchapi";
 
 // Define a type for the context value
@@ -9,7 +15,6 @@ interface MovieContextType {
   nowPlaying: any;
   fetchNowPlaying: () => Promise<void>;
 }
-
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
@@ -26,6 +31,11 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     const nowPlaying = await fetchNowPlayingFromAPI();
     setNowPlaying(nowPlaying);
   };
+
+  useEffect(() => {
+    fetchGenres();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <MovieContext.Provider

@@ -49,13 +49,14 @@ const Navbar = () => {
                 <li key={index} className="nav-item cursor-pointer">
                   <NavLink
                     to={link.href}
+                    end
                     className={({ isActive, isPending }) =>
-                      `nav-link block px-3 text-xl py-1 font-normal text-foreground ${
+                      `nav-link block px-3 py-1 text-xl font-normal text-foreground ${
                         isPending
                           ? "pending"
                           : isActive
-                          ? "active-link border-b-2 border-foreground"
-                          : ""
+                            ? "active-link border-b-2 border-foreground"
+                            : ""
                       }`
                     }
                   >

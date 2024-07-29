@@ -3,14 +3,10 @@ import { useMovieContext } from "@/context/movie-context";
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 
-const GenreButtons = ({ anime }: { anime?: boolean }) => {
+const GenreButtons = ({ path }: { path?: string | null }) => {
   const { genres } = useMovieContext();
-  const { genrePath } = useParams<{ genrePath: string }>();
-
-  const genreName =
-    genrePath || (genrePath ? genrePath.split("/")[1] : undefined);
-
-  console.log("Current genreName from URL:", genreName);
+  const { genre } = useParams();
+  // const genreName = id || (id ? id.split("/")[1] : undefined);
 
   return (
     <motion.h1
@@ -21,17 +17,14 @@ const GenreButtons = ({ anime }: { anime?: boolean }) => {
         duration: 0.8,
         ease: "easeInOut",
       }}
-      className="bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+      className="bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text py-4 text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
     >
       {genres.map(({ id, name }: any) => {
         return (
-          <Button
-            variant={genreName === name ? "default" : "secondary"}
-            key={id}
-          >
+          <Button variant={genre === name ? "default" : "secondary"} key={id}>
             <Link
               to={
-                !anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `
+                path ? `/genre/${path}/${name}/${id}` : `/genre/${name}/${id} `
               }
             >
               {name}
