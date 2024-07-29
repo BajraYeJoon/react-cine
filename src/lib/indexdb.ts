@@ -7,11 +7,12 @@ export const openDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, 1);
 
+    //this is needed to make the database if it doesn't exist
     request.onupgradeneeded = (event) => {
       const db = (event.target as IDBOpenDBRequest).result;
       db.createObjectStore(STORE_NAME, { keyPath: "id" });
-    }; 
-    
+    };
+
     request.onsuccess = (event) => {
       resolve((event.target as IDBOpenDBRequest).result);
     };
@@ -21,6 +22,8 @@ export const openDB = (): Promise<IDBDatabase> => {
     };
   });
 };
+
+
 
 export const getAllMovies = async (): Promise<MovieDetails[]> => {
   const db = await openDB();

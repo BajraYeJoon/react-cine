@@ -90,8 +90,6 @@ const Genrelanding = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(filteredGenreList);
-
   return (
     <div className="flex flex-wrap gap-4 mt-4">
       {/* <div className="grid grid-cols-8 grid-rows-6 gap-4  *:rounded-xl *:overflow-hidden *:bg-foreground/25">
