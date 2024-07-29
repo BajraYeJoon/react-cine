@@ -19,6 +19,7 @@ export interface WatchProvider {
 }
 
 export interface MovieDetails {
+  id: number;
   backdrop_path: string;
   poster_path: string;
   original_title: string;
@@ -47,13 +48,18 @@ export interface Video {
 
 const DetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
+  const [movieDetails, setMovieDetails] = useState<MovieDetails>();
   const [movieCredits, setMovieCredits] = useState<MovieCredits[]>([]);
   const [images, setImages] = useState<Image[]>([]);
   const [video, setVideo] = useState<Video | null>(null);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
 
-  const { watchlist, handleAddToWatchlist } = useWatchlist();
+  const {
+    watchlist,
+    isinWatchlist,
+    handleAddToWatchlist,
+    handleRemoveFromWatchlist,
+  } = useWatchlist();
 
   const fetchData = async (movieId: number) => {
     try {
@@ -100,7 +106,9 @@ const DetailPage = () => {
             posterPath={movieDetails.poster_path}
             movieDetails={movieDetails}
             addWatchList={handleAddToWatchlist}
-            addedintoWatchlist={watchlist}
+            // addedintoWatchlist={watchlist}
+            isinWatchlist={isinWatchlist(movieDetails.id)}
+            removeWatchlist={handleRemoveFromWatchlist}
           />
 
           <MovieInfo
@@ -126,23 +134,38 @@ const BackdropImage = ({ backdropPath }: { backdropPath: string }) => (
   </div>
 );
 
-const PosterAndWishlist = ({
+export const PosterAndWishlist = ({
   posterPath,
   movieDetails,
   addWatchList,
-  addedintoWatchlist,
+  isinWatchlist,
+  removeWatchlist,
 }: {
   posterPath: string;
   movieDetails: MovieDetails;
-  addWatchList: (movie: MovieDetails) => void;
-  addedintoWatchlist: MovieDetails[];
+  addWatchList?: (movie: MovieDetails) => void;
+  // addedintoWatchlist: MovieDetails[];
+  isinWatchlist?: boolean;
+  removeWatchlist?: (id: number) => void;
 }) => (
   <div className="row-span-6 flex gap-4 flex-col items-center justify-start *:w-full *:rounded-none">
     <img src={`https://image.tmdb.org/t/p/original/${posterPath}`} alt="" />
 
-    <Button variant={"outline"} onClick={() => addWatchList(movieDetails)}>
-      Add to Wishlist
-    </Button>
+    {!isinWatchlist ? (
+      <Button
+        variant={"outline"}
+        onClick={() => addWatchList && addWatchList(movieDetails)}
+      >
+        Add to Wishlist
+      </Button>
+    ) : (
+      <Button
+        variant={"default"}
+        onClick={() => removeWatchlist && removeWatchlist(movieDetails.id)}
+      >
+        Remove
+      </Button>
+    )}
   </div>
 );
 

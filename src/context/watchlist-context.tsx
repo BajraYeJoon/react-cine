@@ -1,15 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
 import { MovieDetails } from "@/components/details/DetailPage";
 import { useToast } from "@/components/ui/use-toast";
-import { addMovie, getAllMovies } from "@/lib/indexdb";
+import { addMovie, getAllMovies, removeMovie } from "@/lib/indexdb";
 import { createContext, useContext, useState, useEffect } from "react";
 
 interface WatchListContextType {
   watchlist: MovieDetails[];
-  addToWatchlist: (movie: MovieDetails) => Promise<void>;
+  // addToWatchlist: (movie: MovieDetails) => Promise<void>;
   handleAddToWatchlist: (movie: MovieDetails) => void;
-  //   removeFromWatchlist: (id: number) => void;
-  //   isInWatchlist: (id: number) => boolean;
+  // removeItemFromWatchlist: (id: number) => Promise<void>;
+  isinWatchlist: (id: number) => boolean;
+  handleRemoveFromWatchlist: (id: number) => Promise<void>;
 }
 
 const WatchListContext = createContext<WatchListContextType | undefined>(
@@ -34,8 +35,6 @@ export const WatchListProvider = ({
   };
 
   useEffect(() => {
- 
-
     fetchWatchlist();
   }, []);
 
@@ -49,6 +48,23 @@ export const WatchListProvider = ({
     setWatchlist((prev) => [...prev, movie]);
   };
 
+  const isinWatchlist = (id: number) => {
+    return watchlist.some((item) => item.id === id);
+  };
+
+  const removeItemFromWatchlist = async (id: number) => {
+    try {
+      await removeMovie(id).then(() => {
+        toast({
+          title: "Movie removed to watchlist!",
+        });
+      });
+      setWatchlist((prev) => prev.filter((movie) => movie.id !== id));
+    } catch (error) {
+      console.error("Failed to remove movie from watchlist:", error);
+    }
+  };
+
   const handleAddToWatchlist = async (movie: MovieDetails) => {
     try {
       await addToWatchlist(movie);
@@ -57,12 +73,23 @@ export const WatchListProvider = ({
     }
   };
 
+  const handleRemoveFromWatchlist = async (id: number) => {
+    try {
+      await removeItemFromWatchlist(id);
+    } catch (error) {
+      console.error("Failed to remove movie from watchlist:", error);
+    }
+  };
+
   return (
     <WatchListContext.Provider
       value={{
         watchlist,
-        addToWatchlist,
+        // addToWatchlist,
         handleAddToWatchlist,
+        isinWatchlist,
+        // removeItemFromWatchlist,
+        handleRemoveFromWatchlist,
       }}
     >
       {children}
