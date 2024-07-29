@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { Link, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -58,7 +58,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="search-bar flex items-center gap-6">
-          <SearchComponent />
+        <SearchComponent />
 
           <Link to={`/subscribe`}>
             <Button>Subscribe</Button>

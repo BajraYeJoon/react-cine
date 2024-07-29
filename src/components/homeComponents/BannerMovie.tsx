@@ -10,10 +10,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Link } from "react-router-dom";
+import { useWatchlist } from "@/context/watchlist-context";
 // import "./styles.css";
 
 const BannerMovie = () => {
   const { nowPlaying, fetchNowPlaying } = useMovieContext();
+  const { handleAddToWatchlist, isinWatchlist } = useWatchlist();
 
   useEffect(() => {
     fetchNowPlaying();
@@ -48,16 +50,16 @@ const BannerMovie = () => {
         >
           {nowPlaying.map((movie: any) => (
             <SwiperSlide key={movie.id}>
-              <div className="absolute inset-0 bg-gradient-to-t from-background/90 z-40 to-transparent "></div>
+              <div className="absolute inset-0 z-40 bg-gradient-to-t from-background/90 to-transparent"></div>
 
               <img
                 src={` https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                 alt="movie poster"
-                className="absolute inset-0 h-full w-full  object-center object-cover "
+                className="absolute inset-0 h-full w-full object-cover object-center"
               />
 
               <motion.div
-                className="absolute  bottom-0 m-12 left-0  z-40 flex items-start gap-2 flex-col"
+                className="absolute bottom-0 left-0 z-40 m-12 flex flex-col items-start gap-2"
                 initial="hidden"
                 animate="show"
                 viewport={{ once: true }}
@@ -73,13 +75,13 @@ const BannerMovie = () => {
                 <Button variant="secondary">Movie</Button>
                 <motion.h1
                   variants={variants}
-                  className="text-5xl tracking-wide leading-none font-bold"
+                  className="text-5xl font-bold leading-none tracking-wide"
                 >
                   {movie.title}
                 </motion.h1>
                 <motion.div
                   variants={variants}
-                  className="inline-flex items-center mb-4 text-sm tracking-wide font-light"
+                  className="mb-4 inline-flex items-center text-sm font-light tracking-wide"
                 >
                   <span>{movie.adult === "false" ? "PG" : "PG-13"}</span>
                   <Dot />
@@ -97,9 +99,13 @@ const BannerMovie = () => {
                     </Button>
                   </Link>
 
-                  <Button variant={"ghost"} className="gap-3 px-7 py-6">
+                  <Button
+                    variant={"ghost"}
+                    className="gap-3 px-7 py-6"
+                    onClick={() => handleAddToWatchlist(movie)}
+                  >
                     <BookmarkIcon size={16} />
-                    Add to Watchlist
+                    {isinWatchlist(movie.id) ? "Remove from Watchlist" : "Add to Watchlist" }
                   </Button>
                 </motion.div>
               </motion.div>
