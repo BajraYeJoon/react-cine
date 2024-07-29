@@ -7,6 +7,11 @@ export const openDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open(DB_NAME, 1);
 
+    request.onupgradeneeded = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result;
+      db.createObjectStore(STORE_NAME, { keyPath: "id" });
+    }; 
+    
     request.onsuccess = (event) => {
       resolve((event.target as IDBOpenDBRequest).result);
     };

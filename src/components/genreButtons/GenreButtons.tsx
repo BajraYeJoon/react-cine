@@ -31,7 +31,7 @@ const GenreButtons = ({ anime }: { anime?: boolean }) => {
           >
             <Link
               to={
-                anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `
+                !anime ? `/genre/${name}/${id}` : `/genre/anime/${name}/${id} `
               }
             >
               {name}

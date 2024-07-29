@@ -62,10 +62,10 @@ export const router = createBrowserRouter([
             path: ":genre/:id",
             element: <Genrelanding />,
           },
-          {
-            path: "anime/:genre/:id",
-            element: <Animationlanding />,
-          },
+          // {
+          //   path: "anime/:genre/:id",
+          //   element: <Animationlanding />,
+          // },
         ],
       },
       {
