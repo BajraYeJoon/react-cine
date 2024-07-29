@@ -45,10 +45,10 @@ export const fetchTopRatedTVShowsFromAPI = async (): Promise<[]> => {
 };
 
 export const fetchMoviesWithAnimeType = async (
-  genreId: string
+  genreId: string,
 ): Promise<any> => {
   const data = await fetchFromAPI(
-    `/discover/movie?with_genres=${genreId}&with_keywords=210024|287501&page=1`
+    `/discover/movie?with_genres=${genreId}&with_keywords=210024|287501&page=1`,
   );
   return data.results || [];
 };
@@ -60,10 +60,10 @@ export const fetchMoviesWithAnimeType = async (
  * @return {Promise<any>} - A promise that resolves to an array of movie objects.
  */
 export const fetchMoviesWithGenreType = async (
-  genreId: string
+  genreId: string,
 ): Promise<any> => {
   const data = await fetchFromAPI(
-    `/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&page=1`
+    `/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&page=1`,
   );
   return data.results || [];
 };
@@ -91,4 +91,9 @@ export const fetchTrailerForMovie = async (id: number): Promise<any> => {
 export const fetchWatchProviders = async (id: number): Promise<any> => {
   const data = await fetchFromAPI(`/movie/${id}/watch/providers`);
   return data.results.US || [];
+};
+
+export const fetchBestofTVShows = async (): Promise<any> => {
+  const data = await fetchFromAPI("/tv/top_rated?language=en-US&page=1");
+  return data.results || [];
 };

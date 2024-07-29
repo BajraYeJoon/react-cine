@@ -130,7 +130,7 @@ const Movies = () => {
         <h1 className="text-3xl font-medium">Top Movies</h1>
         <TopRatedMovies showRank swiper />
       </div>
-      <h2 className="mb-4 text-3xl font-medium">Best of {}</h2>
+      <h2 className="mb-4 text-3xl font-medium">Try Something New</h2>
       <motion.div
         className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-between gap-7"
         initial="hidden"
