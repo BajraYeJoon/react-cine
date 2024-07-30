@@ -20,6 +20,7 @@ import Billing from "@/components/billing/billing";
 import { Subscribe } from "@/components/Subscribe";
 import DetailPage from "@/components/coming-soon/details/DetailPage";
 import Onboarding from "@/components/onboarding";
+import Cookies from "js-cookie";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "watchlist",
+
             element: <Watchlistlanding />,
           },
         ],
