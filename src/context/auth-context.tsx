@@ -3,7 +3,6 @@ import { createContext, useContext, useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useToast } from "@/components/ui/use-toast";
-import {  useNavigate } from "react-router";
 
 export type LoginProps = {
   username: string;
@@ -32,7 +31,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setIsLoading(true);
     console.log("Logging in", username, password);
     try {
-      const response = await axios.post("https://fakestoreapi.com/auth/login", {
+      const response = await axios.post("https://dummyjson.com/user/login", {
         username,
         password,
       });

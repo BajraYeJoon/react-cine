@@ -9,12 +9,7 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import { Input } from "../ui/input";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTrigger,
-} from "../ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Skeleton } from "../ui/skeleton";
 
 const SearchComponent = () => {

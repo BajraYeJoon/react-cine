@@ -25,6 +25,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    loader: () => import("@/lib/posthogpageviewtracker"),
     children: [
       {
         path: "/",
