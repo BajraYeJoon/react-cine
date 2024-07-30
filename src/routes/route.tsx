@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate, redirect } from "react-router-dom";
 import {
   Homepage,
   Layout,
@@ -13,6 +13,7 @@ import {
   Genrelanding,
   GenreLayout,
   Watchlistlanding,
+  Recentlanding,
 } from "@/site";
 import { Landing } from "@/components/homeComponents";
 import { ComingSoon } from "@/components/coming-soon";
@@ -20,7 +21,8 @@ import Billing from "@/components/billing/billing";
 import { Subscribe } from "@/components/Subscribe";
 import DetailPage from "@/components/coming-soon/details/DetailPage";
 import Onboarding from "@/components/onboarding";
-import Cookies from "js-cookie";
+
+import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -42,11 +44,16 @@ export const router = createBrowserRouter([
           },
           {
             path: "recently-viewed",
-            element: <div>Recently viewed</div>,
+            element: <Recentlanding />,
           },
           {
             path: "settings",
-            element: <Settings />,
+
+            element: (
+              <ProtectedRoute redirectUrl="/">
+                <Settings />,
+              </ProtectedRoute>
+            ),
           },
           {
             path: "watchlist",

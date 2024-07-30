@@ -9,6 +9,7 @@ import { WatchListProvider } from "./context/watchlist-context.tsx";
 import { AuthProvider } from "./context/auth-context.tsx";
 import { PostHogProvider } from "posthog-js/react";
 import posthog from "posthog-js";
+import { RecentlyWatchedProvider } from "./context/recently-watched-context.tsx";
 
 posthog.init("phc_fQcn9SW8lEM635UzO6NIJQwS4OPo2tsakZJriWF44Nx", {
   api_host: "https://us.i.posthog.com",
@@ -24,9 +25,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <MovieProvider>
             <MovieProvider>
               <WatchListProvider>
-                <App />
-
-                <Toaster />
+                <RecentlyWatchedProvider>
+                  <App />
+                  <Toaster />
+                </RecentlyWatchedProvider>
               </WatchListProvider>
             </MovieProvider>
           </MovieProvider>

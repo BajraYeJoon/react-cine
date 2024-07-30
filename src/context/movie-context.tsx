@@ -40,12 +40,12 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     return genres.filter((genre) => !userSelectedGenres.includes(genre));
   }, [userSelectedGenres]);
 
-  console.log(favoriteGenres, "fav");
-  console.log(userSelectedGenres, "user");
+  
+  
 
   useEffect(() => {
     fetchGenres();
-    console.log(favoriteGenres, "fav");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favoriteGenres]);
 

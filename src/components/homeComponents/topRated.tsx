@@ -106,7 +106,6 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
         <Swiper
           spaceBetween={20}
           slidesPerView={3}
-          onSlideChange={() => console.log("slide change")}
           scrollbar={{
             hide: false,
             draggable: false,
@@ -116,7 +115,7 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
           // }}
           // navigation={true}
           modules={[Scrollbar]}
-          className="mySwiper h-48 "
+          className="mySwiper h-48"
         >
           {topRated.slice(0, 10).map((item, index) => (
             <SwiperSlide key={item.id} className="text-left">

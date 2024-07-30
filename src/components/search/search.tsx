@@ -39,8 +39,6 @@ const SearchComponent = () => {
     debouncedFetchResults(searchQuery);
   }, [searchQuery]);
 
-  console.log(results);
-
   return (
     <Dialog>
       <DialogTrigger>

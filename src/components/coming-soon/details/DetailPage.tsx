@@ -12,6 +12,7 @@ import {
 import { MovieInfo } from "./movieInfo";
 import { Gallery } from "./gallery";
 import { useWatchlist } from "@/context/watchlist-context";
+import { useRecentContext } from "@/context/recently-watched-context";
 
 export interface WatchProvider {
   provider_id: number;
@@ -52,11 +53,12 @@ const DetailPage = () => {
   const [movieDetails, setMovieDetails] = useState<MovieDetails>();
   const [movieCredits, setMovieCredits] = useState<MovieCredits[]>([]);
   const [images, setImages] = useState<Image[]>([]);
-  const [video, setVideo] = useState<Video | null>(null);
+  const [video, setVideo] = useState<Video[]>([]);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
 
   const { isinWatchlist, handleAddToWatchlist, handleRemoveFromWatchlist } =
     useWatchlist();
+  const { handleRecentWatched } = useRecentContext();
 
   const fetchData = async (movieId: number) => {
     try {
@@ -72,7 +74,7 @@ const DetailPage = () => {
       setMovieDetails(details);
       setMovieCredits(credits.slice(0, 6));
       setImages(images.slice(0, 3));
-      setVideo(videos.length > 0 ? videos[0] : null);
+      setVideo(videos);
       setWatchProviders(watchProviders.flatrate || []);
     } catch (error) {
       console.error("Error fetching movie data:", error);
@@ -91,6 +93,8 @@ const DetailPage = () => {
   if (!movieDetails) {
     return <div>Loading...</div>;
   }
+
+  console.log(movieDetails);
 
   return (
     <section className="relative">
@@ -111,7 +115,11 @@ const DetailPage = () => {
             watchProviders={watchProviders}
           />
           <CastList movieCredits={movieCredits} />
-          <Gallery images={images} video={video} />
+          <Gallery
+            images={images}
+            video={video}
+            addTorecent={() => handleRecentWatched(movieDetails && movieDetails.id)}
+          />
         </div>
       </div>
     </section>

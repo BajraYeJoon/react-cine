@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async ({ username, password }: LoginProps) => {
     setIsLoading(true);
-    console.log("Logging in", username, password);
+    
     try {
       const response = await axios.post("https://dummyjson.com/user/login", {
         username,
@@ -38,7 +38,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const data = response.data;
       Cookies.set("token", data.token, { expires: 7 });
       setIsLoggedIn(true);
-      console.log("Login successful", data);
     } catch (error) {
       console.error("Login failed", error);
     } finally {

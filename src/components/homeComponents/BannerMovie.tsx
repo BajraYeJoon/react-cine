@@ -11,11 +11,14 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Link } from "react-router-dom";
 import { useWatchlist } from "@/context/watchlist-context";
+import { useAuthContext } from "@/context/auth-context";
+import { toast } from "../ui/use-toast";
 // import "./styles.css";
 
 const BannerMovie = () => {
   const { nowPlaying, fetchNowPlaying } = useMovieContext();
   const { handleAddToWatchlist, isinWatchlist } = useWatchlist();
+  const { isLoggedIn } = useAuthContext();
 
   useEffect(() => {
     fetchNowPlaying();
@@ -104,8 +107,14 @@ const BannerMovie = () => {
                     className="gap-3 px-7 py-6"
                     onClick={() => handleAddToWatchlist(movie)}
                   >
-                    <BookmarkIcon size={16} />
-                    {isinWatchlist(movie.id) ? "Remove from Watchlist" : "Add to Watchlist" }
+                    {isLoggedIn ? (
+                      <>
+                        <BookmarkIcon size={16} />
+                        {isinWatchlist(movie.id)
+                          ? "Remove from Watchlist"
+                          : "Add to Watchlist"}
+                      </>
+                    ) : null}
                   </Button>
                 </motion.div>
               </motion.div>

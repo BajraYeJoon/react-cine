@@ -11,6 +11,7 @@ import Animationlanding from "./animation/landing.tsx";
 import Genrelanding from "./genres/landing.tsx";
 import GenreLayout from "./layout/genreLayout.tsx";
 import Watchlistlanding from "./watchlist/landing.tsx";
+import Recentlanding from "./recent/landing.tsx";
 
 export {
   Layout,
@@ -26,4 +27,5 @@ export {
   Genrelanding,
   GenreLayout,
   Watchlistlanding,
+  Recentlanding,
 };
