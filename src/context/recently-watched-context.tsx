@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { fetchMoviesWithGenreType } from "@/api/fetchapi";
+import { fetchMovieDetails } from "@/api/fetchapi";
 import { addRecentlyWatched, getRecentlyWatched } from "@/lib/indexdb";
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -18,6 +18,7 @@ export const RecentlyWatchedProvider = ({
   children: React.ReactNode;
 }) => {
   const [recentlyWatched, setRecentlyWatched] = useState<number[]>([]);
+  const [onlyIds, setOnlyIds] = useState<number[]>([]);
 
   const handleRecentWatched = async (id: number) => {
     try {
@@ -27,20 +28,28 @@ export const RecentlyWatchedProvider = ({
     }
   };
 
+  const fetchRecentlyWatched = async () => {
+    try {
+      const getIdFromDB = await getRecentlyWatched();
+      const onlyIds = getIdFromDB.map((item) => item.id);
+      setOnlyIds(onlyIds);
+    } catch (error) {
+      console.log(error, "Something i did wrong");
+    }
+  };
+
   useEffect(() => {
-    const fetchRecentlyWatched = async () => {
-      try {
-        const getIdFromDB = await getRecentlyWatched();
-        const fetchMoviesDetailsFromId =
-          await fetchMoviesWithGenreType(getIdFromDB);
-      } catch (error) {
-        console.log(error, "Something i did wrong");
-      }
-    };
     fetchRecentlyWatched();
   }, []);
 
-  console.log(recentlyWatched);
+  useEffect(() => {
+    const fetchMovieDetailsFromId = async (onlyIds: number[]) => {
+      const promises = onlyIds.map((id) => fetchMovieDetails(id));
+      const results = await Promise.all(promises);
+      setRecentlyWatched(results);
+    };
+    fetchMovieDetailsFromId(onlyIds);
+  }, [onlyIds]);
 
   return (
     <RecentlyWatchedContext.Provider

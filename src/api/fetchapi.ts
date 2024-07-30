@@ -59,9 +59,7 @@ export const fetchMoviesWithAnimeType = async (
  * @param {string} genreId - The ID of the genre.
  * @return {Promise<any>} - A promise that resolves to an array of movie objects.
  */
-export const fetchMoviesWithGenreType = async (
-  genreId: string,
-): Promise<any> => {
+export const fetchMoviesWithGenreType = async (genreId: number): Promise<any> => {
   const data = await fetchFromAPI(
     `/discover/movie?with_genres=${genreId}&sort_by=popularity.desc&page=1`,
   );

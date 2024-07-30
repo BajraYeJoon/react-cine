@@ -94,7 +94,6 @@ const DetailPage = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(movieDetails);
 
   return (
     <section className="relative">
