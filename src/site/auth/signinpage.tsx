@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaSpinner } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa6";
 import {
   Form,
   FormControl,
   FormLabel,
-  FormDescription,
   FormMessage,
   FormField,
   FormItem,
@@ -14,57 +13,66 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuthContext } from "@/context/auth-context";
 
 const formSchema = z.object({
+  // email: z.string().email(),
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
-  email: z.string().email(),
   password: z.string().min(2, {
     message: "Password must be at least 2 characters.",
   }),
 });
 
 const SignInpage = () => {
+  const { login, isLoading } = useAuthContext();
+  const navigate = useNavigate();
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
-      email: "",
+
+      // email: "",
       password: "",
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    login(values);
+    toast({
+      title: "Login Successful",
+    });
+    navigate("/onboarding");
   }
 
   return (
-    <section className="flex flex-col h-full justify-between items-center mt-12 gap-20">
-      <h1 className="uppercase text-xl tracking-wide font-bold">cinemax</h1>
+    <section className="mt-12 flex h-full flex-col items-center justify-between gap-20">
+      <h1 className="text-xl font-bold uppercase tracking-wide">cinemax</h1>
       <div className="flex flex-col gap-6">
-        <h3 className="text-5xl font-bold text-balance text-center max-w-md">
+        <h3 className="max-w-md text-balance text-center text-5xl font-bold">
           Hey there! Welcome back. Sign in to continue.
         </h3>
-        <div className="flex flex-col gap-4 ">
-          <Button className="gap-4 items-center">
+        <div className="flex flex-col gap-4">
+          <Button className="items-center gap-4">
             <FaFacebookF />
             Login With Facebook
           </Button>
-          <Button variant={"outline"} className="gap-4 items-center">
+          <Button variant={"outline"} className="items-center gap-4">
             <FaGoogle />
             Login With Google
           </Button>
         </div>
-        <div className="relative ">
+        <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-sm uppercase md:text-lg">
-            <p className="bg-background px-2 font-tactic_sans_reg text-muted-foreground">
-              or sign up with...
+            <p className="font-tactic_sans_reg bg-background px-2 text-muted-foreground">
+              or Login with...
             </p>
           </div>
         </div>
@@ -72,12 +80,12 @@ const SignInpage = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}
-              name="email"
+              name="username"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="email" {...field} />
+                    <Input placeholder="username" {...field} />
                   </FormControl>
 
                   <FormMessage />
@@ -99,11 +107,15 @@ const SignInpage = () => {
               )}
             />
             <Button type="submit" className="w-full">
-              Login
+              {isLoading ? (
+                <FaSpinner className="animate-spin" size={20} />
+              ) : (
+                "Login"
+              )}
             </Button>
           </form>
         </Form>
-        <p className="text-center text-muted-foreground text-sm">
+        <p className="text-center text-sm text-muted-foreground">
           Don't have an account?{" "}
           <Link to="/join" className="text-muted-foreground underline">
             Sign Up

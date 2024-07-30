@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { GrNotification } from "react-icons/gr";
 import { ModeToggle } from "@/components/global/mode-toggle";
 import SearchComponent from "../search/search";
+import { useAuthContext } from "@/context/auth-context";
 
 const navLinks = [
   { label: "Movies", href: "/movies" },
@@ -14,9 +15,10 @@ const navLinks = [
   { label: "Genres", href: "/genre" },
 ];
 
-const isLoggedIn = false;
+
 
 const Navbar = () => {
+  const { isLoggedIn } = useAuthContext();
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const handleLinkClick = () => {
@@ -58,7 +60,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="search-bar flex items-center gap-6">
-        <SearchComponent />
+          <SearchComponent />
 
           <Link to={`/subscribe`}>
             <Button>Subscribe</Button>
@@ -69,7 +71,7 @@ const Navbar = () => {
           <ModeToggle />
 
           {isLoggedIn && (
-            <Link to={`/profile`}>
+            <Link to={`/settings`}>
               <div className="profile-badge h-6 w-6 cursor-pointer overflow-hidden rounded-full bg-primary"></div>
             </Link>
           )}

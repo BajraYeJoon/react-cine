@@ -5,6 +5,7 @@ import {
   useState,
   ReactNode,
   useEffect,
+  useMemo,
 } from "react";
 import { fetchGenresFromAPI, fetchNowPlayingFromAPI } from "@/api/fetchapi";
 
@@ -14,6 +15,9 @@ interface MovieContextType {
   fetchGenres: () => Promise<void>;
   nowPlaying: any;
   fetchNowPlaying: () => Promise<void>;
+  userSelectedGenres: string[];
+  setUserSelectedGenres: (genres: string[]) => void;
+  favoriteGenres: string[];
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
@@ -21,7 +25,7 @@ const MovieContext = createContext<MovieContextType | undefined>(undefined);
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [genres, setGenres] = useState<string[]>([]);
   const [nowPlaying, setNowPlaying] = useState([]);
-
+  const [userSelectedGenres, setUserSelectedGenres] = useState<string[]>([]);
   const fetchGenres = async () => {
     const genres = await fetchGenresFromAPI();
     setGenres(genres);
@@ -32,10 +36,18 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     setNowPlaying(nowPlaying);
   };
 
+  const favoriteGenres = useMemo(() => {
+    return genres.filter((genre) => !userSelectedGenres.includes(genre));
+  }, [userSelectedGenres]);
+
+  console.log(favoriteGenres, "fav");
+  console.log(userSelectedGenres, "user");
+
   useEffect(() => {
     fetchGenres();
+    console.log(favoriteGenres, "fav");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [favoriteGenres]);
 
   return (
     <MovieContext.Provider
@@ -44,6 +56,9 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
         fetchGenres,
         nowPlaying,
         fetchNowPlaying,
+        userSelectedGenres,
+        setUserSelectedGenres,
+        favoriteGenres,
       }}
     >
       {children}

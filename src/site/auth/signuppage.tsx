@@ -36,8 +36,9 @@ const SignUppage = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-  }
+ 
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {}
 
   return (
     <section className="flex flex-col h-full justify-between items-center mt-12 gap-20">
