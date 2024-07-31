@@ -1,8 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-import { lazy, useState } from "react";
-import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
-import { Link, NavLink } from "react-router-dom";
-import { cn } from "@/lib/utils";
 import { GrNotification } from "react-icons/gr";
 import { ModeToggle } from "@/components/global/mode-toggle";
 import SearchComponent from "../search/search";
@@ -11,9 +6,10 @@ import SubscribeButton from "../Subscribe/subscribeButton";
 import Mobilenav from "./mobilenav";
 import Badge from "../Settings/badge";
 import Navlinkgroup from "./navlinkgroup";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const { dimension } = useWindow();
+const Navbar = (): JSX.Element => {
+  const { dimension }: { dimension: { width: number } } = useWindow();
 
   return (
     <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card pb-6">
@@ -29,13 +25,9 @@ const Navbar = () => {
         {dimension.width > 764 && (
           <div className="search-bar flex items-center gap-4 lg:gap-6">
             <SearchComponent />
-
             <SubscribeButton className="hidden lg:block" />
-
             <GrNotification className="hidden h-6 w-6 lg:block" />
-
             <ModeToggle />
-
             <Badge />
           </div>
         )}
