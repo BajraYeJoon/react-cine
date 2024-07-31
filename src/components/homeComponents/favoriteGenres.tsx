@@ -4,14 +4,6 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "@/context/auth-context";
 
-// const favoriteGenres = [
-//   "Action",
-//   "Adventure",
-//   "Comedy",
-//   "Crime",
-//   "Drama",
-//   "Fantasy",
-// ];
 
 const FavoriteGenres = () => {
   const { favoriteGenres, genres } = useMovieContext();
@@ -44,7 +36,7 @@ const FavoriteGenres = () => {
           </>
         )}
 
-        <Link to="/genres">
+        <Link to="/settings">
           <Button>+ Add More</Button>
         </Link>
       </div>

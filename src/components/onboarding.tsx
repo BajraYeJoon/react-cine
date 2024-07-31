@@ -45,20 +45,22 @@ const Onboarding = () => {
   return (
     <Dialog open={open} onOpenChange={() => {}}>
       <DialogContent>
-        <DialogHeader>Welcome</DialogHeader>
+        <DialogHeader className="text-2xl">Welcome</DialogHeader>
         <DialogDescription className="flex flex-wrap gap-4">
-          Choose some genres to get started
-          {genres.map((genre) => (
-            <Button
-              key={genre.id}
-              variant={
-                selectedGenres.includes(genre.id) ? "default" : "secondary"
-              }
-              onClick={() => handleButtonClick(genre.id)}
-            >
-              {genre.name}
-            </Button>
-          ))}
+          <h2>Choose some genres to get started</h2>
+          <div className="flex flex-wrap gap-2">
+            {genres.slice(0, 6).map((genre) => (
+              <Button
+                key={genre.id}
+                variant={
+                  selectedGenres.includes(genre.id) ? "default" : "secondary"
+                }
+                onClick={() => handleButtonClick(genre.id)}
+              >
+                {genre.name}
+              </Button>
+            ))}
+          </div>
         </DialogDescription>
         <Link to="/">
           <Button onClick={handleClick}>Let's go</Button>

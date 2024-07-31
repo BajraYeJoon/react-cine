@@ -12,7 +12,9 @@ export const MovieInfo = ({
 }) => (
   <div className="-order-2 flex flex-col items-start justify-start gap-1 md:order-none md:col-span-3 md:row-span-4 md:gap-5">
     <div className="flex items-center gap-2 md:gap-3">
-      <h1 className="text-2xl md:text-4xl">{movieDetails.original_title}</h1>
+      <h1 className="max-w-64 text-2xl md:text-4xl">
+        {movieDetails.original_title}
+      </h1>
       <p className="rounded-3xl border border-foreground/45 bg-background/55 px-2 py-1 text-sm uppercase md:px-4 md:text-lg">
         {movieDetails.origin_country} - {movieDetails.original_language}
       </p>

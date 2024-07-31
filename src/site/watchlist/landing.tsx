@@ -41,13 +41,21 @@ const Watchlistlanding = () => {
             },
           }}
         >
-          <motion.h1 variants={FADE_UP_ANIMATION}>Your Watchlist</motion.h1>
+          <motion.h1
+            variants={FADE_UP_ANIMATION}
+            className="mb-2 text-2xl font-light md:text-4xl"
+          >
+            Your Watchlist
+          </motion.h1>
           <motion.div
             className="flex flex-wrap gap-3"
             variants={FADE_UP_ANIMATION}
           >
             {watchlist.map((watchListitem) => (
-              <div className="h-44 w-52 space-y-3" key={watchListitem.id}>
+              <div
+                className="h-24 w-24 space-y-3 md:h-44 md:w-52"
+                key={watchListitem.id}
+              >
                 <img
                   src={`https://image.tmdb.org/t/p/original/${watchListitem.poster_path}`}
                   alt=""
@@ -77,17 +85,17 @@ const Watchlistlanding = () => {
               },
             },
           }}
-          className="flex flex-col items-center justify-center space-y-4 min-h-[75dvh] text-xl"
-        >    
-        <Fiber />
-            <motion.p variants={FADE_UP_ANIMATION}>
-              Please login to see your watchlist
-            </motion.p>
-            <motion.p variants={FADE_UP_ANIMATION}>
-              Access your personalized watchlist and keep track of your favorite
-              movies and shows.
-            </motion.p>
-            <Button onClick={() => navigate("/signin")}>Login</Button>
+          className="flex min-h-[75dvh] flex-col items-center justify-center space-y-4 text-xl"
+        >
+          <Fiber />
+          <motion.p variants={FADE_UP_ANIMATION}>
+            Please login to see your watchlist
+          </motion.p>
+          <motion.p variants={FADE_UP_ANIMATION}>
+            Access your personalized watchlist and keep track of your favorite
+            movies and shows.
+          </motion.p>
+          <Button onClick={() => navigate("/signin")}>Login</Button>
         </motion.div>
       )}
     </section>

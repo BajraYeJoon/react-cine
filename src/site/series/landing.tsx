@@ -42,13 +42,13 @@ const Serieslanding = () => {
   }, []);
 
   return (
-    <section>
+    <section className="my-4 px-4 md:p-0">
       <div className="h-72 gap-3">
-        <h1 className="text-3xl font-medium">Top Movies</h1>
-        <TopRatedPage showRank swiper tvShow />
+        <h1 className="text-2xl font-light md:text-3xl">Top Movies</h1>
+        <TopRatedPage showRank swiper isTvShow />
       </div>
 
-      <h2 className="mb-4 text-3xl font-medium">Best of Series</h2>
+      <h2 className="mb-4 text-2xl font-light md:text-3xl">Best of Series</h2>
       <div className="mt-4 flex gap-4">
         <motion.div
           className="grid w-full grid-cols-7 grid-rows-6 gap-4 *:h-44 *:overflow-hidden *:rounded-md *:bg-foreground/25"

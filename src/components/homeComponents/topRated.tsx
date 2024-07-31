@@ -87,7 +87,7 @@ const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
           </span>
           <Link to={`/details/${id}`}>
             <h4 className="text-nowrap text-xl capitalize group-hover:underline">
-              {name?.length > 10 ? `${name.slice(0, 20)}...` : name || title}
+              {name?.length > 10 ? `${name.slice(0, 10)}...` : name || title}
             </h4>
           </Link>
           <span className="inline-flex items-center gap-2 opacity-30">

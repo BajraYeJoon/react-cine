@@ -41,28 +41,30 @@ const SignUppage = () => {
   async function onSubmit(values: z.infer<typeof formSchema>) {}
 
   return (
-    <section className="flex flex-col h-full justify-between items-center mt-12 gap-20">
-      <h1 className="uppercase text-xl tracking-wide font-bold">cinemax</h1>
+    <section className="mt-12 flex h-full flex-col items-center justify-between gap-2 md:gap-20">
+      <h1 className="hidden text-xl font-bold uppercase tracking-wide md:block">
+        cinemax
+      </h1>
       <div className="flex flex-col gap-6">
-        <h3 className="text-5xl font-bold text-balance text-center max-w-md">
+        <h3 className="max-w-md text-balance text-center text-5xl font-bold">
           Ready to watch? Enter your email to create or restart your membership.
         </h3>
-        <div className="flex flex-col gap-4 ">
-          <Button className="gap-4 items-center">
+        <div className="flex flex-col gap-4">
+          <Button className="items-center gap-4">
             <FaFacebookF />
             Sign Up With Facebook
           </Button>
-          <Button variant={"outline"} className="gap-4 items-center">
+          <Button variant={"outline"} className="items-center gap-4">
             <FaGoogle />
             Sign Up With Google
           </Button>
         </div>
-        <div className="relative ">
+        <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
           <div className="relative flex justify-center text-sm uppercase md:text-lg">
-            <p className="bg-background px-2 font-tactic_sans_reg text-muted-foreground">
+            <p className="font-tactic_sans_reg bg-background px-2 text-muted-foreground">
               or sign up with...
             </p>
           </div>
@@ -118,7 +120,7 @@ const SignUppage = () => {
             </Button>
           </form>
         </Form>
-        <p className="text-center text-muted-foreground text-sm">
+        <p className="text-center text-sm text-muted-foreground">
           Already a member?{" "}
           <Link to="/sign-in" className="text-muted-foreground underline">
             Login

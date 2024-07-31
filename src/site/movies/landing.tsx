@@ -33,7 +33,7 @@ const Movies = () => {
         Try Something New
       </h2>
       <motion.div
-        className=" relative mx-auto my-0 flex flex-wrap justify-around gap-4 md:justify-between md:gap-7"
+        className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-around gap-4 md:justify-between md:gap-7"
         initial="hidden"
         animate="show"
         viewport={{ once: true }}
@@ -52,6 +52,7 @@ const Movies = () => {
             title,
             release_date,
             backdrop_path,
+            // last_air_date,
             status,
           }: MovieDetails) => (
             <motion.div
@@ -67,6 +68,7 @@ const Movies = () => {
                 />
               </div>
               <div className="group px-1 py-3">
+                {/* <Link to={`${last_air_date ? "tv" : "movie"}/details/${id}`}> */}
                 <Link to={`/details/${id}`}>
                   <h5 className="w-fit text-xl font-light tracking-tight text-white group-hover:underline">
                     {dimension.width < 768

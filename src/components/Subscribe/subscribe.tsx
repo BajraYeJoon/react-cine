@@ -32,12 +32,12 @@ function Subscribe() {
 
   const words = "Ready to enhance your experience";
   return (
-    <div className="relative mt-12 flex flex-col items-center gap-4 justify-start">
+    <div className="relative mx-8 mt-12 flex flex-col items-center justify-start gap-4">
       <motion.h1
         variants={container}
         initial="hidden"
         animate="show"
-        className="flex items-center justify-center font-display text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
+        className="font-display flex max-w-fit items-center justify-center text-2xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-7xl md:leading-[5rem]"
       >
         {words.split(" ").map((word, i) => (
           <motion.span
@@ -49,10 +49,13 @@ function Subscribe() {
           </motion.span>
         ))}
       </motion.h1>
-      <div className="flex  items-center gap-4 w-full">
-        <img src="/sh.png" className="h-[500px] w-[600px] object-contain  " />
+      <div className="flex w-full items-center gap-4">
+        <img
+          src="/sh.png"
+          className="hidden object-contain md:block md:h-[500px] md:w-[600px]"
+        />
         <motion.div
-          className="m-10 w-80 rounded-lg border-2 border-foreground py-8 px-6 shadow-lg shadow-foreground "
+          className="w-96 rounded-lg border-2 border-foreground px-6 py-8 shadow-lg shadow-foreground"
           variants={container}
         >
           <p className="text-2xl font-medium">Enhanced Pro</p>
@@ -68,7 +71,7 @@ function Subscribe() {
             {features.map((feature) => (
               <li
                 key={feature.id}
-                className="flex items-center font-medium space-x-4"
+                className="flex items-center space-x-4 font-medium"
               >
                 <span>{feature.content}</span>
               </li>
@@ -79,7 +82,7 @@ function Subscribe() {
             {additionalFeatures.map((feature) => (
               <li
                 key={feature.id}
-                className={`flex items-center sapace-x-2 first:text-primary/80 `}
+                className={`sapace-x-2 flex items-center first:text-primary/80`}
               >
                 <span>{feature.content}</span>
               </li>
