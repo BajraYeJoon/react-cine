@@ -178,7 +178,7 @@ export const PosterAndWishlist = ({
 );
 
 const CastList = ({ movieCredits }: { movieCredits: MovieCredits[] }) => (
-  <div className="order-4 flex flex-wrap items-center justify-center gap-2 md:order-none md:col-span-4 md:col-start-2 md:row-span-2 md:row-start-5 md:gap-8">
+  <div className="order-4 flex flex-wrap items-center justify-center gap-2 md:order-none md:col-span-4 md:col-start-2 md:row-span-2 md:row-start-5 md:justify-start md:gap-4">
     {movieCredits.map((cast) => (
       <div key={cast.id}>
         <img

@@ -31,7 +31,7 @@ const BannerMovie = () => {
 
   return (
     <>
-      <div className="relative h-[500px] overflow-hidden rounded-2xl md:col-span-2 md:h-full">
+      <div className="relative h-[500px] overflow-hidden rounded-2xl lg:col-span-2 lg:h-full">
         <Swiper
           slidesPerView={1}
           pagination={{

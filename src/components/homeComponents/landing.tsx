@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 export const Landing = () => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:grid-rows-3 md:gap-2">
+      <div className="grid grid-cols-1 gap-12 md:gap-2 lg:grid-cols-3 lg:grid-rows-3">
         <BannerMovie />
-        <div className="space-y-5 px-2 md:row-span-3 md:px-6">
+        <div className="space-y-5 px-2 md:px-6 lg:row-span-3">
           <h1 className="text-3xl font-light md:text-2xl">Top Movies</h1>
           <div className="flex flex-col gap-4">
             <TopRatedMovies />
@@ -19,7 +19,7 @@ export const Landing = () => {
             <Link to={"/movies"}>See All</Link>
           </Button>
         </div>
-        <div className="md:col-span-2">
+        <div className="lg:col-span-2">
           <ProductionCategory />
         </div>
       </div>

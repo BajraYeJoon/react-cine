@@ -12,7 +12,7 @@ const Navbar = (): JSX.Element => {
   const { dimension }: { dimension: { width: number } } = useWindow();
 
   return (
-    <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card">
+    <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card md:pb-4">
       <div className="navbar-container mx-52 flex items-center justify-center gap-14 pt-4 max-2xl:mx-8 md:pt-6">
         <div className="logo-container flex items-center gap-16">
           <Link to="/" className="flex items-center">
@@ -22,9 +22,9 @@ const Navbar = (): JSX.Element => {
           </Link>
         </div>
 
-        {dimension.width > 768 && <Navlinkgroup />}
+        {dimension.width > 750 && <Navlinkgroup />}
 
-        {dimension.width > 764 && (
+        {dimension.width > 750 && (
           <div className="search-bar flex items-center gap-4 lg:gap-6">
             <SearchComponent />
             <SubscribeButton className="hidden lg:block" />
