@@ -35,7 +35,7 @@ const CustomDrawer = ({
         {children}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">Back to Home</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>

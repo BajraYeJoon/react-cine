@@ -5,11 +5,11 @@ import SearchComponent from "../search/search";
 import Badge from "../Settings/badge";
 import Navlinkgroup from "./navlinkgroup";
 import CustomDrawer from "./customdrawer";
+import Sidebargroup from "./sidebargroup";
 
 const Mobilenav = () => {
   const [isProfileDrawerOpen, setProfileDrawerOpen] = useState(false);
   const [isOptionsDrawerOpen, setOptionsDrawerOpen] = useState(false);
-
 
   return (
     <>
@@ -32,8 +32,8 @@ const Mobilenav = () => {
       <CustomDrawer
         open={isProfileDrawerOpen}
         onOpenChange={setProfileDrawerOpen}
-        title="Edit Profile"
-        description="Make changes to your profile here. Click save when you're done."
+        title="Choose a genre "
+        description="What are you interested in?"
       >
         <Navlinkgroup />
       </CustomDrawer>
@@ -41,10 +41,10 @@ const Mobilenav = () => {
       <CustomDrawer
         open={isOptionsDrawerOpen}
         onOpenChange={setOptionsDrawerOpen}
-        title="Edit Profile"
-        description="Make changes to your profile here. Click save when you're done."
+        title="Options"
+        description="What are you looking for ?"
       >
-        <div>Options content goes here</div>
+        <Sidebargroup />
       </CustomDrawer>
     </>
   );

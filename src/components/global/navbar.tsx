@@ -16,7 +16,9 @@ const Navbar = (): JSX.Element => {
       <div className="navbar-container mx-52 flex items-center justify-center gap-14 pt-4 max-2xl:mx-8 md:pt-6">
         <div className="logo-container flex items-center gap-16">
           <Link to="/" className="flex items-center">
-            <span className="self-center text-3xl font-semibold">Cinemax</span>
+            <span className="self-center text-4xl font-semibold md:text-3xl">
+              Cinemax
+            </span>
           </Link>
         </div>
 
