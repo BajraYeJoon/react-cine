@@ -146,26 +146,21 @@ export const saveUserSelectedGenres = async (
     const transaction = db.transaction(FAVORITE_GENRES_STORE, "readwrite");
     const store = transaction.objectStore(FAVORITE_GENRES_STORE);
 
-    const clearRequest = store.clear();
-    clearRequest.onsuccess = () => {
-      // Add new entries
-      genres.forEach((genre) => {
-        const request = store.add(genre);
+    genres.forEach((genre) => {
+      const request = store.add(genre);
 
-        request.onsuccess = () => {
-          resolve();
-        };
+      request.onsuccess = () => {
+        resolve();
+      };
 
-        request.onerror = () => {
-          reject(request.error);
-        };
-      });
-    };
-
-    clearRequest.onerror = () => {
-      reject(clearRequest.error);
-    };
+      request.onerror = () => {
+        reject(request.error);
+      };
+    });
   });
+  
+
+ 
 };
 
 export const getUserSelectedGenres = async (): Promise<string[]> => {

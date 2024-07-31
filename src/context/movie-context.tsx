@@ -8,7 +8,7 @@ import {
   useMemo,
 } from "react";
 import { fetchGenresFromAPI, fetchNowPlayingFromAPI } from "@/api/fetchapi";
-import { saveUserSelectedGenres } from "@/lib/indexdb";
+import { getUserSelectedGenres, saveUserSelectedGenres } from "@/lib/indexdb";
 
 interface Genre {
   id: string;
@@ -46,18 +46,23 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
 
   console.log(favoriteGenres, "favoriteGenres from MovieProvider");
 
+  const fetchAllFavoriteGenres = async () => {
+    const genres = await getUserSelectedGenres();
+    setUserSelectedGenres(genres);
+  };
+
   useEffect(() => {
     fetchGenres();
+    fetchAllFavoriteGenres();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   useEffect(() => {
     const genreIds = favoriteGenres.map((genre) => genre.id);
     saveUserSelectedGenres(genreIds);
   }, [favoriteGenres]);
 
-   
   return (
     <MovieContext.Provider
       value={{
