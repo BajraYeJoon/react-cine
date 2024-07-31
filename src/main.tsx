@@ -23,14 +23,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ThemeProvider defaultTheme="dark" storageKey="react-cine-theme">
         <AuthProvider>
           <MovieProvider>
-            <MovieProvider>
-              <WatchListProvider>
-                <RecentlyWatchedProvider>
-                  <App />
-                  <Toaster />
-                </RecentlyWatchedProvider>
-              </WatchListProvider>
-            </MovieProvider>
+            <WatchListProvider>
+              <RecentlyWatchedProvider>
+                <App />
+                <Toaster />
+              </RecentlyWatchedProvider>
+            </WatchListProvider>
           </MovieProvider>
         </AuthProvider>
       </ThemeProvider>

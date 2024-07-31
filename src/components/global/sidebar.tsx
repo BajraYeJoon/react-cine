@@ -1,7 +1,9 @@
 import { menuItems } from "@/constants/data";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useAuthContext } from "@/context/auth-context";
+import { Button } from "../ui/button";
+import SubscribeButton from "../Subscribe/subscribeButton";
 
 const Sidebar = () => {
   const { isLoggedIn } = useAuthContext();
@@ -9,10 +11,10 @@ const Sidebar = () => {
   return (
     <>
       <aside
-        className="fixed h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
+        className="fixed hidden h-screen w-64 -translate-x-full transition-transform sm:translate-x-0 md:flex"
         aria-label="Sidebar"
       >
-        <div className="h-full bg-primary-foreground/10 px-3 py-4">
+        <div className="flex h-[90vh] flex-col justify-between bg-primary-foreground/10 px-3 py-4">
           <ul className="space-y-8 text-xl font-medium">
             {menuItems.map((item, index) => {
               return (
@@ -54,6 +56,8 @@ const Sidebar = () => {
               );
             })}
           </ul>
+
+          <SubscribeButton className="w-full rounded-sm lg:hidden" />
         </div>
       </aside>
     </>
