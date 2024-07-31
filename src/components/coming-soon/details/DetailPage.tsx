@@ -33,6 +33,9 @@ export interface MovieDetails {
   status: string;
   overview: string;
   title: string;
+  popularity: number;
+  name: string;
+  vote_count: number;
 }
 
 export interface MovieCredits {

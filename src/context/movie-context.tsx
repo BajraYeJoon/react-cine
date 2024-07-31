@@ -38,7 +38,7 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
 
   const fetchNowPlaying = async () => {
     const nowPlaying = await fetchNowPlayingFromAPI();
-    setNowPlaying(nowPlaying);
+    setNowPlaying(nowPlaying.slice(0, 8));
   };
   const favoriteGenres = useMemo(() => {
     return genres.filter((genre) => userSelectedGenres.includes(genre.id));

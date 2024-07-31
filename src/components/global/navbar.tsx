@@ -12,7 +12,7 @@ const Navbar = (): JSX.Element => {
   const { dimension }: { dimension: { width: number } } = useWindow();
 
   return (
-    <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card pb-6">
+    <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card">
       <div className="navbar-container mx-52 flex items-center justify-center gap-14 pt-4 max-2xl:mx-8 md:pt-6">
         <div className="logo-container flex items-center gap-16">
           <Link to="/" className="flex items-center">
