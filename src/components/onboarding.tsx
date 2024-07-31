@@ -24,6 +24,9 @@ const Onboarding = () => {
     });
   };
 
+  console.log(selectedGenres, "selectedGenres");
+
+
   const handleClick = () => {
     setUserSelectedGenres(selectedGenres);
     setOpen(false);

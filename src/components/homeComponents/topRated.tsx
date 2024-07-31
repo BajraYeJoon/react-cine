@@ -10,10 +10,12 @@ import "swiper/css/navigation";
 import { Scrollbar } from "swiper/modules";
 import { useState, useEffect } from "react";
 import {
+  fetchResultsbyFavoriteGenres,
   fetchTopRatedMoviesFromAPI,
   fetchTopRatedTVShowsFromAPI,
 } from "@/api/fetchapi";
 import { Link } from "react-router-dom";
+import { useMovieContext } from "@/context/movie-context";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
@@ -21,34 +23,27 @@ interface TopRatedMoviesProps {
   tvShow?: any;
 }
 
-// const items = [
-//   {
-//     id: 1,
-//     category: "pg 1",
-//     name: "name 1 adfasdfasdfasdfasdfasdfasdfasdfasdf",
-//     genre: "genre 1",
-//     rating: 8.2,
-//   },
-//   { id: 2, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
-//   { id: 3, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
-//   { id: 4, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
-//   { id: 5, category: "pg 2", name: "name 2", genre: "genre 2", rating: 7.5 },
-//   { id: 6, category: "pg 3", name: "name 3", genre: "genre 3", rating: 9.0 },
-//   { id: 7, category: "pg 4", name: "name 4", genre: "genre 4", rating: 8.8 },
-// ];
-
 const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
   const [topRated, setTopRated] = useState([]);
 
+  const { favoriteGenres } = useMovieContext();
+
   useEffect(() => {
     const fetchTopRated = async () => {
-      const topRatedData = tvShow
-        ? await fetchTopRatedTVShowsFromAPI()
-        : await fetchTopRatedMoviesFromAPI();
+      let topRatedData;
+      if (favoriteGenres && favoriteGenres.length > 0) {
+        topRatedData = await fetchResultsbyFavoriteGenres(
+          favoriteGenres.map((genre) => genre.id),
+        );
+      } else {
+        topRatedData = tvShow
+          ? await fetchTopRatedTVShowsFromAPI()
+          : await fetchTopRatedMoviesFromAPI();
+      }
       setTopRated(topRatedData);
     };
     fetchTopRated();
-  }, [tvShow]);
+  }, [tvShow, favoriteGenres]);
 
   const renderMovieItem = (item, index) => {
     const title = tvShow ? item.name : item.title;
@@ -83,9 +78,9 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
             {item.original_language}
           </span>
           <Link to={`/details/${item.id}`}>
-          <h4 className="text-nowrap text-xl capitalize group-hover:underline">
-            {title.length > 10 ? title.slice(0, 20) + "..." : title}
-          </h4>
+            <h4 className="text-nowrap text-xl capitalize group-hover:underline">
+              {title.length > 10 ? title.slice(0, 20) + "..." : title}
+            </h4>
           </Link>
           <span className="inline-flex items-center gap-2 opacity-30">
             <TbMovie />

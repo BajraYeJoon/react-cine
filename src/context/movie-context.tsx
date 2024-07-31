@@ -8,22 +8,27 @@ import {
   useMemo,
 } from "react";
 import { fetchGenresFromAPI, fetchNowPlayingFromAPI } from "@/api/fetchapi";
+import { saveUserSelectedGenres } from "@/lib/indexdb";
 
-// Define a type for the context value
+interface Genre {
+  id: string;
+  name: string;
+}
+
 interface MovieContextType {
-  genres: string[];
+  genres: Genre[];
   fetchGenres: () => Promise<void>;
   nowPlaying: any;
   fetchNowPlaying: () => Promise<void>;
   userSelectedGenres: string[];
   setUserSelectedGenres: (genres: string[]) => void;
-  favoriteGenres: string[];
+  favoriteGenres: Genre[];
 }
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
 export const MovieProvider = ({ children }: { children: ReactNode }) => {
-  const [genres, setGenres] = useState<string[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [userSelectedGenres, setUserSelectedGenres] = useState<string[]>([]);
   const fetchGenres = async () => {
@@ -35,20 +40,24 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     const nowPlaying = await fetchNowPlayingFromAPI();
     setNowPlaying(nowPlaying);
   };
-
   const favoriteGenres = useMemo(() => {
-    return genres.filter((genre) => !userSelectedGenres.includes(genre));
+    return genres.filter((genre) => userSelectedGenres.includes(genre.id));
   }, [userSelectedGenres]);
 
-  
-  
+  console.log(favoriteGenres, "favoriteGenres from MovieProvider");
 
   useEffect(() => {
     fetchGenres();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
+  useEffect(() => {
+    const genreIds = favoriteGenres.map((genre) => genre.id);
+    saveUserSelectedGenres(genreIds);
   }, [favoriteGenres]);
 
+   
   return (
     <MovieContext.Provider
       value={{

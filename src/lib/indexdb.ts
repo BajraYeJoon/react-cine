@@ -3,6 +3,7 @@ import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 const DB_NAME = "CINEDB";
 const STORE_NAME = "watchlist";
 const RECENT_STORE_NAME = "recentlyWatched";
+const FAVORITE_GENRES_STORE = "favoriteGenres";
 
 export const openDB = (): Promise<IDBDatabase> => {
   return new Promise((resolve, reject) => {
@@ -14,6 +15,10 @@ export const openDB = (): Promise<IDBDatabase> => {
       db.createObjectStore(STORE_NAME, { keyPath: "id" });
       db.createObjectStore(RECENT_STORE_NAME, {
         keyPath: "id",
+      });
+      db.createObjectStore(FAVORITE_GENRES_STORE, {
+        keyPath: "id",
+        // autoIncrement: true,
       });
     };
 
@@ -121,6 +126,53 @@ export const getRecentlyWatched = async (): Promise<number[]> => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction(RECENT_STORE_NAME, "readonly");
     const store = transaction.objectStore(RECENT_STORE_NAME);
+    const request = store.getAll();
+
+    request.onsuccess = () => {
+      resolve(request.result);
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+};
+
+export const saveUserSelectedGenres = async (
+  genres: string[],
+): Promise<void> => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(FAVORITE_GENRES_STORE, "readwrite");
+    const store = transaction.objectStore(FAVORITE_GENRES_STORE);
+
+    const clearRequest = store.clear();
+    clearRequest.onsuccess = () => {
+      // Add new entries
+      genres.forEach((genre) => {
+        const request = store.add(genre);
+
+        request.onsuccess = () => {
+          resolve();
+        };
+
+        request.onerror = () => {
+          reject(request.error);
+        };
+      });
+    };
+
+    clearRequest.onerror = () => {
+      reject(clearRequest.error);
+    };
+  });
+};
+
+export const getUserSelectedGenres = async (): Promise<string[]> => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(FAVORITE_GENRES_STORE, "readonly");
+    const store = transaction.objectStore(FAVORITE_GENRES_STORE);
     const request = store.getAll();
 
     request.onsuccess = () => {
