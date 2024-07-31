@@ -10,16 +10,18 @@ export const MovieInfo = ({
   movieDetails: MovieDetails;
   watchProviders: WatchProvider[];
 }) => (
-  <div className="col-span-3 row-span-4 flex flex-col items-start justify-start gap-5">
-    <div className="flex items-center gap-3">
-      <h1 className="text-4xl">{movieDetails.original_title}</h1>
-      <p className="rounded-3xl border border-foreground/45 bg-background/55 px-4 py-1 text-lg uppercase">
+  <div className="-order-2 flex flex-col items-start justify-start gap-1 md:order-none md:col-span-3 md:row-span-4 md:gap-5">
+    <div className="flex items-center gap-2 md:gap-3">
+      <h1 className="text-2xl md:text-4xl">{movieDetails.original_title}</h1>
+      <p className="rounded-3xl border border-foreground/45 bg-background/55 px-2 py-1 text-sm uppercase md:px-4 md:text-lg">
         {movieDetails.origin_country} - {movieDetails.original_language}
       </p>
     </div>
-    <h2 className="text-2xl text-foreground/55">{movieDetails.tagline}</h2>
+    <h2 className="text-lg text-foreground/55 md:text-2xl">
+      {movieDetails.tagline}
+    </h2>
     <Separator />
-    <div className="flex items-center gap-8 text-lg">
+    <div className="my-4 flex flex-wrap items-center gap-4 text-lg md:my-0 md:gap-8">
       <p className="inline-flex gap-2">
         <Calendar />
         {movieDetails.release_date}
@@ -32,12 +34,14 @@ export const MovieInfo = ({
         <Vote />
         {movieDetails.vote_average}
       </p>
-      <Button variant={"default"}>{movieDetails.status}</Button>
+      <Button variant={"default"} className="px-4 text-base">
+        {movieDetails.status}
+      </Button>
     </div>
     <Separator />
-    <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">Details</h2>
-      <p className="text-lg">{movieDetails.overview}</p>
+    <div className="flex flex-col gap-3 md:gap-4">
+      <h2 className="text-xl font-bold md:text-2xl">Details</h2>
+      <p className="text-sm font-light md:text-lg">{movieDetails.overview}</p>
       <WatchProviders watchProviders={watchProviders} />
     </div>
   </div>
@@ -49,7 +53,7 @@ const WatchProviders = ({
   watchProviders: WatchProvider[];
 }) => (
   <div className="space-y-2">
-    <h2 className="text-xl font-bold">Watch it on</h2>
+    <h2 className="text-lg font-bold md:text-xl">Watch it on</h2>
     <div className="flex gap-4">
       {watchProviders.length > 0 ? (
         watchProviders.map((provider) => (
@@ -62,7 +66,9 @@ const WatchProviders = ({
           </div>
         ))
       ) : (
-        <p>Only available in Theaters for Now</p>
+        <p className="font-light italic text-foreground/75">
+          Only available in Theaters for Now
+        </p>
       )}
     </div>
   </div>

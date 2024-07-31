@@ -12,19 +12,26 @@ import {
 } from "../../ui/dialog";
 import ReactPlayer from "react-player/lazy";
 import { Image, Video } from "./DetailPage";
+import { cn } from "@/lib/utils";
 
 export const Gallery = ({
   images,
   video,
   addTorecent,
+  className,
 }: {
   images: Image[];
   video: Video[];
   addTorecent: () => void;
+  className?: React.ReactNode;
 }) => {
-
   return (
-    <div className="col-start-5 row-span-4 row-start-1 space-y-4 overflow-hidden">
+    <div
+      className={cn(
+        "row-start-1 space-y-4 overflow-hidden md:col-start-5 md:row-span-4",
+        className,
+      )}
+    >
       <h3 className="text-2xl">Gallery</h3>
       <div className="group relative h-32 bg-foreground/25">
         {images.length > 0 && (
@@ -36,7 +43,6 @@ export const Gallery = ({
         )}
         <Dialog>
           <DialogTrigger>
-
             <PlayCircleIcon
               size={40}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground/75 group-hover:cursor-pointer"
@@ -47,14 +53,14 @@ export const Gallery = ({
             <DialogHeader>
               <DialogTitle>Trailer</DialogTitle>
 
-                {video && (
-                  <ReactPlayer
-                    url={`https://www.youtube.com/watch?v=${video.key}`}
-                    controls
-                    width="100%"
-                    height="100%"
-                  />
-                )}
+              {video && (
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${video.key}`}
+                  controls
+                  width="100%"
+                  height="100%"
+                />
+              )}
             </DialogHeader>
           </DialogContent>
         </Dialog>

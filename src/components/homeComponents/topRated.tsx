@@ -16,6 +16,7 @@ import {
 import { Link } from "react-router-dom";
 import { useMovieContext } from "@/context/movie-context";
 import { MovieDetails } from "../coming-soon/details/DetailPage";
+import useWindow from "@/lib/useWindow";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
@@ -26,6 +27,7 @@ interface TopRatedMoviesProps {
 const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
   const [topRatedItems, setTopRatedItems] = useState([]);
   const { favoriteGenres } = useMovieContext();
+  const { dimension } = useWindow();
 
   useEffect(() => {
     const fetchTopRated = async () => {
@@ -106,13 +108,13 @@ const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
       {swiper ? (
         <Swiper
           spaceBetween={20}
-          slidesPerView={3}
+          slidesPerView={dimension.width < 768 ? 1 : 3}
           scrollbar={{
             hide: false,
-            draggable: false,
+            // draggable: false,
           }}
           modules={[Scrollbar]}
-          className="mySwiper h-48"
+          className="mySwiper mx-4 h-52"
         >
           {topRatedItems
             .slice(0, 10)
