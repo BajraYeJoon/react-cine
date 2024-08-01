@@ -1,7 +1,7 @@
 import { RouterProvider } from "react-router";
 import "./App.css";
 import { router } from "./routes/route";
-import AnimatedCursor from "react-animated-cursor";
+// import AnimatedCursor from "react-animated-cursor";
 
 // import { IPadCursorProvider, useIPadCursor } from "ipad-cursor/react";
 // import type { IpadCursorConfig } from "ipad-cursor";
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <AnimatedCursor
+      {/* <AnimatedCursor
         innerSize={8}
         outerSize={8}
         color="230, 151, 230"
@@ -45,7 +45,7 @@ function App() {
           "button",
           ".link",
         ]}
-      />
+      /> */}
     </>
     // <IPadCursorProvider config={config}>
 
