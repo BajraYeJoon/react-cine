@@ -6,9 +6,14 @@ import { fetchGenresFromAPI } from "@/api/fetchapi";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "@/context/movie-context";
 
+interface Genre {
+  id: string;
+  name: string;
+}
+
 const Onboarding = () => {
   const [open, setOpen] = useState(true);
-  const [genres, setGenres] = useState<{ id: string; name: string }[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const { setUserSelectedGenres } = useMovieContext();
 
@@ -26,7 +31,6 @@ const Onboarding = () => {
 
   console.log(selectedGenres, "selectedGenres");
 
-
   const handleClick = () => {
     setUserSelectedGenres(selectedGenres);
     setOpen(false);
@@ -35,7 +39,10 @@ const Onboarding = () => {
   useEffect(() => {
     fetchGenresFromAPI().then((data) => {
       const formattedData = data.map((item) => ({
+        //@ts-expect-error - wrror
         id: item.id,
+        //@ts-expect-error - wrror
+
         name: item.name,
       }));
       setGenres(formattedData);
