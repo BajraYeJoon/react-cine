@@ -53,7 +53,8 @@ export const RecentlyWatchedProvider = ({
 
   const fetchRecentlyWatched = async () => {
     try {
-      const getIdFromDB = await getRecentlyWatched();
+      const getIdFromDB: { id: number }[] =
+        (await getRecentlyWatched()) as unknown as { id: number }[];
       const onlyIds = getIdFromDB.map((item) => item.id);
       setOnlyIds(onlyIds);
     } catch (error) {

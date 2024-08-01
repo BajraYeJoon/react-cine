@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useAuthContext } from "@/context/auth-context";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import Fiber from "@/components/test/fiber";
+// import Fiber from "@/components/test/fiber";
 
 const Watchlistlanding = () => {
   const { watchlist, handleRemoveFromWatchlist } = useWatchlist();
@@ -87,7 +87,7 @@ const Watchlistlanding = () => {
           }}
           className="flex min-h-[75dvh] flex-col items-center justify-center space-y-4 text-xl"
         >
-          <Fiber />
+          {/* <Fiber /> */}
           <motion.p variants={FADE_UP_ANIMATION}>
             Please login to see your watchlist
           </motion.p>

@@ -1,6 +1,9 @@
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
+import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+
+type GenreProps = Pick<MovieDetails, "id" | "poster_path" | "title">;
 
 const Genrelanding = () => {
   // const [prompt, setPrompt] = useState("A scene representing genre Comedy");
@@ -71,9 +74,9 @@ const Genrelanding = () => {
   useEffect(() => {
     const fetchFilteredGenreList = async (id: string) => {
       setLoading(true);
-      const data = await fetchMoviesWithGenreType(id);
+      const data = await fetchMoviesWithGenreType(Number(id));
       const mappedDataWithAddedClassName = data.map(
-        (item: any, index: number) => ({
+        (item: GenreProps, index: number) => ({
           ...item,
           className: getClassName(index),
         }),
