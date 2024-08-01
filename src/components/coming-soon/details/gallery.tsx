@@ -55,7 +55,7 @@ export const Gallery = ({
 
               {video && (
                 <ReactPlayer
-                  url={`https://www.youtube.com/watch?v=${video.key}`}
+                  url={`https://www.youtube.com/watch?v=${video.keys}`}
                   controls
                   width="100%"
                   height="100%"
