@@ -3,8 +3,12 @@ import { useEffect, useState } from "react";
 import { fetchMoviesWithAnimeType } from "@/api/fetchapi";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
+
+type Anime = Pick<MovieDetails, 'id' | 'poster_path' | 'title' | 'release_date' | 'vote_average' | 'original_title'>;
+
 const Animationlanding = () => {
-  const [animeList, setAnimeList] = useState([]);
+  const [animeList, setAnimeList] = useState<Anime[]>([]);  
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -21,7 +25,7 @@ const Animationlanding = () => {
   }, [id]);
 
   return (
-    <section className="mt-12 grid grid-cols-5 items-center justify-center gap-12">
+    <section className="mt-12 grid grid-cols-2 items-center justify-center gap-12 px-2 md:grid-cols-3 md:px-8 lg:grid-cols-5 lg:p-0">
       {animeList.map(
         ({
           id,

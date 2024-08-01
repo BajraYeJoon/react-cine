@@ -18,7 +18,7 @@ interface Genre {
 interface MovieContextType {
   genres: Genre[];
   fetchGenres: () => Promise<void>;
-  nowPlaying: any;
+  nowPlaying: number[];
   fetchNowPlaying: () => Promise<void>;
   userSelectedGenres: string[];
   setUserSelectedGenres: (genres: string[]) => void;
@@ -33,15 +33,16 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
   const [userSelectedGenres, setUserSelectedGenres] = useState<string[]>([]);
   const fetchGenres = async () => {
     const genres = await fetchGenresFromAPI();
-    setGenres(genres);
+    setGenres(genres as unknown as Genre[]);
   };
 
   const fetchNowPlaying = async () => {
     const nowPlaying = await fetchNowPlayingFromAPI();
-    setNowPlaying(nowPlaying);
+    setNowPlaying(nowPlaying.slice(0, 8));
   };
   const favoriteGenres = useMemo(() => {
     return genres.filter((genre) => userSelectedGenres.includes(genre.id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelectedGenres]);
 
   console.log(favoriteGenres, "favoriteGenres from MovieProvider");

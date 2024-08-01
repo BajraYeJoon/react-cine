@@ -46,16 +46,16 @@ export default function ProductionCategory() {
         //   clickable: true,
         // }}
         modules={[Scrollbar, Pagination]}
-        className="mySwiper "
+        className="mySwiper h-36 lg:h-52"
       >
         {productionImg.map((item) => (
           <SwiperSlide key={item.id}>
             {/* <img src={item.img} alt={item.name} /> */}
-            <div className="h-24 flex items-center justify-center w-full border-2 rounded-2xl">
+            <div className="flex h-24 w-full items-center justify-center rounded-2xl border-2">
               <img
                 src={item.img}
                 alt="production"
-                className="h-16 w-auto object-center bg-cover"
+                className="h-16 w-auto bg-cover object-center"
               />
             </div>
           </SwiperSlide>

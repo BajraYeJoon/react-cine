@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, redirect } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   Homepage,
   Layout,
@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
             path: "settings",
 
             element: (
-              <ProtectedRoute redirectUrl="/">
+              <ProtectedRoute>
                 <Settings />,
               </ProtectedRoute>
             ),

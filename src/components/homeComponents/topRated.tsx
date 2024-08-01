@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { cn } from "@/lib/utils";
 import { StarIcon } from "lucide-react";
 import { TbMovie } from "react-icons/tb";
@@ -16,43 +15,52 @@ import {
 } from "@/api/fetchapi";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "@/context/movie-context";
+import { MovieDetails } from "../coming-soon/details/DetailPage";
+import useWindow from "@/lib/useWindow";
 
 interface TopRatedMoviesProps {
   showRank?: boolean;
   swiper?: boolean;
-  tvShow?: any;
+  isTvShow?: boolean;
 }
 
-const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
-  const [topRated, setTopRated] = useState([]);
-
+const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
+  const [topRatedItems, setTopRatedItems] = useState([]);
   const { favoriteGenres } = useMovieContext();
+  const { dimension } = useWindow();
 
   useEffect(() => {
     const fetchTopRated = async () => {
-      let topRatedData;
-      if (favoriteGenres && favoriteGenres.length > 0) {
-        topRatedData = await fetchResultsbyFavoriteGenres(
-          favoriteGenres.map((genre) => genre.id),
-        );
-      } else {
-        topRatedData = tvShow
+      const topRatedData = favoriteGenres?.length
+        ? await fetchResultsbyFavoriteGenres(
+            favoriteGenres.map((genre) => genre.id),
+          )
+        : isTvShow
           ? await fetchTopRatedTVShowsFromAPI()
           : await fetchTopRatedMoviesFromAPI();
-      }
-      setTopRated(topRatedData);
-    };
-    fetchTopRated();
-  }, [tvShow, favoriteGenres]);
 
-  const renderMovieItem = (item, index) => {
-    const title = tvShow ? item.name : item.title;
+      setTopRatedItems(topRatedData);
+    };
+
+    fetchTopRated();
+  }, [favoriteGenres, isTvShow]);
+
+  const renderMovieItem = (item: MovieDetails, index: number) => {
+    const {
+      id,
+      name,
+      title,
+      original_language,
+      poster_path,
+      popularity,
+      vote_count,
+    } = item;
 
     return (
       <div
-        key={item.id}
+        key={id}
         className={cn(
-          "grid w-full grid-cols-2 gap-8",
+          "grid w-full grid-cols-3 gap-20 md:gap-8 lg:grid-cols-2",
           showRank && "flex w-fit gap-4",
         )}
       >
@@ -68,27 +76,27 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
           )}
         >
           <img
-            src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt="movie poster"
             className="h-full w-full object-cover object-top"
           />
         </div>
-        <div className="group flex min-w-48 flex-col justify-center">
+        <div className="group col-span-2 flex min-w-48 flex-col justify-center md:col-auto">
           <span className="text-sm uppercase text-foreground/50">
-            {item.original_language}
+            {original_language}
           </span>
-          <Link to={`/details/${item.id}`}>
+          <Link to={`/details/${id}`}>
             <h4 className="text-nowrap text-xl capitalize group-hover:underline">
-              {title.length > 10 ? title.slice(0, 20) + "..." : title}
+              {name?.length > 10 ? `${name.slice(0, 10)}...` : name || title}
             </h4>
           </Link>
           <span className="inline-flex items-center gap-2 opacity-30">
             <TbMovie />
-            {item.popularity}
+            {popularity}
           </span>
           <span className="flex w-fit items-center gap-2 text-center text-lg">
             <StarIcon size={16} fill="yellow" />
-            {item.vote_count}
+            {vote_count}
           </span>
         </div>
       </div>
@@ -99,28 +107,27 @@ const TopRatedPage = ({ showRank, swiper, tvShow }: TopRatedMoviesProps) => {
     <>
       {swiper ? (
         <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
+          spaceBetween={0}
+          slidesPerView={
+            dimension.width < 768 ? 1 : dimension.width < 1024 ? 2 : 3
+          }
           scrollbar={{
             hide: false,
-            draggable: false,
+            // draggable: false,
           }}
-          // pagination={{
-          //   clickable: true,
-          // }}
-          // navigation={true}
           modules={[Scrollbar]}
-          className="mySwiper h-48"
+          className="mySwiper mx-4 h-52"
         >
-          {topRated.slice(0, 10).map((item, index) => (
-            <SwiperSlide key={item.id} className="text-left">
-              {renderMovieItem(item, index)}
-            </SwiperSlide>
-          ))}
+          {topRatedItems
+            .slice(0, 10)
+            .map((item: MovieDetails, index: number) => (
+              <SwiperSlide key={item.id} className="text-left">
+                {renderMovieItem(item, index)}
+              </SwiperSlide>
+            ))}
         </Swiper>
       ) : (
-        // items.map(renderMovieItem).slice(0, 4)
-        topRated.map(renderMovieItem).slice(0, 4)
+        topRatedItems.map(renderMovieItem).slice(0, 4)
       )}
     </>
   );

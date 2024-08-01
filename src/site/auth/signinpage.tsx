@@ -50,10 +50,12 @@ const SignInpage = () => {
   }
 
   return (
-    <section className="mt-12 flex h-full flex-col items-center justify-between gap-20">
-      <h1 className="text-xl font-bold uppercase tracking-wide">cinemax</h1>
+    <section className="mt-12 flex h-full flex-col items-center justify-between md:gap-20">
+      <h1 className="hidden text-xl font-bold uppercase tracking-wide md:block">
+        cinemax
+      </h1>
       <div className="flex flex-col gap-6">
-        <h3 className="max-w-md text-balance text-center text-5xl font-bold">
+        <h3 className="max-w-md text-balance text-center text-2xl font-bold md:text-5xl">
           Hey there! Welcome back. Sign in to continue.
         </h3>
         <div className="flex flex-col gap-4">

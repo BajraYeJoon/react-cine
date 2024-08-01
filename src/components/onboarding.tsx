@@ -6,9 +6,14 @@ import { fetchGenresFromAPI } from "@/api/fetchapi";
 import { Link } from "react-router-dom";
 import { useMovieContext } from "@/context/movie-context";
 
+interface Genre {
+  id: string;
+  name: string;
+}
+
 const Onboarding = () => {
   const [open, setOpen] = useState(true);
-  const [genres, setGenres] = useState<{ id: string; name: string }[]>([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
   const { setUserSelectedGenres } = useMovieContext();
 
@@ -26,7 +31,6 @@ const Onboarding = () => {
 
   console.log(selectedGenres, "selectedGenres");
 
-
   const handleClick = () => {
     setUserSelectedGenres(selectedGenres);
     setOpen(false);
@@ -35,7 +39,10 @@ const Onboarding = () => {
   useEffect(() => {
     fetchGenresFromAPI().then((data) => {
       const formattedData = data.map((item) => ({
+        //@ts-expect-error - wrror
         id: item.id,
+        //@ts-expect-error - wrror
+
         name: item.name,
       }));
       setGenres(formattedData);
@@ -45,20 +52,22 @@ const Onboarding = () => {
   return (
     <Dialog open={open} onOpenChange={() => {}}>
       <DialogContent>
-        <DialogHeader>Welcome</DialogHeader>
+        <DialogHeader className="text-2xl">Welcome</DialogHeader>
         <DialogDescription className="flex flex-wrap gap-4">
-          Choose some genres to get started
-          {genres.map((genre) => (
-            <Button
-              key={genre.id}
-              variant={
-                selectedGenres.includes(genre.id) ? "default" : "secondary"
-              }
-              onClick={() => handleButtonClick(genre.id)}
-            >
-              {genre.name}
-            </Button>
-          ))}
+          <h2>Choose some genres to get started</h2>
+          <div className="flex flex-wrap gap-2">
+            {genres.slice(0, 6).map((genre) => (
+              <Button
+                key={genre.id}
+                variant={
+                  selectedGenres.includes(genre.id) ? "default" : "secondary"
+                }
+                onClick={() => handleButtonClick(genre.id)}
+              >
+                {genre.name}
+              </Button>
+            ))}
+          </div>
         </DialogDescription>
         <Link to="/">
           <Button onClick={handleClick}>Let's go</Button>

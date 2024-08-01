@@ -5,20 +5,19 @@ import { useMovieContext } from "@/context/movie-context";
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Scrollbar } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Link } from "react-router-dom";
 import { useWatchlist } from "@/context/watchlist-context";
 import { useAuthContext } from "@/context/auth-context";
-import { toast } from "../ui/use-toast";
-// import "./styles.css";
+import useWindow from "@/lib/useWindow";
 
 const BannerMovie = () => {
   const { nowPlaying, fetchNowPlaying } = useMovieContext();
   const { handleAddToWatchlist, isinWatchlist } = useWatchlist();
   const { isLoggedIn } = useAuthContext();
+  const { dimension } = useWindow();
 
   useEffect(() => {
     fetchNowPlaying();
@@ -30,11 +29,9 @@ const BannerMovie = () => {
     show: { opacity: 1, y: 0, transition: { type: "spring" } },
   };
 
-  // const backgroundImg = `https://image.tmdb.org/t/p/w500/${nowPlaying[0].poster_path}`;
-
   return (
     <>
-      <div className="relative col-span-2 row-span-2 overflow-hidden rounded-2xl">
+      <div className="relative h-[500px] overflow-hidden rounded-2xl lg:col-span-2 lg:row-span-2 lg:h-full">
         <Swiper
           slidesPerView={1}
           pagination={{
@@ -42,7 +39,7 @@ const BannerMovie = () => {
           }}
           centeredSlides={true}
           autoplay={{
-            delay: 2500,
+            delay: 4000,
             disableOnInteraction: false,
           }}
           // scrollbar={{
@@ -62,7 +59,7 @@ const BannerMovie = () => {
               />
 
               <motion.div
-                className="absolute bottom-0 left-0 z-40 m-12 flex flex-col items-start gap-2"
+                className="absolute bottom-0 left-0 z-40 m-3 mb-8 flex flex-col items-start gap-2 md:m-12"
                 initial="hidden"
                 animate="show"
                 viewport={{ once: true }}
@@ -75,10 +72,12 @@ const BannerMovie = () => {
                   },
                 }}
               >
-                <Button variant="secondary">Movie</Button>
+                <Button variant="secondary" className="px-2 py-1 text-sm">
+                  Movie
+                </Button>
                 <motion.h1
                   variants={variants}
-                  className="text-5xl font-bold leading-none tracking-wide"
+                  className="text-left text-3xl font-bold leading-none tracking-wide md:text-5xl"
                 >
                   {movie.title}
                 </motion.h1>
@@ -96,8 +95,11 @@ const BannerMovie = () => {
 
                 <motion.div variants={variants} className="inline-flex gap-2">
                   <Link to={`/details/${movie.id}`}>
-                    <Button className="flex items-center justify-center gap-3 px-7 py-6">
-                      <Play fill="white" size={16} />
+                    <Button className="flex items-center justify-center gap-3 text-xs md:px-7 md:py-6 md:text-lg">
+                      <Play
+                        fill="white"
+                        size={dimension.width < 768 ? 10 : 16}
+                      />
                       Watch Trailer
                     </Button>
                   </Link>

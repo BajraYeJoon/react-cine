@@ -101,7 +101,7 @@ const Billing = () => {
     const senddata = async () => {
       await axios
         .post("https://rc-epay.esewa.com.np/api/epay/main/v2/form", data)
-        .then((res) => {});
+        .then((res) => console.log(res.data));
     };
     senddata();
 

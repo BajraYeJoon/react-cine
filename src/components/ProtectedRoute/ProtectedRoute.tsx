@@ -1,26 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "@/context/auth-context";
-import { toast } from "../ui/use-toast";
-
-const ProtectedRoute = ({
-  children,
-  redirectUrl,
-}: {
-  redirectUrl: string;
-  children: React.ReactNode;
-}) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isLoggedIn } = useAuthContext();
-  if (!isLoggedIn) {
-    toast({
-      title: "Not logged in",
-      description: "Please login to continue",
-      variant: "destructive",
-    });
-    return <Navigate to={redirectUrl} />;
-  }
 
-  return <>{children}</>;
+  return isLoggedIn ? children : <Navigate to="/sign-in" replace={true} />;
 };
 
 export default ProtectedRoute;

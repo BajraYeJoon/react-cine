@@ -138,6 +138,23 @@ export const getRecentlyWatched = async (): Promise<number[]> => {
   });
 };
 
+export const deleteRecentlyWatched = async (id: number): Promise<void> => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(RECENT_STORE_NAME, "readwrite");
+    const store = transaction.objectStore(RECENT_STORE_NAME);
+    const request = store.delete(id);
+
+    request.onsuccess = () => {
+      resolve();
+    };
+
+    request.onerror = () => {
+      reject(request.error);
+    };
+  });
+};
+
 export const saveUserSelectedGenres = async (
   genres: string[],
 ): Promise<void> => {

@@ -33,6 +33,10 @@ export interface MovieDetails {
   status: string;
   overview: string;
   title: string;
+  popularity: number;
+  name: string;
+  vote_count: number;
+  last_air_date: string;
 }
 
 export interface MovieCredits {
@@ -55,7 +59,6 @@ const DetailPage = () => {
   const [images, setImages] = useState<Image[]>([]);
   const [video, setVideo] = useState<Video[]>([]);
   const [watchProviders, setWatchProviders] = useState<WatchProvider[]>([]);
-
   const { isinWatchlist, handleAddToWatchlist, handleRemoveFromWatchlist } =
     useWatchlist();
   const { handleRecentWatched } = useRecentContext();
@@ -81,8 +84,6 @@ const DetailPage = () => {
     }
   };
 
-  // const addedListId = watchlist.map((movie) => movie.id);
-
   useEffect(() => {
     const movieId = Number(id);
     if (movieId) {
@@ -94,17 +95,15 @@ const DetailPage = () => {
     return <div>Loading...</div>;
   }
 
-
   return (
-    <section className="relative">
+    <section className="relative pt-2 md:pt-0">
       <BackdropImage backdropPath={movieDetails.backdrop_path} />
-      <div className="absolute z-50 -mt-44 w-full px-12">
-        <div className="grid grid-cols-5 grid-rows-6 gap-8">
+      <div className="absolute z-20 -mt-44 w-full px-6 md:px-12">
+        <div className="mb-24 grid grid-cols-1 gap-8 md:mb-0 md:grid-cols-5 md:grid-rows-6">
           <PosterAndWishlist
             posterPath={movieDetails.poster_path}
             movieDetails={movieDetails}
             addWatchList={handleAddToWatchlist}
-            // addedintoWatchlist={watchlist}
             isinWatchlist={isinWatchlist(movieDetails.id)}
             removeWatchlist={handleRemoveFromWatchlist}
           />
@@ -117,7 +116,10 @@ const DetailPage = () => {
           <Gallery
             images={images}
             video={video}
-            addTorecent={() => handleRecentWatched(movieDetails && movieDetails.id)}
+            addTorecent={() =>
+              handleRecentWatched(movieDetails && movieDetails.id)
+            }
+            className=""
           />
         </div>
       </div>
@@ -130,7 +132,7 @@ const BackdropImage = ({ backdropPath }: { backdropPath: string }) => (
     <img
       src={`https://image.tmdb.org/t/p/original/${backdropPath}`}
       alt=""
-      className="h-[650px] w-full object-cover object-top"
+      className="h-[400px] w-full object-cover object-top md:h-[650px]"
     />
     <div className="absolute inset-0 z-20 bg-gradient-to-t from-background/90 to-transparent"></div>
   </div>
@@ -150,8 +152,12 @@ export const PosterAndWishlist = ({
   isinWatchlist?: boolean;
   removeWatchlist?: (id: number) => void;
 }) => (
-  <div className="row-span-6 flex flex-col items-center justify-start gap-4 *:w-full *:rounded-none">
-    <img src={`https://image.tmdb.org/t/p/original/${posterPath}`} alt="" />
+  <div className="order-3 flex flex-col items-center justify-start gap-4 *:w-full *:rounded-none md:order-none md:row-span-6">
+    <img
+      src={`https://image.tmdb.org/t/p/original/${posterPath}`}
+      alt=""
+      className="hidden md:block"
+    />
 
     {!isinWatchlist ? (
       <Button
@@ -172,13 +178,13 @@ export const PosterAndWishlist = ({
 );
 
 const CastList = ({ movieCredits }: { movieCredits: MovieCredits[] }) => (
-  <div className="col-span-4 col-start-2 row-span-2 row-start-5 flex items-center justify-start gap-8">
+  <div className="order-4 flex flex-wrap items-center justify-center gap-2 md:order-none md:col-span-4 md:col-start-2 md:row-span-2 md:row-start-5 md:justify-start md:gap-4">
     {movieCredits.map((cast) => (
       <div key={cast.id}>
         <img
           src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
           alt=""
-          className="h-44 w-auto rounded-lg bg-foreground/25"
+          className="h-24 w-auto rounded-sm bg-foreground/25 lg:h-44"
         />
       </div>
     ))}

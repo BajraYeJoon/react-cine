@@ -2,33 +2,37 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
-import { Navigation } from "swiper/modules";
+import { Scrollbar } from "swiper/modules";
 import "./styles.css";
 import FavoriteGenres from "./favoriteGenres";
 
 const ResumeWatch = () => {
   return (
-    <section className="grid grid-cols-3 mt-5 gap-10 shadow-inner">
-      <div className="col-span-2 rounded-2xl flex flex-col gap-4 items-start overflow-hidden shadow-inner">
+    <section className="mt-5 grid grid-cols-1 gap-10 shadow-inner lg:grid-cols-3">
+      <div className="order-2 flex flex-col items-start gap-4 overflow-hidden rounded-2xl shadow-inner md:col-span-2 lg:-order-1">
         <h1 className="text-2xl font-normal tracking-normal">
           Continue Watching
         </h1>
 
         <div className="w-full">
           <Swiper
-            navigation={false}
+            // navigation={false}
             slidesPerView={2}
             spaceBetween={20}
-            modules={[Navigation]}
-            className="mySwiper flex gap-4"
+            scrollbar={{
+              hide: false,
+            }}
+            modules={[Scrollbar]}
+            className="mySwiper flex h-60 gap-4"
           >
-            <SwiperSlide className="flex h-56  rounded-2xl bg-foreground/25 items-center justify-center"></SwiperSlide>
-            <SwiperSlide className="flex h-56 rounded-2xl bg-foreground/25 items-center justify-center  "></SwiperSlide>
-            <SwiperSlide className="flex h-56  rounded-2xl bg-foreground/25 items-center justify-center"></SwiperSlide>
-            <SwiperSlide className="flex h-56  rounded-2xl bg-foreground/25 items-center justify-center  "></SwiperSlide>
-            <SwiperSlide className="flex h-56  rounded-2xl bg-foreground/25 items-center justify-center"></SwiperSlide>
-            <SwiperSlide className="flex h-56  rounded-2xl bg-foreground/25 items-center justify-center  "></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
+            <SwiperSlide className="flex h-56 items-center justify-center rounded-2xl bg-foreground/25"></SwiperSlide>
           </Swiper>
         </div>
       </div>

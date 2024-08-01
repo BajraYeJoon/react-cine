@@ -5,7 +5,7 @@ const Homepage = () => {
   return (
     <>
       <Sidebar />
-      <section className="sm:ml-64 p-4">
+      <section className="p-4 sm:ml-64">
         <Outlet />
       </section>
     </>

@@ -100,7 +100,7 @@ export const fetchBestofTVShows = async (): Promise<any> => {
 
 export const fetchResultsBySearch = async (query: string): Promise<any> => {
   const data = await fetchFromAPI(
-    `/search/multi?query=${query}&include_adult=false&language=en-US&page=1`,
+    `/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
   );
   return data.results || [];
 };

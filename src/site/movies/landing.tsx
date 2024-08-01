@@ -5,114 +5,15 @@ import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
-
-// const movies = [
-//   {
-//     id: "tomb-raider",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Movie",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-raiasdfder",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Movie",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-rqweraidadsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-raiqwdaserwerdfadsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-rasdfaidwretadsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-raiadsfdtweradsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-rasdfaidatwertdsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-//   {
-//     id: "tomb-raasdfq43534idadsfer",
-//     image: "https://mr.comingsoon.it/imgdb/locandine/235x336/53750.jpg",
-//     title: "Tomb Raider",
-//     year: "2018",
-//     director: "Roar Uthaug",
-//     duration: "125 min",
-//     genre: "Action",
-//     type: "Series",
-//     description:
-//       "Lara Croft, the fiercely independent daughter of a missing adventurer, must push herself beyond her limits when she finds herself on the island where her father disappeared.",
-//   },
-// ];
+import useWindow from "@/lib/useWindow";
 
 const Movies = () => {
-  // const name = randomGenre.name;
-
   const [bestofMovies, setBestofMovies] = useState([]);
+  const { dimension } = useWindow();
 
   useEffect(() => {
     (async () => {
-      const res = await fetchMoviesWithGenreType("16");
+      const res = await fetchMoviesWithGenreType(16);
       setBestofMovies(res);
     })();
   }, []);
@@ -123,14 +24,16 @@ const Movies = () => {
   };
 
   return (
-    <section className="my-4">
+    <section className="my-4 px-4 md:px-8 lg:p-0">
       <div className="h-72 gap-3">
-        <h1 className="text-3xl font-medium">Top Movies</h1>
+        <h1 className="text-2xl font-light md:text-3xl">Top Movies</h1>
         <TopRatedMovies showRank swiper />
       </div>
-      <h2 className="mb-4 text-3xl font-medium">Try Something New</h2>
+      <h2 className="mb-4 text-2xl font-light md:text-3xl">
+        Try Something New
+      </h2>
       <motion.div
-        className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-between gap-7"
+        className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-around gap-4 lg:justify-between lg:gap-7"
         initial="hidden"
         animate="show"
         viewport={{ once: true }}
@@ -143,36 +46,50 @@ const Movies = () => {
           },
         }}
       >
-        {bestofMovies.map((movie: MovieDetails) => (
-          <motion.div
-            className="w-72 bg-background shadow"
-            key={movie.id}
-            variants={variants}
-          >
-            <div className="h-44 rounded-md bg-foreground/25">
-              <img
-                className="h-44 w-full rounded-md object-cover object-bottom"
-                src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-                alt=""
-              />
-            </div>
-            <div className="group px-1 py-3">
-              <Link to={`/details/${movie.id}`}>
-                <h5 className="w-fit text-xl font-light tracking-tight text-white group-hover:underline">
-                  {movie.title}
-                </h5>
-              </Link>
-              <div className="flex items-center justify-start gap-2">
-                <StarIcon size={14} fill="yellow" /> <span>4.5</span>
-                <div className="bg-foreground/25 px-[0.75px] py-2" />
-                <div className="*:text-md flex gap-1 *:font-light *:text-foreground/55">
-                  <span>{movie.release_date}</span>
-                  <span>{movie.status}</span>
+        {bestofMovies.map(
+          ({
+            id,
+            title,
+            release_date,
+            backdrop_path,
+            // last_air_date,
+            status,
+          }: MovieDetails) => (
+            <motion.div
+              className="w-40 bg-background shadow md:w-72"
+              key={id}
+              variants={variants}
+            >
+              <div className="h-44 rounded-md bg-foreground/25">
+                <img
+                  className="h-44 w-full rounded-md object-cover object-bottom"
+                  src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}
+                  alt=""
+                />
+              </div>
+              <div className="group px-1 py-3">
+                {/* <Link to={`${last_air_date ? "tv" : "movie"}/details/${id}`}> */}
+                <Link to={`/details/${id}`}>
+                  <h5 className="w-fit text-xl font-light tracking-tight text-white group-hover:underline">
+                    {dimension.width < 768
+                      ? title.length > 20
+                        ? `${title.slice(0, 20)}...`
+                        : title
+                      : title}
+                  </h5>
+                </Link>
+                <div className="flex items-center justify-start gap-2">
+                  <StarIcon size={14} fill="yellow" /> <span>4.5</span>
+                  <div className="bg-foreground/25 px-[0.75px] py-2" />
+                  <div className="*:text-md flex gap-1 *:font-light *:text-foreground/55">
+                    <span>{release_date}</span>
+                    <span>{status}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ),
+        )}
       </motion.div>
     </section>
   );
