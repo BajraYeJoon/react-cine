@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const Landing = () => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-12 md:gap-2 lg:grid-cols-3 lg:grid-rows-3">
+      <div className="grid grid-cols-1 gap-12 md:gap-5 lg:grid-cols-3 lg:grid-rows-3 lg:gap-2">
         <BannerMovie />
         <div className="space-y-5 px-2 md:px-6 lg:row-span-3">
           <h1 className="text-3xl font-light md:text-2xl">Top Movies</h1>

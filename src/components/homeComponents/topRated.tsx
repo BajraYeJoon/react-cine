@@ -60,7 +60,7 @@ const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
       <div
         key={id}
         className={cn(
-          "grid w-full grid-cols-3 gap-20 md:grid-cols-2 md:gap-8",
+          "grid w-full grid-cols-3 gap-20 md:gap-8 lg:grid-cols-2",
           showRank && "flex w-fit gap-4",
         )}
       >
@@ -107,8 +107,10 @@ const TopRatedPage = ({ showRank, swiper, isTvShow }: TopRatedMoviesProps) => {
     <>
       {swiper ? (
         <Swiper
-          spaceBetween={20}
-          slidesPerView={dimension.width < 768 ? 1 : 3}
+          spaceBetween={0}
+          slidesPerView={
+            dimension.width < 768 ? 1 : dimension.width < 1024 ? 2 : 3
+          }
           scrollbar={{
             hide: false,
             // draggable: false,

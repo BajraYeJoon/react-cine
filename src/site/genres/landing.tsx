@@ -1,6 +1,6 @@
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Genrelanding = () => {
   // const [prompt, setPrompt] = useState("A scene representing genre Comedy");
@@ -47,22 +47,22 @@ const Genrelanding = () => {
 
   const getClassName = (index: number) => {
     const classNames = [
-      "col-span-2 row-span-2", // 1
-      "col-start-0", // 2
-      "col-start-0", // 3
-      "col-span-2 row-span-2", // 4
-      "row-span-2", // 5
-      "row-span-2", // 6
-      "col-span-2 row-span-3", // 7
-      "col-span-2 row-span-2", // 8
-      "col-span-3 row-span-2", // 9
-      "col-start-4 row-start-5", // 10
-      "col-start-4 row-start-6", // 11
-      "col-span-2 row-span-3 col-start-5 row-start-3", // 12
-      "col-start-5 row-start-6", // 13
-      "col-start-6 row-start-6", // 14
-      "col-span-2 col-start-7 row-start-3", // 15
-      "col-span-2 row-span-3 col-start-7 row-start-4", // 16
+      "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2", // 1
+      "col-start-0 lg:col-start-0", // 2
+      "col-start-0 lg:col-start-0", // 3
+      "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2", // 4
+      "row-span-2 lg:row-span-2", // 5
+      "row-span-2 lg:row-span-2", // 6
+      "col-span-2 row-span-3 lg:col-span-2 lg:row-span-3", // 7
+      "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2", // 8
+      "col-span-3 row-span-2 lg:col-span-3 lg:row-span-2", // 9
+      "col-start-4 row-start-5 lg:col-start-4 lg:row-start-5", // 10
+      "col-start-4 row-start-6 lg:col-start-4 lg:row-start-6", // 11
+      "col-span-2 row-span-3 col-start-5 row-start-3 lg:col-span-2 lg:row-span-3 lg:col-start-5 lg:row-start-3", // 12
+      "col-start-5 row-start-6 lg:col-start-5 lg:row-start-6", // 13
+      "col-start-6 row-start-6 lg:col-start-6 lg:row-start-6", // 14
+      "col-span-2 col-start-7 row-start-3 lg:col-span-2 lg:col-start-7 lg:row-start-3", // 15
+      "col-span-2 row-span-3 col-start-7 row-start-4 lg:col-span-2 lg:row-span-3 lg:col-start-7 lg:row-start-4", // 16
     ];
 
     return classNames[index];
@@ -91,7 +91,7 @@ const Genrelanding = () => {
   }
 
   return (
-    <div className="mt-4 flex flex-wrap gap-4">
+    <div className="mt-4 flex flex-wrap gap-4 px-2 md:px-8 lg:p-0">
       {/* <div className="grid grid-cols-8 grid-rows-6 gap-4  *:rounded-xl *:overflow-hidden *:bg-foreground/25">
       </div> */}
 
@@ -103,13 +103,16 @@ const Genrelanding = () => {
               className={`${className} group relative overflow-hidden rounded-xl border border-transparent bg-foreground/25 transition-transform duration-500 ease-in-out [background:linear-gradient(theme(colors.slate.900),theme(colors.slate.900))_padding-box,linear-gradient(45deg,theme(colors.slate.800),theme(colors.slate.600/.8),theme(colors.slate.800))_border-box] before:absolute before:inset-0 before:bg-[url('./noise.png')] before:bg-[length:352px_382px]`}
             >
               <div className="absolute bottom-0 left-0 opacity-0 transition-opacity duration-500 group-hover:inset-0 group-hover:z-40 group-hover:bg-gradient-to-t group-hover:from-background/90 group-hover:to-transparent group-hover:opacity-100">
-                <h1 className="absolute bottom-0 p-4 text-base">asdfad</h1>
+                <Link to={`/details/${id}`}>
+                  <h1 className="absolute bottom-0 p-4 text-base group-hover:underline">
+                    {title}
+                  </h1>
+                </Link>
               </div>
               <img
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 className="h-full w-full object-cover object-top"
               />
-              <h1>{title}</h1>
             </div>
           );
         })}

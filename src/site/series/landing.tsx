@@ -42,7 +42,7 @@ const Serieslanding = () => {
   }, []);
 
   return (
-    <section className="my-4 px-4 md:p-0">
+    <section className="my-4 px-4 md:px-10 lg:p-0">
       <div className="h-72 gap-3">
         <h1 className="text-2xl font-light md:text-3xl">Top Movies</h1>
         <TopRatedPage showRank swiper isTvShow />

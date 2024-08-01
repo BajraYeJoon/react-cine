@@ -10,8 +10,8 @@ import FavoriteGenres from "./favoriteGenres";
 
 const ResumeWatch = () => {
   return (
-    <section className="mt-5 grid grid-cols-1 gap-10 shadow-inner md:grid-cols-3">
-      <div className="order-2 flex flex-col items-start gap-4 overflow-hidden rounded-2xl shadow-inner md:order-1 md:col-span-2">
+    <section className="mt-5 grid grid-cols-1 gap-10 shadow-inner lg:grid-cols-3">
+      <div className="order-2 flex flex-col items-start gap-4 overflow-hidden rounded-2xl shadow-inner md:col-span-2 lg:-order-1">
         <h1 className="text-2xl font-normal tracking-normal">
           Continue Watching
         </h1>

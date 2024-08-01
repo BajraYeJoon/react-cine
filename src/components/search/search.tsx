@@ -1,6 +1,7 @@
-import { fetchResultsBySearch } from "@/api/fetchapi";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { SearchIcon } from "lucide-react";
+import { fetchResultsBySearch } from "@/api/fetchapi";
 import {
   Command,
   CommandList,
@@ -12,25 +13,33 @@ import { Input } from "../ui/input";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Skeleton } from "../ui/skeleton";
 
-const SearchComponent = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+interface Result {
+  id: string;
+  poster_path: string;
+  name: string;
+  title: string;
+}
 
-  const debounce = <T extends (...args: any[]) => any>(
-    fn: T,
-    delay: number = 2000,
-  ): ((...args: Parameters<T>) => void) => {
-    let timerId: ReturnType<typeof setTimeout> | null = null;
-    return (...args: Parameters<T>): void => {
-      clearTimeout(timerId);
-      timerId = setTimeout(() => fn(...args), delay);
-    };
+// Debounce function to limit the rate of API calls
+const debounce = <T extends (...args: any[]) => any>(
+  fn: T,
+  delay: number = 2000,
+): ((...args: Parameters<T>) => void) => {
+  let timerId: ReturnType<typeof setTimeout> | null = null;
+  return (...args: Parameters<T>): void => {
+    if (timerId) clearTimeout(timerId);
+    timerId = setTimeout(() => fn(...args), delay);
   };
+};
+
+const SearchComponent = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [results, setResults] = useState<Result[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
-    const debouncedFetchResults = debounce(async (query) => {
+    const debouncedFetchResults = debounce(async (query: string) => {
       const res = await fetchResultsBySearch(query);
       setResults(res.slice(0, 10));
       setLoading(false);
@@ -65,17 +74,18 @@ const SearchComponent = () => {
               <CommandEmpty>No results found.</CommandEmpty>
             ) : (
               <CommandGroup>
-                <h3></h3>
                 {results.map((result) => (
-                  <CommandItem key={result.id} className="flex gap-2">
+                  <CommandItem key={result.id} className="group flex gap-2">
                     <img
                       src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
-                      alt=""
+                      alt={result.name || result.title}
                       className="h-20 object-scale-down"
                     />
-                    <h1 className="text-xl text-foreground">
-                      {result.name || result.title}
-                    </h1>
+                    <Link to={`details/${result.id}`}>
+                      <h1 className="text-xl text-foreground group-hover:underline">
+                        {result.name || result.title}
+                      </h1>
+                    </Link>
                   </CommandItem>
                 ))}
               </CommandGroup>

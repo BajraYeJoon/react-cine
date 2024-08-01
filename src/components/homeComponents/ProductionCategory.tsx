@@ -46,7 +46,7 @@ export default function ProductionCategory() {
         //   clickable: true,
         // }}
         modules={[Scrollbar, Pagination]}
-        className="mySwiper h-36"
+        className="mySwiper h-36 lg:h-52"
       >
         {productionImg.map((item) => (
           <SwiperSlide key={item.id}>

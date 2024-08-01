@@ -24,7 +24,7 @@ const Movies = () => {
   };
 
   return (
-    <section className="my-4 px-4 md:p-0">
+    <section className="my-4 px-4 md:px-8 lg:p-0">
       <div className="h-72 gap-3">
         <h1 className="text-2xl font-light md:text-3xl">Top Movies</h1>
         <TopRatedMovies showRank swiper />
@@ -33,7 +33,7 @@ const Movies = () => {
         Try Something New
       </h2>
       <motion.div
-        className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-around gap-4 md:justify-between md:gap-7"
+        className="[&>*:nth-child(odd)] relative mx-auto my-0 flex flex-wrap justify-around gap-4 lg:justify-between lg:gap-7"
         initial="hidden"
         animate="show"
         viewport={{ once: true }}

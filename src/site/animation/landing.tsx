@@ -21,7 +21,7 @@ const Animationlanding = () => {
   }, [id]);
 
   return (
-    <section className="mt-12 grid grid-cols-5 items-center justify-center gap-12">
+    <section className="mt-12 grid grid-cols-2 items-center justify-center gap-12 px-2 md:grid-cols-3 md:px-8 lg:grid-cols-5 lg:p-0">
       {animeList.map(
         ({
           id,

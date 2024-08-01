@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 const AuthLayout = () => {
   return (
-    <section className="mx-8 grid grid-cols-1 items-start md:mx-0 md:grid-cols-2 lg:justify-between">
+    <section className="mx-8 grid grid-cols-1 items-start md:mx-0 md:grid-cols-2 md:gap-12 lg:justify-between lg:gap-0">
       <div className="relative hidden h-[90vh] overflow-hidden bg-primary md:block">
         <div className="mx-12 mt-12 max-w-md text-5xl">
           <h1 className="font-extrabold">
@@ -19,7 +19,7 @@ const AuthLayout = () => {
         />
       </div>
 
-      <section className="auth-container flex w-full flex-col items-center justify-center">
+      <section className="auth-container flex w-full flex-col items-center justify-center md:pr-8 lg:p-0">
         <div className="sign-up-content space-y-0 md:space-y-8">
           <Outlet />
         </div>
