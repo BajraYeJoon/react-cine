@@ -1,5 +1,6 @@
 import { fetchMoviesWithGenreType } from "@/api/fetchapi";
 import { MovieDetails } from "@/components/coming-soon/details/DetailPage";
+import Loading from "@/components/loading/loading";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -90,7 +91,7 @@ const Genrelanding = () => {
   }, [category, id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
@@ -98,7 +99,7 @@ const Genrelanding = () => {
       {/* <div className="grid grid-cols-8 grid-rows-6 gap-4  *:rounded-xl *:overflow-hidden *:bg-foreground/25">
       </div> */}
 
-      <div className="grid h-[900px] gap-4">
+      <div className="grid h-[900px] w-full gap-4">
         {filteredGenreList.map(({ title, id, poster_path, className }) => {
           return (
             <div

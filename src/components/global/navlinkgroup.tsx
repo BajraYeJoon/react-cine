@@ -3,7 +3,7 @@ const navLinks = [
   { label: "Movies", href: "/movies" },
   { label: "Series", href: "/series" },
   { label: "Animations", href: "/genre/anime/Animation/16" },
-  { label: "Genres", href: "/genre" },
+  { label: "Genres", href: "/genre/Animation/16" },
 ];
 const Navlinkgroup = () => {
   return (

@@ -50,7 +50,7 @@ const SignInpage = () => {
   }
 
   return (
-    <section className="mt-12 flex h-full flex-col items-center justify-between md:gap-20">
+    <section className="mt-12 flex h-full flex-col items-center justify-between text-lg md:gap-20">
       <h1 className="hidden text-xl font-bold uppercase tracking-wide md:block">
         cinemax
       </h1>
@@ -79,13 +79,16 @@ const SignInpage = () => {
           </div>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-2 text-lg"
+          >
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-lg">Email</FormLabel>
                   <FormControl>
                     <Input placeholder="username" {...field} />
                   </FormControl>
@@ -99,7 +102,7 @@ const SignInpage = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-lg">Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="password" {...field} />
                   </FormControl>

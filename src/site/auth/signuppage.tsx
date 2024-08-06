@@ -38,9 +38,7 @@ const SignUppage = () => {
 
  
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  async function onSubmit(values: z.infer<typeof formSchema>) {}
 
   return (
     <section className="mt-12 flex h-full flex-col items-center justify-between gap-2 md:gap-20">
@@ -78,7 +76,7 @@ const SignUppage = () => {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className="text-lg">Username</FormLabel>
                   <FormControl>
                     <Input placeholder="username" {...field} />
                   </FormControl>
@@ -94,7 +92,7 @@ const SignUppage = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-lg">Email</FormLabel>
                   <FormControl>
                     <Input placeholder="email" {...field} />
                   </FormControl>
@@ -108,7 +106,7 @@ const SignUppage = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="text-lg">Password</FormLabel>
                   <FormControl>
                     <Input type="password" placeholder="password" {...field} />
                   </FormControl>

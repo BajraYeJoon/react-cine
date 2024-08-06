@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/command";
 import { Input } from "../ui/input";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { Skeleton } from "../ui/skeleton";
+import Loading from "../loading/loading";
 
 interface Result {
   id: string;
@@ -63,26 +63,23 @@ const SearchComponent = () => {
           />
           <CommandList>
             {loading ? (
-              <div className="flex items-center space-x-4">
-                <Skeleton className="h-12 w-12 rounded-full" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
-                </div>
-              </div>
+              <Loading />
             ) : results.length === 0 ? (
               <CommandEmpty>No results found.</CommandEmpty>
             ) : (
               <CommandGroup>
                 {results.map((result) => (
-                  <CommandItem key={result.id} className="group flex gap-2">
+                  <CommandItem
+                    key={result.id}
+                    className="group z-40 flex cursor-pointer gap-2"
+                  >
                     <img
                       src={`https://image.tmdb.org/t/p/original/${result.poster_path}`}
                       alt={result.name || result.title}
                       className="h-20 object-scale-down"
                     />
                     <Link to={`details/${result.id}`}>
-                      <h1 className="text-xl text-foreground group-hover:underline">
+                      <h1 className="text-xl text-foreground hover:underline">
                         {result.name || result.title}
                       </h1>
                     </Link>

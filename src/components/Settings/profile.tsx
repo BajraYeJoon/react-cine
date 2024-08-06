@@ -39,7 +39,6 @@ export function ProfileForm() {
   });
 
   function onSubmit(data: ProfileFormValues) {
-    console.log(data);
   }
 
   return (

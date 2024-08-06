@@ -7,9 +7,24 @@ import Mobilenav from "./mobilenav";
 import Badge from "../Settings/badge";
 import Navlinkgroup from "./navlinkgroup";
 import { Link } from "react-router-dom";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Separator } from "../ui/separator";
 
 const Navbar = (): JSX.Element => {
   const { dimension }: { dimension: { width: number } } = useWindow();
+  const dummyNotifications = [
+    { id: 1, message: "New movie added to your watchlist!" },
+    { id: 2, message: "Your favorite movie is now available in HD!" },
+    {
+      id: 3,
+      message: "Don't miss the latest episode of your favorite series!",
+    },
+    { id: 4, message: "Special discount on movie rentals this weekend!" },
+    {
+      id: 5,
+      message: "New genre recommendations based on your watch history!",
+    },
+  ];
 
   return (
     <nav className="navbar sticky start-0 top-0 z-50 w-full bg-card md:pb-4">
@@ -28,7 +43,20 @@ const Navbar = (): JSX.Element => {
           <div className="search-bar flex items-center gap-4 lg:gap-6">
             <SearchComponent />
             <SubscribeButton className="hidden lg:block" />
-            <GrNotification className="hidden h-6 w-6 lg:block" />
+            <Popover>
+              <PopoverTrigger>
+                <GrNotification className="hidden h-6 w-6 lg:block" />
+              </PopoverTrigger>
+              <PopoverContent>
+                {dummyNotifications.map((notification) => (
+                  <div key={notification.id} className="p-2 text-lg">
+                    <p>{notification.message}</p>
+                    <Separator />
+                  </div>
+                ))}
+              </PopoverContent>
+            </Popover>
+
             <ModeToggle />
             <Badge />
           </div>

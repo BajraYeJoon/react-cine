@@ -42,9 +42,6 @@ export const RecentlyWatchedProvider = ({
     setTimeout(async () => {
       try {
         await deleteRecentlyWatched(id);
-        console.log(
-          `Item with id ${id} has been deleted after ${expiryTime}ms`,
-        );
       } catch (error) {
         console.error(`Failed to delete item with id ${id}:`, error);
       }

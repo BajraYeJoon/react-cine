@@ -45,8 +45,6 @@ export const MovieProvider = ({ children }: { children: ReactNode }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSelectedGenres]);
 
-  console.log(favoriteGenres, "favoriteGenres from MovieProvider");
-
   const fetchAllFavoriteGenres = async () => {
     const genres = await getUserSelectedGenres();
     setUserSelectedGenres(genres);

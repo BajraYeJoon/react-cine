@@ -13,6 +13,7 @@ import { MovieInfo } from "./movieInfo";
 import { Gallery } from "./gallery";
 import { useWatchlist } from "@/context/watchlist-context";
 import { useRecentContext } from "@/context/recently-watched-context";
+import Loading from "@/components/loading/loading";
 
 export interface WatchProvider {
   provider_id: number;
@@ -92,7 +93,7 @@ const DetailPage = () => {
   }, [id]);
 
   if (!movieDetails) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (
