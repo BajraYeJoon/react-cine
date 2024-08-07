@@ -23,15 +23,20 @@ import DetailPage from "@/components/coming-soon/details/DetailPage";
 import Onboarding from "@/components/onboarding";
 
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
+import BaseLanding from "@/landingPage/landing";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    element: <BaseLanding />,
+  },
+  {
+    path: "/site",
     element: <Layout />,
     loader: () => import("@/lib/posthogpageviewtracker"),
     children: [
       {
-        path: "/",
+        path: "/site",
         element: <Homepage />,
         children: [
           {
