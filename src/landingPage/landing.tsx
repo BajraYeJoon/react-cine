@@ -49,6 +49,43 @@ const BaseLanding = () => {
         scale: 1,
       });
 
+    gsap.set(".flair", { xPercent: -50, yPercent: -50 });
+
+    const flair = document.querySelector(".flair");
+
+    const xTo = gsap.quickTo(flair, "x", {
+      duration: 0.5,
+      ease: "power2.out",
+    });
+    const yTo = gsap.quickTo(flair, "y", {
+      duration: 0.5,
+      ease: "power2.out",
+    });
+
+    const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    const mouse = { x: pos.x, y: pos.y };
+    const speed = 0.1;
+
+    const xSet = gsap.quickSetter(flair, "x", "px");
+    const ySet = gsap.quickSetter(flair, "y", "px");
+
+    window.addEventListener("mousemove", (e) => {
+      mouse.x = e.x;
+      mouse.y = e.y;
+
+      xTo(e.pageX);
+      yTo(e.pageY);
+    });
+
+    gsap.ticker.add(() => {
+      const dt = 1.0 - Math.pow(1.0 - speed, gsap.ticker.deltaRatio());
+
+      pos.x += (mouse.x - pos.x) * dt;
+      pos.y += (mouse.y - pos.y) * dt;
+      xSet(pos.x);
+      ySet(pos.y);
+    });
+
     return () => {
       // Cleanup if necessary
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -66,6 +103,7 @@ const BaseLanding = () => {
         <section className="section2">
           <div className="content-2 content" id="fade-in-section">
             <p>Second Section</p>
+            <div className="flair">hi there</div>
           </div>
         </section>
       </div>

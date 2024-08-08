@@ -1,5 +1,5 @@
 
-  section {
+  /* section {
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     font-size: 2em;
     position: relative;
     overflow: hidden;
-  }
+  } */
   .section1 {
     background-color: black;
     position: absolute;
@@ -15,6 +15,18 @@
     top: 0;
     left: 0;
     right: 0;
+  }
+  h1 {
+    margin: 1rem;
+    text-align: center;
+  }
+  .flair {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
   }
   .section2 {
     background-color: black;
