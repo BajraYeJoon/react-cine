@@ -1,0 +1,44 @@
+
+  section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    position: relative;
+    overflow: hidden;
+  }
+  .section1 {
+    background-color: black;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .section2 {
+    background-color: black;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .content {
+    font-size: 2em;
+    position: relative;
+    z-index: 1;
+  }
+  .content-2 {
+    transform: scale(0.1);
+    opacity: 0;
+    position: absolute;
+    color: white !important;
+    /* display: none; */
+  }
+  
+  .spacer {
+    width: 100%;
+    height: 100vh;
+    background-color: #333;
+  }
+  
